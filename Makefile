@@ -2,7 +2,7 @@ RELEASE_DIR = /tmp/viewer
 ARCHIVE_DIR = .
 
 all:
-	@echo "Do not run make - run ./setup.sh"
+	@echo "Do not run make - run ./setup"
 
 Release.mk:
 	qmake CONFIG=release -o Release.mk
