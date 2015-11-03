@@ -8,22 +8,17 @@ DEMOS_DIR=$ROOT/demos
 CGAL_DIR=$ROOT/CGAL-3.8
 MAKE_ARGS=$1
 
-function barf {
-	echo "Oops! Errors encountered."
-	exit 1
-}
-
 function build {
 	for proj in `ls $1`; do
 		cd $1/$proj
 		qmake >/dev/null || continue
-		make $MAKE_ARGS || barf
+		make $MAKE_ARGS
 	done
 }
 
 echo "Setting up geoc viewer installation"
 
-#echo "Compiling CGAL"
+echo "Compiling CGAL"
 cd $CGAL_DIR
 cmake .
 make $1
