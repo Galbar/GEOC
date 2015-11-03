@@ -180,6 +180,8 @@ if ( CMAKE_COMPILER_IS_GNUCXX )
   if ( "${GCC_VERSION}" MATCHES "Not" OR "${GCC_VERSION}" MATCHES "Unknown" )
     set( GCC_FOUND FALSE )
   endif()
+
+  uniquely_add_flags( CGAL_CXX_FLAGS "-std=c++11" )
   
   if ( GCC_FOUND )
     
