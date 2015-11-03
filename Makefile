@@ -1,6 +1,3 @@
-RELEASE_DIR = /tmp/viewer
-ARCHIVE_DIR = .
-
 all:
 	@echo "Do not run make - run ./setup"
 
