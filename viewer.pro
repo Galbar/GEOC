@@ -1,31 +1,21 @@
 GEOC_BOOST_PATH	= $$[GEOC_BOOST_PATH]
 GEOC_CGAL_PATH	= $$[GEOC_CGAL_PATH]
 
-
 contains (CONFIG, debug) {
 	CONFIG			+= debug
 	OBJECTS_DIR		= ./Debug
 	DEFINES			= _GEOC_DEBUG
-
-	unix|macx {
-		MAKEFILE	= Debug.mk
-	}
-}
-else {
+	MAKEFILE	= Debug.mk
+} else {
 	CONFIG			+= release
 	OBJECTS_DIR		= ./Release
-
-	unix|macx {
-		MAKEFILE	= Release.mk
-	}
+	MAKEFILE	= Release.mk
 }
-
 
 DESTDIR        = bin
 TEMPLATE       = lib
 CONFIG         += qt dll lex yacc uic resources warn_on precompile_header designer plugin
 TARGET         = geoc
-
 
 INCLUDEPATH += src
 DEPENDPATH += src
@@ -175,13 +165,6 @@ HEADERS     = \
              src/geoc/cgal/Constructors.hpp\
              src/geoc/cgal/Vector_iterators.h\
     src/geoc/math/Quaternion.h
-
-win32 {
-	HEADERS += \
-			src/geoc/geoc.h \
-			src/geoc/math/Vector.h \
-            src/geoc/higher_order_cpp.h
-}
 
 FORMS       = \
 
