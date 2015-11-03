@@ -45,8 +45,8 @@ else {
 }
 
 
-QMAKE_CXXFLAGS_RELEASE	= -O2 -frounding-math
-QMAKE_CXXFLAGS_DEBUG	+= -g
+QMAKE_CXXFLAGS_RELEASE	= -std=c++11 -O2 -frounding-math
+QMAKE_CXXFLAGS_DEBUG	+= -std=c++11 -g
 
 LIBS					+= -lGLU
 
