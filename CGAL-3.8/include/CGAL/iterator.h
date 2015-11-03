@@ -1229,8 +1229,8 @@ class Dispatch_output_iterator < cpp0x::tuple<V...>, cpp0x::tuple<O...> >
  : private internal::Derivator<Dispatch_output_iterator< cpp0x::tuple<V...>, cpp0x::tuple<O...> >, cpp0x::tuple<V...>, cpp0x::tuple<O...> >
  , public cpp0x::tuple<O...>
 {
-  static_assert(sizeof...(V) == sizeof...(O),
-                "The number of explicit template parameters has to match the number of arguments");
+  //static_assert(sizeof...(V) == sizeof...(O),
+                //"The number of explicit template parameters has to match the number of arguments");
 
   static const int size = sizeof...(V);
 
