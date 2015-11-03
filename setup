@@ -12,7 +12,7 @@ command_test() {
 
 command_test qmake-qt4 && QMAKE=qmake-qt4 || QMAKE=qmake
 
-function build {
+build() {
 	for d in $1/*; do
 		pushd $d
 		$QMAKE
