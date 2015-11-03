@@ -24,25 +24,25 @@ void MyObserver::enters(LineSegmentEnt* s)
 {
     sceneMgr->attach(s);
     num_segments++;
-    
+
     ostringstream os;
     os << num_segments;
     s->setLabel(os.str());
-    
+
     if (num_segments % 2)
     {
 	previous_segment = s;
     }
-    
+
     else
     {
 	Colour3 colour;
 	string desc;
 	classifyIntersection(*previous_segment, *s, colour, desc);
-	
+
 	previous_segment->colour = colour;
 	s->colour = colour;
-	
+
 	ostringstream os;
 	os << "Pair " << pair_num << ": " << desc;
 	outputSystem->write(os);

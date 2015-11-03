@@ -11,21 +11,21 @@ namespace geoc {
 class CamCtrlState2D : public CamCtrlState
 {
 public:
-    
+
     CamCtrlState2D(Camera& cam, const Input& input, Graphics& gfx, SceneManager& sceneMgr)
         : CamCtrlState(cam, input, gfx, sceneMgr) {}
-    
-    
+
+
     int keyPressed(Keyboard::key key);
-    
+
     int mouseMoved(const ScreenPos& pos);
-    
+
     int mouseWheel(int delta);
-    
+
     virtual void resetCamera();
-    
+
     virtual void updateZoom();
-    
+
     virtual void centerCamera();
 };
 

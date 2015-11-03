@@ -16,30 +16,30 @@ namespace geoc {
 class DECLDIR OutputSystem : public OutputStream
 {
     std::list<OutputStream*>	streams;
-    
+
 public:
-    
+
     ~OutputSystem();
-    
+
     //! Attaches an output stream to the output system.
     /*!
      * The OutputSystem takes ownership of the given OutputStream.
      * \sa OutputStream
      */
     void attach(OutputStream* stream);
-    
+
     //! Detaches an output stream from the output system.
     /**
      * \sa OutputStream
      */
     void detach(OutputStream* stream);
-    
+
     //! Writes the given C string to all output streams.
     void write(const char* str);
-    
+
     //! Writes the given string to all output streams.
     void write(const std::string& str);
-    
+
     //! Writes the given ostringstream to all output streams.
     void write(const std::ostringstream& str);
 };

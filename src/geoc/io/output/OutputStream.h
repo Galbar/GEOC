@@ -11,15 +11,15 @@ namespace geoc {
 class DECLDIR OutputStream
 {
 public:
-    
+
     virtual ~OutputStream() {}
-    
+
     //! Writes the given C string to the output stream.
     virtual void write(const char* str) = 0;
-    
+
     //! Writes the given string to the output stream.
     virtual void write(const std::string& str) = 0;
-    
+
     //! Writes the given ostringstream to the output stream.
     virtual void write(const std::ostringstream& str) = 0;
 };

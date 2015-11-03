@@ -14,20 +14,20 @@ class Point;
 class DECLDIR Circle
 {
     Vector3 points[3];
-    
+
     template <class iter_t> friend Circle circle(iter_t);
-    
+
 public:
-    
+
     //! Default constructor.
     /*!
      * Points are set to the origin.
      */
     Circle() {}
-    
+
     //! Builds a circle from three points.
     Circle(const Vector3& v1, const Vector3& v2, const Vector3& v3);
-    
+
     //! Gets the ith vertex.
     const Vector3& operator[](int index) const;
 };

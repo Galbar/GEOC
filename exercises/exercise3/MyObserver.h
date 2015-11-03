@@ -19,11 +19,11 @@ class MyObserver : public geoc::Observer<geoc::Point>,
     geoc::OutputSystem* outputSystem;
     geoc::CircleEnt*    circle;
     int num_points;
-    
+
 public:
-    
+
     MyObserver(geoc::SceneManager* sceneMgr, geoc::OutputSystem* outputSystem);
-    
+
     void enters(geoc::Point* p);
     void enters(geoc::CircleEnt* c);
     void leaves(geoc::Entity* e);

@@ -14,11 +14,11 @@ class DECLDIR CircleState : public ScreenState<CircleEnt>
     Vector3 pts[3];
     geoc::CircleEnt circle;
     int points_entered;
-    
+
 public:
-    
+
     CircleState();
-    
+
     GEOC_APP_REQUEST_CODE mouseClick(const Vector3& pos);
     GEOC_APP_REQUEST_CODE mouseMove(const Vector3& pos);
     void cancel();

@@ -14,11 +14,11 @@ class TriangleEnt;
 //! Base class for triangulations.
 class DECLDIR TriangulationBase
 {
-    
+
 public:
-    
+
     virtual ~TriangulationBase () {}
-    
+
     //! Triangulates the given set of points.
     /**
      * \param ps The points to triangulate.

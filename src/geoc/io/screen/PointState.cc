@@ -19,7 +19,7 @@ GEOC_APP_REQUEST_CODE PointState::mouseMove(const Vector3& pos)
 
 void PointState::cancel()
 {
-    
+
 }
 
 void PointState::draw(Graphics& gfx)

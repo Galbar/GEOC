@@ -26,9 +26,9 @@ CGAL::Cartesian<num>::Plane_3 Triangle::supporting_plane() const
     Vector3 v1 = points[0] - points[1];
     Vector3 v2 = points[2] - points[1];
     Vector3 n = cross(v2, v1);
-    
+
     num d = -(n[X] * points[1][X] + n[Y] * points[1][Y] + n[Z] * points[1][Z]);
-    
+
     return CGAL::Cartesian<num>::Plane_3(n[X], n[Y], n[Z], d);
 }
 

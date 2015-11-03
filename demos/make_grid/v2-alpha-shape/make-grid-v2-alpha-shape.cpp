@@ -24,7 +24,7 @@ typedef K::Point_3   Point;
 typedef K::Segment_3  Segment; //
 
 /**
- *  Version 2: compute 
+ *  Version 2: compute
  *    - Delone triangulation
  *    - Alpha shapes
  */
@@ -43,7 +43,7 @@ void alpha_edges(const Alpha_shape_2& A, OutputIterator out)
 int main(int argc, char *argv[])
 {
     if (argc!=2) {
-        std::cerr << "Usage: " << argv[0] << " <input data file>" 
+        std::cerr << "Usage: " << argv[0] << " <input data file>"
                   << std::endl;
         return 1;
     }
@@ -56,11 +56,11 @@ int main(int argc, char *argv[])
     std::istream_iterator<Point> pts_begin(in);
     std::istream_iterator<Point> pts_end;
     std::vector<Point> pts(pts_begin, pts_end);
-    
+
     Alpha_shape_2 A(pts.begin(), pts.end(), magic_alpha, Alpha_shape_2::GENERAL);
     std::vector<Segment> segments;
     alpha_edges( A, std::back_inserter(segments));
-    
+
     std::cerr << "Alpha Shape computed" << std::endl;
     std::cerr << segments.size() << " alpha shape edges" << std::endl;
 

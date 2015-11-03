@@ -11,11 +11,11 @@ namespace geoc
 class Quaternion
 {
 public:
-    
+
     num w, x, y, z;
-    
+
     Quaternion () : w(1.0f), x(0.0f), y(0.0f), z(0.0f) {}
-    
+
     Quaternion (num _w, num _x, num _y, num _z)
         : w(_w), x(_x), y(_y), z(_z) {}
 };

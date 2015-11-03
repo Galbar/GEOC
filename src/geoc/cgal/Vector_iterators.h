@@ -12,7 +12,7 @@ namespace geoc {
 class Construct_Vector2_iterator
 {
 public:
-    
+
     const num* operator()(const Vector2& v);
     const num* operator()(const Vector2& v, int);
 };
@@ -22,7 +22,7 @@ public:
 class Construct_Vector3_iterator
 {
 public:
-    
+
     const num* operator()(const Vector3& v);
     const num* operator()(const Vector3& v, int);
 };

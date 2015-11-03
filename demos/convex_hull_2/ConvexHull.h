@@ -15,26 +15,26 @@
 class ConvexHull : public geoc::Entity
 {
     typedef std::vector<geoc::Vector2> container_t;
-    
+
     geoc::BoundingBox3 _bb;
     container_t points;
     container_t hull;
     int n_points;
-    
+
 public:
-    
+
     ConvexHull() : n_points(0) {}
-    
+
     void addPoint(const geoc::Vector3& p);
-    
+
     void update();
-    
+
     void draw(geoc::Graphics& gfx) const;
-    
+
     geoc::BoundingBox3 bb() const { return _bb; }
-    
+
     static const char* header() { return "convex hull"; }
-    
+
     static void read(std::istream& is, ConvexHull& ch);
 };
 

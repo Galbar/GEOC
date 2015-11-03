@@ -13,7 +13,7 @@ struct Keyboard_Impl;
 class Keyboard
 {
 public:
-    
+
     /** \ingroup Input */
     //! Keyboard keys.
     enum key {	Key_MIN,
@@ -25,15 +25,15 @@ public:
                 Key_up, Key_down, Key_left, Key_right, Key_ctrl, Key_alt, Key_pgup, Key_pgdown,
                 Key_unknown,
                 Key_MAX};
-    
+
 private:
     static const int NUM_KEYS = Key_MAX - Key_MIN - 1;
     std::vector<bool> keys;
-    
+
 public:
-    
+
     Keyboard() : keys(std::vector<bool>(NUM_KEYS, false)) {}
-    
+
     //! Updates the state of the given key.
     /*!
      * \param key The key to be updated.
@@ -41,13 +41,13 @@ public:
      * \sa Keyboard::key
      */
     void setState(Keyboard::key key, bool pressed) { keys[key] = pressed; }
-    
+
     //! Returns true if the key is down, false otherwise.
     /*!
      * \sa Keyboard::key
      */
     bool down(Keyboard::key key) const { return keys[key]; }
-    
+
     //! Returns true if the key is up, false otherwise.
     /*!
      * \sa Keyboard::key

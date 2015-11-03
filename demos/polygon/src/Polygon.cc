@@ -42,7 +42,7 @@ const char* Polygon::header()
 void Polygon::write(std::fstream& fs) const
 {
     fs << points.size() << endl;
-    
+
     foreach (const Vector3& v, points)
     {
 	fs << v << endl;
@@ -56,7 +56,7 @@ void Polygon::read(std::istream& is, Polygon& p)
     Vector3 v;
     int n_points;
     is >> n_points;
-    
+
     p.points.reserve(n_points);
     for (int i = 0; i < n_points; ++i)
     {

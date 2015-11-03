@@ -13,9 +13,9 @@ namespace geoc {
 //! Base class for all screen input states.
 template <class T>
 class ScreenState :	public IScreenState, public Subject<T>
-{	
+{
 public:
-    
+
     virtual ~ScreenState() {}
 };
 

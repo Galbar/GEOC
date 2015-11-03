@@ -23,18 +23,18 @@ MyObserver::MyObserver(SceneManager* scenemgr, OutputSystem* outputSys) :
 void MyObserver::enters(geoc::Point* p)
 {
     sceneMgr->attach(p);
-    
+
     num_points++;
     ostringstream label;
     label << num_points;
     p->setLabel(label.str());
-    
+
     if (triangle != 0)
     {
 	Colour3 colour;
 	string desc;
 	classify(*triangle, p->position(), colour, desc);
-	
+
 	p->colour = colour;
 	outputSystem->write(desc);
     }

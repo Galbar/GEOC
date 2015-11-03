@@ -22,17 +22,17 @@ class DECLDIR CgalTriangulation : public TriangulationBase
     typedef CGAL::Filtered_kernel_adaptor<VK_> K_;
     typedef CGAL::Projection_traits_xy_3<K_> K;
     typedef CGAL::Delaunay_triangulation_2<K> Delaunay_triangulation_2;
-    
+
     Delaunay_triangulation_2 dt;
-    
+
 public:
-    
+
     void triangulate(const std::vector<Vector3>& ps,
                      const std::vector<int>& idxs,
                      std::vector<LineSegmentEnt>& segments,
                      std::vector<TriangleEnt>& triangles,
                      std::vector<TriangleEnt>& triangles_pruned);
-    
+
 };
 
 } // namespace geoc

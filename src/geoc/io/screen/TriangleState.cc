@@ -12,7 +12,7 @@ GEOC_APP_REQUEST_CODE TriangleState::mouseClick(const Vector3& pos)
 {
     pts[points_entered] = pos;
     points_entered++;
-    
+
     if (points_entered == 3)
     {
         triangle = triangle_ent(pts);
@@ -23,7 +23,7 @@ GEOC_APP_REQUEST_CODE TriangleState::mouseClick(const Vector3& pos)
         pts[points_entered] = pos;
         triangle = triangle_ent(pts);
     }
-    
+
     return GEOC_APP_REDISPLAY;
 }
 

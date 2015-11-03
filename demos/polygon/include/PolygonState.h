@@ -13,9 +13,9 @@ class Polygon;
 class PolygonState : public geoc::ScreenState<polygon::Polygon>
 {
     std::list<geoc::Vector3>	vertices;
-    
+
 public:
-    
+
     GEOC_APP_REQUEST_CODE mouseClick(const geoc::Vector3& pos);
     GEOC_APP_REQUEST_CODE mouseRightClick(const geoc::Vector3& pos);
     GEOC_APP_REQUEST_CODE mouseMove(const geoc::Vector3& pos);

@@ -40,7 +40,7 @@ int CamCtrlContext::mouseWheel(int delta)
 int CamCtrlContext::keyPressed(Keyboard::key key)
 {
     int request_code = GEOC_APP_NO_REQUEST;
-    
+
     if (key == Keyboard::Key_2)
     {
         setState(state2D);
@@ -52,7 +52,7 @@ int CamCtrlContext::keyPressed(Keyboard::key key)
         request_code |= GEOC_APP_STATUS_BAR_UPDATE;
     }
     else request_code |= currentState->keyPressed(key);
-    
+
     return request_code;
 }
 

@@ -15,12 +15,12 @@ class TriangleEnt;
 /** \ingroup Geometry */
 //! A triangulation of a set of points in the plane.
 class Triangulation : public TriangulationBase
-{	
+{
 public:
-    
+
     Triangulation();
     ~Triangulation();
-    
+
     void triangulate(const std::vector<Vector3>& ps,
                      const std::vector<int>& idxs,
                      std::vector<LineSegmentEnt>& segments,

@@ -41,49 +41,49 @@ public:
 void TriangulationEnt::read(std::istream& is, TriangulationEnt& t)
 {
     using namespace std;
-    
+
     Timer timer;
     timer.start();
-    
+
     streampos start = is.tellg();
     is.seekg(0, ios::end);
     //streampos end = is.tellg();
     is.seekg(start, ios::beg);
     //int length = end - start;
-    
+
     //vector<char> buf(length);
     //is.read(&buf[0], length);
-    
+
     stringstream ss;
     //ss.rdbuf()->pubsetbuf(&buf[0], length);
     ss << is.rdbuf();
-    
+
     vector<Vector3> pts;
     vector<int> idxs;
-    
+
     // Read vectors.
     Vector3 v;
     streampos pos;
-    
+
     for(;;)
     {
         pos = ss.tellg();
-        
+
         read_vector3(ss, v);
-        
+
         if (!ss.good()) break;
-        
+
         t.m_bb.add(v);
         pts.push_back(v);
     }
-    
+
     if (ss.bad() || pts.size() == 0) return;
-    
+
     if (!ss.eof())
     {
         ss.clear();
         ss.seekg(pos);
-        
+
         // We reached the boundary section. Read the header and then parse indices.
         string header;
         ss >> header;
@@ -95,28 +95,28 @@ void TriangulationEnt::read(std::istream& is, TriangulationEnt& t)
             {
                 pos = ss.tellg();
                 ss >> index;
-                
+
                 if (!ss.good()) break;
-                
+
                 idxs.push_back(index);
             }
         }
-        
+
         if (ss.bad()) return;
         ss.clear(ss.rdstate() & ~ios::failbit);
         ss.seekg(pos);
     }
-    
+
     timer.tick();
     printf("Reading time: %fs\n", timer.getDeltaTime());
-    
+
     timer.tick();
     t.triang->triangulate(pts, idxs, t.segments, t.triangles, t.triangles_pruned);
     timer.tick();
-    
+
     printf("Triangulation time: %fs\n", timer.getDeltaTime());
     cout << pts.size() << " points read, " << idxs.size() << " indices read" << endl;
-    
+
     is.clear((is.rdstate() & ~ios::failbit) | ios::eofbit);
 }
 
@@ -135,18 +135,18 @@ void TriangulationEnt::prepare(Graphics* gfx, bool enable_3d)
 {
     this->gfx = gfx;	// Save the gfx instance so that we can later delete the allocated static geometry
     // when the class dtor is called.
-    
+
     if (!triangles_pruned.empty())
     {
         // Produce a pruned 2D triangulation.
         geometry[TRIANGULATION_2D_PRUNED] = gfx->createStaticGeometry(&triangles_pruned[0], triangles_pruned.size(), 0, 0, true);
-        
+
         if (enable_3d)
         {
             vector<Vector3> normals, colours;
             normals.reserve(triangles_pruned.size() * 3);
             colours.reserve(triangles_pruned.size() * 3);
-            
+
             // Produce a rough, gray 3D triangulation.
             foreach (TriangleEnt& t, triangles_pruned)
             {
@@ -155,9 +155,9 @@ void TriangulationEnt::prepare(Graphics* gfx, bool enable_3d)
                 normals.push_back(n);
                 normals.push_back(n);
             }
-            
+
             geometry[TRIANGULATION_3D_PRUNED_AND_GRAY] = gfx->createStaticGeometry(&triangles_pruned[0], triangles_pruned.size(), &normals[0], 0, false, true);
-            
+
             // Give each vertex a colour based on height.
             // To do this we find out each vertex's height relative to the total height of
             // the terrain. The terrain is divided into three sections: sand, grass, and mountain.
@@ -165,7 +165,7 @@ void TriangulationEnt::prepare(Graphics* gfx, bool enable_3d)
             // grass colour and so on. Furthermore, every vertex gets a different colour shade based
             // on its height; vertices at the top of a mountain look darker than vertices at the bottom
             // of the mountain.
-            
+
             // Sand: E9C2A6
             // Vegetation: 668014
             // Mountain: 8B5742
@@ -177,11 +177,11 @@ void TriangulationEnt::prepare(Graphics* gfx, bool enable_3d)
             num height = max - min;
             num vege_threshold = 0.1;
             num mntn_threshold = 0.48;
-            
+
             num sand_factor = vege_threshold;
             num vege_factor = mntn_threshold - vege_threshold;
             num mntn_factor = 1.0 - mntn_threshold;
-            
+
             // Calculate colour factors for each vertex.
             // In addition, we will also use this loop to find out, for each vertex, the triangles incident to it,
             // just so that we can compute smoothed vertex normals later on.
@@ -189,7 +189,7 @@ void TriangulationEnt::prepare(Graphics* gfx, bool enable_3d)
             //a vertex for each vertex in the triangulation.
             typedef pair< Vector3, list<TriangleEnt*> > vertex_pair; // The pair value the previous map holds.
             vertex_data_t vertex_data;
-            
+
             foreach (TriangleEnt& t, triangles_pruned)
             {
                 // Loop over the current triangle's vertices.
@@ -197,20 +197,20 @@ void TriangulationEnt::prepare(Graphics* gfx, bool enable_3d)
                 {
                     num alt = (t[i][Z] - min) / height;	// The current vertex's relative height.
                     alt = (alt < 0.01) ? 0.01 : alt;
-                    
+
                     // Give the current vertex a colour.
                     if (alt < vege_threshold)		colours.push_back(computeColour(sand, alt / sand_factor, 0.15));
                     else if (alt < mntn_threshold)	colours.push_back(computeColour(vege, (alt - vege_threshold) / vege_factor, 0.15));
                     else							colours.push_back(computeColour(mntn, (alt - mntn_threshold) - mntn_factor, 0.30));
-                    
+
                     // Insert the current triangle into the vertex's list of triangles.
                     vertex_data[t[i]].push_back(&t);
                 }
             }
-            
+
             // Produce a rough 3D triangulation.
             geometry[TRIANGULATION_3D_PRUNED] = gfx->createStaticGeometry(&triangles_pruned[0], triangles_pruned.size(), &normals[0], &colours[0]);
-            
+
             // Produce a smooth 3D triangulation.
             // Calculate vertex normals to produce a smooth 3D triangulation.
             // To do this we compute the normalised average normal of the triangles incident to each vertex.
@@ -220,15 +220,15 @@ void TriangulationEnt::prepare(Graphics* gfx, bool enable_3d)
                 Vector3 vertex_normal;
                 const Vector3& v = vertex_p.first;
                 list<TriangleEnt*>& l = vertex_p.second;
-                
+
                 foreach (TriangleEnt* triangle, l) vertex_normal += normal(*triangle);
-                
+
                 vertex_normal.normalise();
-                
+
                 foreach (TriangleEnt* triangle, l)
                 {
                     TriangleEnt& t = *triangle;
-                    
+
                     for (int i = 0; i < 3; ++i)
                     {
                         if (t[i] == v)
@@ -243,7 +243,7 @@ void TriangulationEnt::prepare(Graphics* gfx, bool enable_3d)
             geometry[TRIANGULATION_3D_PRUNED_AND_SMOOTH] = gfx->createStaticGeometry(&triangles_pruned[0], triangles_pruned.size(), &normals[0], &colours[0]);
         }
     }
-    
+
     // Produce a raw 2D triangulation, using segments or triangles.
     if (!segments.empty())
     {
@@ -253,7 +253,7 @@ void TriangulationEnt::prepare(Graphics* gfx, bool enable_3d)
     {
         geometry[TRIANGULATION_2D_RAW] = gfx->createStaticGeometry(&triangles[0], triangles.size(), 0, 0, true);
     }
-    
+
     printf("Preparation done\n");
 }
 
@@ -264,15 +264,15 @@ void TriangulationEnt::draw(Graphics& gfx) const
     {
         bool wireframe = gfx.getWireframeState();
         bool lighting = gfx.getLightingState();
-        
+
         if (drawMode == TRIANGULATION_2D_RAW || drawMode == TRIANGULATION_2D_PRUNED)
         {
             gfx.setWireframe(true);
             gfx.setLighting(false);
         }
-        
+
         gfx.drawStaticGeometry(geometry[drawMode]);
-        
+
         if (drawMode == TRIANGULATION_2D_RAW || drawMode == TRIANGULATION_2D_PRUNED)
         {
             gfx.setWireframe(wireframe);

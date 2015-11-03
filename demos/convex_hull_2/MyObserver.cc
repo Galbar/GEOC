@@ -27,7 +27,7 @@ void MyObserver::enters(Point* p)
 	ch = new ConvexHull();
 	sceneMgr->attach(ch);
     }
-    
+
     ch->addPoint(p->position());
     ch->update();
     sceneMgr->attach(p);

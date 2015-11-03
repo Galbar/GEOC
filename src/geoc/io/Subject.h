@@ -13,25 +13,25 @@ template <class T>
 class Subject
 {
     std::list< Observer<T>* >	observers;
-    
+
 protected:
-    
+
     //! Notifies observers that the given element wishes to enter the scene.
     void enters(T* elem);
-    
+
     //! Notifies observers that the given element is leaving the scene.
     void leaves(T* elem);
-    
+
     //! Notifies observers that the scene has been cleared.
     void sceneCleared();
-    
+
 public:
-    
+
     virtual ~Subject() {}
-    
+
     //! Attaches an observer.
     void attach(Observer<T>* observer);
-    
+
     //! Detaches an observer.
     void detach(Observer<T>* observer);
 };

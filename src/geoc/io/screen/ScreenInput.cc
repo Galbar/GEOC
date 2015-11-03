@@ -28,7 +28,7 @@ struct geoc::ScreenInput_Impl
     const Camera&       cam;
     const SceneManager& sceneMgr;
     StateTransitions    transitions;
-    
+
     ScreenInput_Impl(const Camera& camera, const SceneManager& scenemgr)
         : cam(camera), sceneMgr(scenemgr) {}
 };
@@ -80,7 +80,7 @@ char ScreenInput::mouseMoved(const ScreenPos& pos)
 char ScreenInput::keyPressed(Keyboard::key key, const ScreenPos& pos)
 {
     char request = 0;
-    
+
     // Search for transitions.
     foreach (StateTransition transition, impl->transitions)
     {
@@ -94,7 +94,7 @@ char ScreenInput::keyPressed(Keyboard::key key, const ScreenPos& pos)
             break;
         }
     }
-    
+
     request |= impl->currentState->keyPressed(key);
     return request;
 }

@@ -19,15 +19,15 @@ class DECLDIR CircleEnt : public Circle, public Entity
 {
     BoundingBox3	box;
     std::string		label;
-    
+
     template <class iter_t> friend CircleEnt circle_ent(iter_t);
-    
+
 public:
-    
+
     Colour3	colour;
-    
+
 public:
-    
+
     //! Default constructor.
     /*!
      * Points are set to the origin.
@@ -36,46 +36,46 @@ public:
      * Empty label.
      */
     CircleEnt() {}
-    
+
     //! Builds a CircleEnt from three points and a colour.
     CircleEnt(const Vector3& v1, const Vector3& v2, const Vector3& v3, const Colour3& colour = zero3);
-    
+
     //! Builds a CircleEnt from a Circle.
     CircleEnt(const Circle& c);
-    
+
     //! Draws the circle.
     /**
      * \sa Graphics
      */
     void draw(Graphics& gfx) const;
-    
+
     //! Draws the circle's label.
     /**
      * \sa Font
      */
     void drawLabel(const Font& font) const;
-    
+
     //! Sets the cirle's label.
     void setLabel(const std::string& label);
-    
+
     //! Gets the bounding box surrounding the circle.
     /**
      * \sa BoundingBox
      */
     BoundingBox3 bb() const { return box; }
-    
+
     //! Gets the header for circles.
     static const char* header() { return "c"; }
-    
+
     //! Gets the circle's header.
     const char* getHeader() const { return CircleEnt::header(); }
-    
+
     //! Reads the circle from the given input stream.
     static void read(std::istream& is, CircleEnt& c);
-    
+
     //! Writes the circle to the given output stream.
     void write(std::ostream& os) const;
-    
+
     //! Writes the circle to the given file stream.
     void write(std::fstream& fs) const;
 };

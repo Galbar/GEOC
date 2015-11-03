@@ -52,16 +52,16 @@ void Timer::tick()
         deltaTime = 0.0;
         return;
     }
-    
+
     //Get the time on this frame.
     curTime = now();
-    
+
     //Time delta between the current frame and the previous.
     deltaTime = (curTime - prevTime) * secondsPerCount;
-    
+
     //Update for next frame.
     prevTime = curTime;
-    
+
     // Force nonnegative. The DXSDK's CDXUTTimer mentions that if the
     // processor goes into a power save mode or we get shuffled to
     // another processor, then mDeltaTime can be negative.
@@ -89,7 +89,7 @@ void Timer::stop()
     {
         //Grab the stop time.
         stopTime = now();
-        
+
         //Now we are stopped.
         stopped = true;
     }
@@ -101,13 +101,13 @@ void Timer::start()
     if (stopped)
     {
         timeReading startTime = now();
-        
+
         //Accumulate the paused time.
         pausedTime = pausedTime + startTime - stopTime;
-        
+
         //Make the previous time valid.
         prevTime = startTime;
-        
+
         //Now we are running.
         stopTime = 0;
         stopped = false;
@@ -117,8 +117,8 @@ void Timer::start()
 timeReading now()
 {
     timeReading t;
-    
-    
+
+
 #ifdef __APPLE__
     t = mach_absolute_time();
 #elif WIN32
@@ -128,6 +128,6 @@ timeReading now()
     clock_gettime(CLOCK_REALTIME, &ts);
     t = ts.tv_sec + ((double)ts.tv_nsec * NSEC_TO_SEC);
 #endif
-    
+
     return t;
 }

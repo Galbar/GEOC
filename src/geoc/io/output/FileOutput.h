@@ -12,12 +12,12 @@ namespace geoc {
 class DECLDIR FileOutput : public OutputStream
 {
     std::fstream f;
-    
+
 public:
-    
+
     FileOutput(const char* filename);
     ~FileOutput();
-    
+
     void write(const char* str);
     void write(const std::string& str);
     void write(const std::ostringstream& str);

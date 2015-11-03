@@ -12,12 +12,12 @@ class CamCtrlState3D : public CamCtrlState2D
 {
     ScreenPos old_pos;
     bool initial_drag;
-    
+
 public:
-    
+
     CamCtrlState3D(Camera& cam, const Input& input, Graphics& gfx, SceneManager& sceneMgr)
         : CamCtrlState2D(cam, input, gfx, sceneMgr), initial_drag (true) {}
-    
+
     int mouseMoved(const ScreenPos& pos);
 };
 

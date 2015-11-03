@@ -20,11 +20,11 @@ class MyObserver : public geoc::Observer<geoc::Point>,
 {
     geoc::SceneManager* sceneMgr;
     geoc::OutputSystem* outputSystem;
-    
+
 public:
-    
+
     MyObserver(geoc::SceneManager* sceneMgr, geoc::OutputSystem* outputSystem);
-    
+
     void enters(geoc::Point* p);
     void enters(geoc::LineSegmentEnt* s);
     void enters(geoc::TriangleEnt* t);

@@ -23,32 +23,32 @@ class Plane_3;
 class DECLDIR Triangle
 {
     Vector3 points[3];
-    
+
     template <class iter_t> friend Triangle triangle(iter_t);
-    
+
 public:
-    
+
     //! Default constructor.
     /*!
      * Points are set to the origin.
      */
     Triangle() {}
-    
+
     //! Builds a triangle from three points.
     Triangle(const Vector3& p1, const Vector3& p2, const Vector3& p3);
-    
+
     //! Tests two triangles for equality.
     bool operator==(const Triangle& t) const;
-    
+
     //! Tests two triangles of inequality.
     bool operator!=(const Triangle& t) const { return !((*this) == t); }
-    
+
     //! Gets the ith vertex modulo 3.
     const Vector3& vertex(int index) const
     {
         return points[index%3];
     }
-    
+
     //! Gets the ith vertex.
     /*!
      * The index is checked in debug mode, but not in release mode.
@@ -58,18 +58,18 @@ public:
         GEOC_DEBUG_ASSERT(index >= 0 && index <= 2);
         return points[index];
     }
-    
+
     //! Returns the triangle's supporting plane, with the same orientation.
     CGAL::Cartesian<num>::Plane_3 supporting_plane() const;
-    
+
     // Returns true if the triangle's vertices are collinear, false otherwise.
     //bool is_degenerate() const;
-    
+
     //bool has_on(const Vector3& p) const;
-    
+
     //! Returns the triangle's area squared.
     num squared_area() const;
-    
+
     //! Returns a bounding box containing the triangle.
     CGAL::Bbox_3 bbox() const;
 };

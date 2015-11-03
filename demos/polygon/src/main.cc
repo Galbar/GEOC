@@ -9,7 +9,7 @@ using namespace geoc;
 using namespace std;
 
 int main(int argc, char** argv)
-{	
+{
     try
     {
 	QApplication qt_application(argc, argv);
@@ -25,6 +25,6 @@ int main(int argc, char** argv)
     {
 	printf("Exception caught: %s\n", e.what());
     }
-    
+
     return 0;
 }

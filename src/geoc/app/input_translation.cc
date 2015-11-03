@@ -48,7 +48,7 @@ Keyboard::key geoc::translate_key(int qt_key)
     case Qt::Key_Space:		return Keyboard::Key_space;
     case Qt::Key_Return:	return Keyboard::Key_return;
     case Qt::Key_Shift:		return Keyboard::Key_shift;
-    case Qt::Key_Escape:	return Keyboard::Key_escape; 
+    case Qt::Key_Escape:	return Keyboard::Key_escape;
     case Qt::Key_Tab:		return Keyboard::Key_tab;
     case Qt::Key_Backspace:	return Keyboard::Key_backspace;
     case Qt::Key_Up:		return Keyboard::Key_up;

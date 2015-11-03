@@ -14,11 +14,11 @@ class DECLDIR LineSegmentState : public ScreenState<LineSegmentEnt>
     Vector3					pts[2];
     geoc::LineSegmentEnt	segment;
     int						points_entered;
-    
+
 public:
-    
+
     LineSegmentState();
-    
+
     GEOC_APP_REQUEST_CODE mouseClick(const Vector3& pos);
     GEOC_APP_REQUEST_CODE mouseMove(const Vector3& pos);
     void cancel();

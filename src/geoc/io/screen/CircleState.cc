@@ -11,7 +11,7 @@ GEOC_APP_REQUEST_CODE CircleState::mouseClick(const Vector3& pos)
 {
     pts[points_entered] = pos;
     points_entered++;
-    
+
     if (points_entered == 1 || points_entered == 2)
     {
         pts[points_entered] = pos;
@@ -23,7 +23,7 @@ GEOC_APP_REQUEST_CODE CircleState::mouseClick(const Vector3& pos)
         enters(new CircleEnt(circle));
         cancel();
     }
-    
+
     return GEOC_APP_REDISPLAY;
 }
 

@@ -20,11 +20,11 @@ class MyObserver : public geoc::Observer<geoc::Point>,
     geoc::OutputSystem* outputSystem;
     geoc::TriangleEnt*  triangle;
     int num_points;
-    
+
 public:
-    
+
     MyObserver(geoc::SceneManager* sceneMgr, geoc::OutputSystem* outputSystem);
-    
+
     void enters(geoc::Point* p);
     void enters(geoc::TriangleEnt* t);
     void leaves(geoc::Entity* e);

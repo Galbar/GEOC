@@ -12,9 +12,9 @@ namespace geoc {
 class DECLDIR PointState : public ScreenState<Point>
 {
     Point cursor;
-    
+
 public:
-    
+
     GEOC_APP_REQUEST_CODE mouseClick(const Vector3& pos);
     GEOC_APP_REQUEST_CODE mouseMove(const Vector3& pos);
     void cancel();

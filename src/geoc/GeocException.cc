@@ -16,15 +16,15 @@ void GeocException::buildErrorString(const char* file, int line, const char* wha
 {
     int whatLen = 0;
     int fileLen = 0;
-    
+
     mWhat = 0;
-    
+
     if (file)
     {
         fileLen = strlen(file);
     }
     whatLen = strlen(what);
-    
+
     mWhat = (char*)malloc(fileLen + whatLen + 16 + 1);
     if (!mWhat)
     {

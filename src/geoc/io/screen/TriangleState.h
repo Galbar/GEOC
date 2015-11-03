@@ -14,11 +14,11 @@ class DECLDIR TriangleState : public ScreenState<TriangleEnt>
     Vector3				pts[3];
     geoc::TriangleEnt	triangle;
     int					points_entered;
-    
+
 public:
-    
+
     TriangleState();
-    
+
     GEOC_APP_REQUEST_CODE mouseClick(const Vector3& pos);
     GEOC_APP_REQUEST_CODE mouseMove(const Vector3& pos);
     void cancel();

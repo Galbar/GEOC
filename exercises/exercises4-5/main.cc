@@ -25,6 +25,6 @@ int main(int argc, char** argv)
     {
 	printf("Exception caught: %s\n", e.what());
     }
-    
+
     return 0;
 }

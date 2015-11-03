@@ -20,7 +20,7 @@ typedef K::Point_3   Point;
 int main(int argc, char *argv[])
 {
     if (argc!=2) {
-        std::cerr << "Usage: " << argv[0] << " <input data file>" 
+        std::cerr << "Usage: " << argv[0] << " <input data file>"
                   << std::endl;
         return 1;
     }
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
     in.getline(buf, 500); // kill the first line in the file
     std::istream_iterator<Point> begin(in);
     std::istream_iterator<Point> end;
-    
+
     Delaunay dt;
     dt.insert(begin, end);
     std::cerr << "Triangulated " << dt.number_of_vertices() << " vertices" << std::endl;
@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
         const Point p0(seg.min()), p1(seg.max());
         if (p0 != Point(0,0,0))
             std::cout << p0 << "\n" << p1 << std::endl;
-    } 
+    }
 
    return 0;
 }

@@ -14,29 +14,29 @@ class GeocWidgetInterface : public QObject, public QDesignerCustomWidgetInterfac
 {
     Q_OBJECT
     Q_INTERFACES(QDesignerCustomWidgetInterface)
-    
+
 public:
-    
+
     GeocWidgetInterface(QObject* parent = 0) : QObject(parent) {}
-    
+
     QWidget* createWidget(QWidget* parent);
-    
+
     QString domXml() const;
-    
+
     QString group() const { return "Geoc"; }
-    
+
     QIcon icon() const { return QIcon(); }
-    
+
     QString includeFile() const { return "geoc/app/GeocWidget.h"; }
-    
+
     bool isContainer() const { return false; }
-    
+
     bool isInitialized() const { return true; }
-    
+
     QString name() const { return "geoc::GeocWidget"; }
-    
+
     QString toolTip() const { return "Geoc viewer widget"; }
-    
+
     QString whatsThis() const { return "Geoc viewer widget"; }
 };
 

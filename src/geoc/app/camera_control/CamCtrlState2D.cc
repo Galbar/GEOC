@@ -25,17 +25,17 @@ int CamCtrlState2D::keyPressed(Keyboard::key key)
         resetCamera();
         return GEOC_APP_REDISPLAY | GEOC_APP_STATUS_BAR_UPDATE;
     }
-        
+
     case Keyboard::Key_F:
         gfx.toggleWireframe();
         return GEOC_APP_REDISPLAY;
-        
+
     case Keyboard::Key_V:
     {
         cam.toggleMode();
         return GEOC_APP_REDISPLAY | GEOC_APP_STATUS_BAR_UPDATE;
     }
-        
+
     default: break;
     }
     return GEOC_APP_NO_REQUEST;
@@ -47,7 +47,7 @@ int CamCtrlState2D::mouseMoved(const ScreenPos& pos)
     int request_code = GEOC_APP_NO_REQUEST;
     num dx, dy;
     input.getMouseDelta(&dx, &dy);
-    
+
     if (input.buttonDown(Mouse::LMB))
     {
         if (input.keyDown(Keyboard::Key_Z))
@@ -61,10 +61,10 @@ int CamCtrlState2D::mouseMoved(const ScreenPos& pos)
             //the camera by that amount.
             Vector3 v1, v2;
             Vector2 delta = Vector2(dx, dy);
-            
+
             v1 = Math::viewportToWorld(pos - delta, cam);
             v2 = Math::viewportToWorld(pos, cam);
-            
+
             Vector3 disp = v1 - v2;
             cam.move(disp);
             request_code |= GEOC_APP_REDISPLAY;
@@ -76,7 +76,7 @@ int CamCtrlState2D::mouseMoved(const ScreenPos& pos)
             request_code |= GEOC_APP_REDISPLAY;
         }
     }
-    
+
     return request_code;
 }
 

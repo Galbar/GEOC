@@ -17,13 +17,13 @@ class ExampleApp : public geoc::GeocApplication
     MyObserver* myObserver;
     bool        enable_3d;
     bool        use_cgal;
-    
+
     void parse_args(int argc, char** argv);
-    
+
 public:
-    
+
     ExampleApp() : enable_3d(false), use_cgal(false) {}
-    
+
     void init(int argc, char** argv);
     void shutdown();
     void keyPressed(geoc::GeocWidget&, geoc::Keyboard::key key);

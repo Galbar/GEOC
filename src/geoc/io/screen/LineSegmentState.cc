@@ -12,7 +12,7 @@ GEOC_APP_REQUEST_CODE LineSegmentState::mouseClick(const Vector3& pos)
 {
     pts[points_entered] = pos;
     points_entered++;
-    
+
     if (points_entered == 1)
     {
         pts[1] = pts[0];
@@ -23,7 +23,7 @@ GEOC_APP_REQUEST_CODE LineSegmentState::mouseClick(const Vector3& pos)
         enters(new LineSegmentEnt(segment));
         cancel();
     }
-    
+
     return GEOC_APP_REDISPLAY;
 }
 

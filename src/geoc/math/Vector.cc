@@ -345,7 +345,7 @@ std::ostream& operator<<(std::ostream& os, const Vector<T,N>& v)
         os << v[i] << ", ";
     }
     os << v[N-1] << ")";
-    
+
     return os;
 }
 
@@ -356,7 +356,7 @@ std::istream& operator>>(std::istream& is, Vector<T,N>& v)
     {
         is >> v[i];
     }
-    
+
     return is;
 }
 
@@ -368,7 +368,7 @@ std::fstream& operator<<(std::fstream& fs, const Vector<T,N>& v)
         fs << v[i] << " ";
     }
     fs << v[N-1];
-    
+
     return fs;
 }
 
@@ -377,12 +377,12 @@ template <class T, int N>
 T dot(const Vector<T,N>& v1, const Vector<T,N>& v2)
 {
     T d = 0;
-    
+
     for (int i = 0; i != N; ++i)
     {
         d += (v1[i] * v2[i]);
     }
-    
+
     return d;
 }
 

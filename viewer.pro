@@ -175,7 +175,7 @@ HEADERS     = \
              src/geoc/cgal/Constructors.hpp\
              src/geoc/cgal/Vector_iterators.h\
     src/geoc/math/Quaternion.h
-			 
+
 win32 {
 	HEADERS += \
 			src/geoc/geoc.h \

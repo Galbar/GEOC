@@ -11,15 +11,15 @@ template <class T>
 class Observer
 {
 public:
-    
+
     virtual ~Observer() {}
-    
+
     //! Notifies the observer that the given element wishes to enter the scene.
     virtual void enters(T*) {}
-    
+
     //! Notifies the observer that the given element is leaving the scene.
     virtual void leaves(T*) {}
-    
+
     //! Notifies the observer that the scene has been cleared.
     virtual void sceneCleared() {}
 };

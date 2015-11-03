@@ -42,11 +42,11 @@ void Camera::applyProjectionMatrix() const
     case CAMERA_PERSPECTIVE:
         applyPerspectiveView();
         break;
-        
+
     case CAMERA_ORTHOGONAL:
         applyOrthogonalView();
         break;
-        
+
         GEOC_DEBUG_CODE(default: throw GEOC_EXCEPTION("Unknown mode");)
     }
 }
@@ -55,7 +55,7 @@ void Camera::applyProjectionMatrix() const
 void Camera::applyPerspectiveView() const
 {
     num aspect = _width / _height;
-    
+
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(m_fov, aspect, _near, _far);
@@ -68,7 +68,7 @@ void Camera::applyOrthogonalView() const
     num scale = 1.0 / m_zoom * 0.5;
     num width = _width;
     num height = _height;
-    
+
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(-width * scale, width * scale, -height * scale, height * scale, _near, _far);
@@ -105,10 +105,10 @@ void Camera::setZoom(num zoom)
 void Camera::computeZoom(num scene_width, num scene_height)
 {
     static const num margin = 0.9;
-    
+
     scene_width = (scene_width == 0.0) ? 1.0 : scene_width;
     scene_height = (scene_height == 0.0) ? 1.0 : scene_height;
-    
+
     if (scene_width / _width > scene_height / _height)
     {
         m_zoom = _width / scene_width * margin;
@@ -127,21 +127,21 @@ void Camera::center(const Vector3& scene_center, num scene_width, num scene_heig
     Vector3 cam_pos	= scene_center;
     num fov_vert = m_fov * TO_RAD;
     num off = 0;
-    
+
     num off1 = scene_height / (2 * tan(fov_vert / 2));
-    
+
     num r = _width / _height;
     num fov_hor  = 2 * atan(r * tan(fov_vert / 2));
     num off2 = scene_width / (2 * tan(fov_hor / 2));
-    
+
     off = std::max(off1, off2);
-    
+
     // Margin.
     off *= 1.1;
-    
+
     cam_pos[Z] = cam_pos[Z] + (scene_depth / 2) + off + _near;
     setPosition(cam_pos);
-    
+
     // Adjust far clip
     num d = Math::max(scene_width, scene_height, scene_depth);
     num range = off + _near + d + 1.0;

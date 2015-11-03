@@ -17,11 +17,11 @@ class Polygon;
 class MyObserver : public geoc::Observer<polygon::Polygon>
 {
     geoc::SceneManager* sceneMgr;
-    
+
 public:
-    
+
     MyObserver(geoc::SceneManager* sceneMgr);
-    
+
     void enters(polygon::Polygon* p);
 };
 

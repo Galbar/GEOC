@@ -19,37 +19,37 @@ using namespace std;
 void ExampleApp::init(int argc, char** argv)
 {
     parse_args(argc, argv);
-    
+
     GeocWidget& w = geocWidget();
-    
+
     w.gfx().setPointSize(3);
     w.gfx().setLighting(true);
     w.gfx().setAntialiasing(false);
-    
+
     myObserver = new MyObserver(&w.sceneManager(), &outputSystem(), &w.gfx(), enable_3d);
-    
+
     ObjectLoader& oLoader = w.objectLoader();
-    
+
     boost::function<void (std::istream&, TriangulationEnt&)> load =
 	    boost::bind(&TriangulationEnt::read, _1, _2);
-    
+
     if (use_cgal)
     {
 	boost::function<TriangulationEnt* ()> build_cgal_triang =
 		boost::bind(&make_triangulation_ent<CgalTriangulation>);
-	
+
 	Loader<TriangulationEnt>* ctLoader = new Loader<TriangulationEnt>(build_cgal_triang, load);
 	oLoader.attach(ctLoader);
 	ctLoader->attach(myObserver);
     }
-    
+
     boost::function<TriangulationEnt* ()> build_student_triang =
 	    boost::bind(&make_student_triangulation);
-    
+
     Loader<TriangulationEnt>* tLoader = new Loader<TriangulationEnt>(build_student_triang, load);
     oLoader.attach(tLoader);
     tLoader->attach(myObserver);
-    
+
     if (argc > 1)
     {
 	for (int i = 1; i < argc; ++i)
@@ -61,7 +61,7 @@ void ExampleApp::init(int argc, char** argv)
 	    }
 	}
     }
-    
+
     printf("Example application initialised.\n");
 }
 
@@ -69,7 +69,7 @@ void ExampleApp::init(int argc, char** argv)
 void ExampleApp::shutdown()
 {
     printf("Example application shutting down.\n");
-    
+
     safe_delete(myObserver);
 }
 
@@ -77,38 +77,38 @@ void ExampleApp::shutdown()
 void ExampleApp::keyPressed(geoc::GeocWidget&, Keyboard::key key)
 {
     bool changed = false;
-    
+
     switch(key)
     {
     case Keyboard::Key_B:	//2D Raw
 	myObserver->setDrawMode(TRIANGULATION_2D_RAW);
 	changed = true;
 	break;
-	
+
     case Keyboard::Key_H:	//2D Pruned
 	myObserver->setDrawMode(TRIANGULATION_2D_PRUNED);
 	changed = true;
 	break;
-	
+
     case Keyboard::Key_N:	//3D Pruned and Gray.
 	myObserver->setDrawMode(TRIANGULATION_3D_PRUNED_AND_GRAY);
 	changed = true;
 	break;
-	
-	
+
+
     case Keyboard::Key_J:	//3D Pruned
 	myObserver->setDrawMode(TRIANGULATION_3D_PRUNED);
 	changed = true;
 	break;
-	
+
     case Keyboard::Key_M:	//3D Pruned and Smooth
 	myObserver->setDrawMode(TRIANGULATION_3D_PRUNED_AND_SMOOTH);
 	changed = true;
 	break;
-	
+
     default: break;
     }
-    
+
     if (changed) redisplay();
 }
 

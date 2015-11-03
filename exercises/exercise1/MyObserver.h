@@ -18,12 +18,12 @@ class MyObserver : public geoc::Observer<geoc::LineSegmentEnt>,
     geoc::LineSegmentEnt* previous_segment;
     int num_segments;
     int pair_num;
-    
+
 public:
-    
+
     MyObserver(geoc::SceneManager* sceneMgr, geoc::OutputSystem* outputSystem);
     ~MyObserver();
-    
+
     void enters(geoc::LineSegmentEnt* s);
     void leaves(geoc::Entity* e);
     void sceneCleared();

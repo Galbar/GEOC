@@ -55,7 +55,7 @@ void SceneManager::attach(Entity* e)
     // Insert it in the scene and create an insert command.
     impl->entities.push_back(e);
     impl->all_entities.push_back(e);
-    
+
     list<Command>& commands = impl->commands;
     if (commands.size() == max_command_size)
     {
@@ -69,11 +69,11 @@ void SceneManager::attach(Entity* e)
         commands.pop_front();
     }
     commands.push_back(Command(Command::cmd_insert, e, impl->entities));
-    
+
     // Update the scene's bounding box.
     impl->bb.add(e->bb().min());
     impl->bb.add(e->bb().max());
-    
+
     // Update the scene's position.
     Spatial::setPosition(impl->bb.center());
 }
@@ -90,11 +90,11 @@ void SceneManager::detachLast()
     // We do not actually delete the item from memory. Instead we create a DeleteCommand
     // holding that item, in case the user wants to undo the deletion operation later on.
     if (impl->entities.empty()) return;
-    
+
     Entity* e = impl->entities.back();
     leaves(e);
     impl->entities.remove(e);
-    
+
     Command cmd = Command(Command::cmd_delete, e, impl->entities);
     list<Command>& commands = impl->commands;
     if (commands.size() == max_command_size)
@@ -116,7 +116,7 @@ void SceneManager::undo()
 {
     list<Command>& commands = impl->commands;
     if (commands.empty()) return;
-    
+
     // Grab the top command, call its undo method, create the opposite command, store it,
     // and delete the original command from the stack and from memory.
     Command& cmd = commands.back();
@@ -130,11 +130,11 @@ void SceneManager::redo()
 {
     list<Command>& redo_commands = impl->redo_commands;
     if (redo_commands.empty()) return;
-    
+
     Command& cmd = redo_commands.back();
     redo_commands.pop_back();
     cmd.redo();
-    
+
     list<Command>& commands = impl->commands;
     if (commands.size() == max_command_size)
     {
@@ -180,26 +180,26 @@ void SceneManager::renderLabels(Font& font, const Camera& cam) const
 {
     const num min_size = 0.01;
     num size = cam.zoom() == 0.0 ? min_size : 1.0 / cam.zoom() * 17.0;
-    
+
     font.setSize(size);
     font.startRender();
-    
+
     foreach (Entity* entity, impl->entities)
     {
         Vector3 c = entity->bb().center();
-        
+
         glPushMatrix();
         glTranslatef(c[X], c[Y], c[Z]);
         applyInverseRotation();
         glTranslatef(-c[X], -c[Y], -c[Z]);
-        
+
         glBegin(GL_QUADS);
         entity->drawLabel(font);
         glEnd();
-        
+
         glPopMatrix();
     }
-    
+
     font.endRender();
 }
 
@@ -208,22 +208,22 @@ void SceneManager::save(const char* filename) const
 {
     fstream f;
     openFile(f, filename, fstream::out);
-    
+
     if (!impl->entities.empty())
     {
         // Write entities in the same order they were read.
         string header;
         string old_header;
-        
+
         list<const Entity*> ents;
-        
+
         foreach (const Entity* e, impl->entities)
         {
             // Group up consecutive elements of the same kind into
             // a single write operation.
             header = e->getHeader();
             if (old_header.empty()) old_header = header;
-            
+
             // Skip empty header entities.
             if (!header.empty())
             {
@@ -232,7 +232,7 @@ void SceneManager::save(const char* filename) const
                 {
                     // Write the current group.
                     writeToFile(old_header, ents, f);
-                    
+
                     // New group.
                     ents.clear();
                     ents.push_back(e);
@@ -240,11 +240,11 @@ void SceneManager::save(const char* filename) const
                 }
             }
         }
-        
+
         // Write the last group.
         if (!ents.empty()) writeToFile(old_header, ents, f);
     }
-    
+
     f.close();
 }
 
@@ -300,7 +300,7 @@ bool SceneManager::empty() const
 void writeToFile(const std::string& header, list<const Entity*>& entities, fstream& f)
 {
     f << header << endl;
-    
+
     foreach (const Entity* entity, entities)
     {
         f << *entity << endl;

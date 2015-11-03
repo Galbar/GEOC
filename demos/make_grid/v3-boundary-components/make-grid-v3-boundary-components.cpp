@@ -1,7 +1,7 @@
 #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include <CGAL/Projection_traits_xy_3.h>
 #include <CGAL/Delaunay_triangulation_2.h>
-#include <CGAL/Alpha_shape_2.h> 
+#include <CGAL/Alpha_shape_2.h>
 
 #include <fstream>
 #include <vector>
@@ -9,30 +9,30 @@
 #include <set> //
 
 #include <boost/foreach.hpp>
-#define foreach BOOST_FOREACH 
+#define foreach BOOST_FOREACH
 
 typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
 typedef CGAL::Projection_traits_xy_3<K>  Gt;
 
-typedef CGAL::Alpha_shape_vertex_base_2<Gt> Vb; 
-typedef CGAL::Alpha_shape_face_base_2<Gt>  Fb; 
-typedef CGAL::Triangulation_data_structure_2<Vb,Fb> Tds; 
-typedef CGAL::Delaunay_triangulation_2<Gt,Tds> Delaunay; 
+typedef CGAL::Alpha_shape_vertex_base_2<Gt> Vb;
+typedef CGAL::Alpha_shape_face_base_2<Gt>  Fb;
+typedef CGAL::Triangulation_data_structure_2<Vb,Fb> Tds;
+typedef CGAL::Delaunay_triangulation_2<Gt,Tds> Delaunay;
 
-typedef CGAL::Alpha_shape_2<Delaunay>  Alpha_shape_2; 
-typedef Alpha_shape_2::Alpha_shape_edges_iterator Alpha_shape_edges_iterator; 
+typedef CGAL::Alpha_shape_2<Delaunay>  Alpha_shape_2;
+typedef Alpha_shape_2::Alpha_shape_edges_iterator Alpha_shape_edges_iterator;
 
 typedef K::Point_3   Point;
-typedef K::Segment_3  Segment; 
+typedef K::Segment_3  Segment;
 
-typedef std::vector<Segment> SegmentContainer; // 
+typedef std::vector<Segment> SegmentContainer; //
 typedef std::set<Point> PointContainer; //
 typedef std::map<Point, PointContainer> NeighborMap; //
 typedef std::vector<Point> Boundary; //
 typedef std::vector<Boundary> BoundaryContainer; //
 
 /**
- *  Version 3: compute 
+ *  Version 3: compute
  *    - Delone triangulation
  *    - Alpha shapes
  *    - Boundaries
@@ -70,7 +70,7 @@ void make_boundaries(const SegmentContainer& segments, BoundaryContainer& bc)
 
     while (!nm.empty()) {
         const NeighborMap::iterator mit = nm.begin();
-        Point v(mit->first); 
+        Point v(mit->first);
         const Point start(v);
         Boundary b;
         b.push_back(v);
@@ -91,7 +91,7 @@ void make_boundaries(const SegmentContainer& segments, BoundaryContainer& bc)
 int main(int argc, char *argv[])
 {
     if (argc!=2) {
-        std::cerr << "Usage: " << argv[0] << " <input data file>" 
+        std::cerr << "Usage: " << argv[0] << " <input data file>"
                   << std::endl;
         return 1;
     }
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     std::istream_iterator<Point> pts_begin(in);
     std::istream_iterator<Point> pts_end;
     std::vector<Point> pts(pts_begin, pts_end);
-    
+
     Alpha_shape_2 A(pts.begin(), pts.end(),
                     magic_alpha,
                     Alpha_shape_2::GENERAL);

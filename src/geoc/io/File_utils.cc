@@ -14,7 +14,7 @@ void geoc::openFile(std::fstream& f, const char* filename, std::fstream::openmod
         //Create the file and attempt to open it again.
         ofstream of(filename, flags);
         of.close();
-        
+
         f.open(filename, flags);
         if (!f.is_open())
         {
@@ -30,7 +30,7 @@ int geoc::getLineNumber(std::fstream& f)
 {
     streampos pos = f.tellg();
     f.seekg(0);
-    
+
     char c;
     int line = 1;
     for (int i = 0; i < pos; ++i)
@@ -38,7 +38,7 @@ int geoc::getLineNumber(std::fstream& f)
         f.get(c);
         if (c == '\n') line++;
     }
-    
+
     return line;
 }
 
@@ -46,10 +46,10 @@ int geoc::getLineNumber(std::fstream& f)
 int geoc::getLinePosition(std::fstream& f)
 {
     streampos start = f.tellg();
-    
+
     char c;
     f.get(c);
-    
+
     int pos = 0;
     while (c != '\n' && f.tellg() > 0)
     {
@@ -57,9 +57,9 @@ int geoc::getLinePosition(std::fstream& f)
         f.get(c);
         pos++;
     }
-    
+
     f.seekg(start);
-    
+
     return pos;
 }
 
@@ -78,7 +78,7 @@ void geoc::skipLine(std::fstream& f)
 void geoc::readString(std::fstream& f, std::string& s)
 {
     using namespace std;
-    
+
     // Skip leading white space.
     char c = f.peek();
     while (c == '\r' || c == '\n' || c == '\t' || c == ' ')
@@ -86,7 +86,7 @@ void geoc::readString(std::fstream& f, std::string& s)
         f.get();
         c = f.peek();
     }
-    
+
     while (!f.eof() && (c != '\r' && c != '\n' && c != '\t' && c != ' '))
     {
         s.push_back(f.get());

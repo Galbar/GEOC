@@ -28,7 +28,7 @@ template <class T>
 struct element
 {
     const T* item;
-    
+
     element(const T* t)
     {
         item = t;
@@ -40,13 +40,13 @@ struct polygon
 {
     const vector<Vector3>* points;
     Colour3 colour;
-    
+
     polygon(const vector<Vector3>* ps, const Colour3& c)
     {
         points = ps;
         colour = c;
     }
-    
+
     ~polygon()
     {
         delete points;
@@ -76,13 +76,13 @@ struct geoc::Graphics_impl
     bool wireframe;
     GLUquadricObj* quadric;
     list<GLuint>   displayLists;
-    
+
     vector<Point>          point_pool;
     vector<LineSegmentEnt> segment_pool;
     vector<TriangleEnt>    triangle_pool;
     vector<CircleEnt>      circle_pool;
     vector<polygon>        polygon_pool;
-    
+
     vector< element<Point> >          points;
     vector< element<LineSegmentEnt> > segments;
     vector< element<TriangleEnt> >    triangles;
@@ -102,9 +102,9 @@ Graphics::Graphics()
     impl->lighting     = false;
     impl->wireframe    = false;
     impl->quadric      = gluNewQuadric();
-    
+
     if (impl->quadric == 0) throw GEOC_EXCEPTION("Unable to retrieve a quadric");
-    
+
     gluQuadricDrawStyle(impl->quadric, GLU_LINE);
     gluQuadricNormals(impl->quadric, GLU_NONE);
     gluQuadricTexture(impl->quadric, GL_FALSE);
@@ -114,14 +114,14 @@ Graphics::Graphics()
 Graphics::~Graphics()
 {
     if (impl->quadric) gluDeleteQuadric(impl->quadric);
-    
+
     //Free display lists.
     foreach (GLuint id, impl->displayLists)
     {
         glDeleteLists(id, 1);
     }
     impl->displayLists.clear();
-    
+
     impl->quadric = 0;
     safe_delete(impl);
 }
@@ -142,23 +142,23 @@ void Graphics::initialise(int width, int height, num x, num y)
     //glEnable(GL_DOUBLE);
     glCullFace(GL_BACK);
     glFrontFace(GL_CCW);
-    
+
     glShadeModel(GL_SMOOTH);
-    
+
     setDepthTest(true);
     setCulling(true);
     setAntialiasing(true);
-    
+
     glClearColor(0x40 / 255.0, 0x80 / 255.0, 0x80 / 255.0, 0);
-    
+
     float ambientLight[] = {0.5f, 0.5f, 0.5f, 1.0f};
     float diffuseLight[] = {1.0f, 1.0f, 1.0f, 1.0f};
     float specularLight[] = {0.2f, 0.2f, 0.2f, 1.0f};
-    
+
     glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);
     glLightfv(GL_LIGHT0, GL_SPECULAR, specularLight);
-    
+
     float matSpecular[] = {0.3f, 0.3f, 0.3f, 1.0f};
     /*float matAmbient[] = {0.2f, 0.2f, 0.2f, 1.0f};
     float matDiffuse[] = {0.5f, 0.5f, 0.5f, 1.0f};*/
@@ -166,9 +166,9 @@ void Graphics::initialise(int width, int height, num x, num y)
     /*glMaterialfv(GL_FRONT, GL_AMBIENT, matAmbient);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, matDiffuse);*/
     glMateriali(GL_FRONT, GL_SHININESS, 128);
-    
+
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-    
+
     setViewport(width, height, x, y);
 }
 
@@ -188,14 +188,14 @@ void Graphics::setViewport(int width, int height, num x, num y)
 void Graphics::drawCube(const Vector3& pos, num d)
 {
     glPushMatrix();
-    
+
     glTranslatef(pos[X], pos[Y], pos[Z]);
-    
+
     static float f = 0.0f;
     f += 0.002;
-    
+
     glRotatef(f, 0, 1, 0);
-    
+
     glBegin(GL_QUADS);
     //Front
     glNormal3f(0.0f, 0.0f, 1.0f);
@@ -203,35 +203,35 @@ void Graphics::drawCube(const Vector3& pos, num d)
     glVertex3f(d, -d, d);
     glVertex3f(d, d, d);
     glVertex3f(-d, d, d);
-    
+
     //Back
     glNormal3f(0.0f, 0.0f, -1.0f);
     glVertex3f(-d, d, -d);
     glVertex3f(d, d, -d);
     glVertex3f(d, -d, -d);
     glVertex3f(-d, -d, -d);
-    
+
     //Left
     glNormal3f(-1.0f, 0.0f, 0.0f);
     glVertex3f(-d, -d, -d);
     glVertex3f(-d, -d, d);
     glVertex3f(-d, d, d);
     glVertex3f(-d, d, -d);
-    
+
     //Right
     glNormal3f(1.0f, 0.0f, 0.0f);
     glVertex3f(d, -d, d);
     glVertex3f(d, -d, -d);
     glVertex3f(d, d, -d);
     glVertex3f(d, d, d);
-    
+
     //Top
     glNormal3f(0.0f, 1.0f, 0.0f);
     glVertex3f(-d, d, d);
     glVertex3f(d, d, d);
     glVertex3f(d, d, -d);
     glVertex3f(-d, d, -d);
-    
+
     //Bottom
     glNormal3f(0.0f, -1.0f, 0.0f);
     glVertex3f(-d, -d, d);
@@ -239,7 +239,7 @@ void Graphics::drawCube(const Vector3& pos, num d)
     glVertex3f(d, -d, -d);
     glVertex3f(d, -d, d);
     glEnd();
-    
+
     glPopMatrix();
 }
 
@@ -340,9 +340,9 @@ void Graphics::drawPolygon(const Vector3* ps, int n, const Colour3& colour) cons
         (*points)[i] = *ps;
         ps++;
     }
-    
+
     polygon* p = new polygon(points, colour);
-    
+
     element<polygon> e = element<polygon>(p);
     impl->polygons.push_back(e);
 }
@@ -357,9 +357,9 @@ void Graphics::drawPolygon(const Vector2* ps, int n, const Colour3& colour) cons
         (*points)[i] = Vector3(v[X], v[Y], 0);
         ps++;
     }
-    
+
     polygon* p = new polygon(points, colour);
-    
+
     element<polygon> e = element<polygon>(p);
     impl->polygons.push_back(e);
 }
@@ -369,14 +369,14 @@ unsigned int Graphics::createStaticGeometry(const TriangleEnt* t, int n, const V
 {
     GLuint id = glGenLists(1);
     if (id == 0) throw GEOC_EXCEPTION("glGenLists() failed");
-    
+
     glNewList(id, GL_COMPILE);
     glBegin(GL_TRIANGLES);
-    
+
     for (int i = 0; i < n; ++i)
     {
         const TriangleEnt& triangle = *t;
-        
+
         if (grayscale)
         {
             glColor3f(0.5, 0.5, 0.5);
@@ -396,8 +396,8 @@ unsigned int Graphics::createStaticGeometry(const TriangleEnt* t, int n, const V
             normals++;
         }
         glVertex3f(triangle[0][X], triangle[0][Y], flat ? 0.0 : triangle[0][Z]);
-        
-        
+
+
         if (colours)
         {
             glColor3f((*colours)[R], (*colours)[G], (*colours)[B]);
@@ -409,8 +409,8 @@ unsigned int Graphics::createStaticGeometry(const TriangleEnt* t, int n, const V
             normals++;
         }
         glVertex3f(triangle[1][X], triangle[1][Y], flat ? 0.0 : triangle[1][Z]);
-        
-        
+
+
         if (colours)
         {
             glColor3f((*colours)[R], (*colours)[G], (*colours)[B]);
@@ -422,15 +422,15 @@ unsigned int Graphics::createStaticGeometry(const TriangleEnt* t, int n, const V
             normals++;
         }
         glVertex3f(triangle[2][X], triangle[2][Y], flat ? 0.0 : triangle[2][Z]);
-        
+
         t++;
     }
-    
+
     glEnd();
     glEndList();
-    
+
     impl->displayLists.push_front(id);
-    
+
     return id;
 }
 
@@ -439,26 +439,26 @@ unsigned int Graphics::createStaticGeometry(const LineSegmentEnt* s, int n, bool
 {
     GLuint id = glGenLists(1);
     if (id == 0) throw GEOC_EXCEPTION("glGenLists() failed");
-    
+
     glNewList(id, GL_COMPILE);
     glBegin(GL_LINES);
-    
+
     for (int i = 0; i < n; ++i)
     {
         const LineSegmentEnt& segment = *s;
         const Colour3& colour = segment.colour;
-        
+
         glColor3f(colour[R], colour[G], colour[B]);
         glVertex3f(segment[0][X], segment[0][Y], flat ? 0.0 : segment[0][Z]);
         glVertex3f(segment[1][X], segment[1][Y], flat ? 0.0 : segment[1][Z]);
         s++;
     }
-    
+
     glEnd();
     glEndList();
-    
+
     impl->displayLists.push_front(id);
-    
+
     return id;
 }
 
@@ -469,7 +469,7 @@ void Graphics::deleteStaticGeometry(unsigned int id)
     *id_arr = id;
     list<GLuint>::iterator displayList =
             search(impl->displayLists.begin(), impl->displayLists.end(), id_arr, id_arr+1);
-    
+
     if (displayList != impl->displayLists.end())
     {
         glDeleteLists(*displayList, 1);
@@ -507,7 +507,7 @@ void Graphics::flush()
     glEnd();
     impl->points.clear();
     impl->point_pool.clear();
-    
+
     //Draw segments.
     glBegin(GL_LINES);
     foreach (element<LineSegmentEnt> s, impl->segments)		render_(*s.item);
@@ -515,7 +515,7 @@ void Graphics::flush()
     glEnd();
     impl->segments.clear();
     impl->segment_pool.clear();
-    
+
     //Draw triangles.
     glBegin(GL_TRIANGLES);
     foreach (element<TriangleEnt> t, impl->triangles)	render_(*t.item);
@@ -523,13 +523,13 @@ void Graphics::flush()
     glEnd();
     impl->triangles.clear();
     impl->triangle_pool.clear();
-    
+
     //Draw circles.
     foreach (element<CircleEnt> c, impl->circles)	render_(*c.item, impl->quadric);
     foreach (const CircleEnt& c, impl->circle_pool)	render_(c, impl->quadric);
     impl->circles.clear();
     impl->circle_pool.clear();
-    
+
     //Draw polygons.
     foreach (element<polygon> p, impl->polygons)	render_(*p.item);
     foreach (const polygon& p, impl->polygon_pool)	render_(p);
@@ -751,7 +751,7 @@ void Graphics::getViewportOrigin(int& x, int& y) const
 void render_(const Point& p)
 {
     const Colour3& c = p.colour;
-    
+
     glColor3f(c[R], c[G], c[B]);
     glVertex3f(p[X], p[Y], p[Z]);
 }
@@ -760,7 +760,7 @@ void render_(const Point& p)
 void render_(const LineSegmentEnt& s)
 {
     const Colour3& c = s.colour;
-    
+
     glColor3f(c[R], c[G], c[B]);
     glVertex3f(s[0][X], s[0][Y], s[0][Z]);
     glVertex3f(s[1][X], s[1][Y], s[1][Z]);
@@ -777,47 +777,47 @@ void render_(const TriangleEnt& t)
 
 
 void render_(const CircleEnt& c, GLUquadricObj* quadric)
-{	
+{
     const Colour3& colour = c.colour;
     glColor3f(colour[R], colour[G], colour[B]);
-    
+
     const Vector3& p1 = c[0];
     const Vector3& p2 = c[1];
     const Vector3& p3 = c[2];
-    
+
     num x1, y1;
     num x2, y2;
     num x3, y3;
-    
+
     x1 = p1[X];
     y1 = p1[Y];
-    
+
     x2 = p2[X];
     y2 = p2[Y];
-    
+
     x3 = p3[X];
     y3 = p3[Y];
-    
+
     //Swap points if necessary to avoid division by 0.
     if (x2 == 0.0 && x1 == 0.0)
     {
         x2 = p3[X];
         y2 = p3[Y];
-        
+
         x3 = p2[X];
         y3 = p2[Y];
     }
-    
+
     num ma = (y2 - y1) / (x2 - x1);
     num mb = (y3 - y2) / (x3 - x2);
-    
+
     num x =	( ma*mb*(y1 - y3) + mb*(x1 + x2) - ma*(x2 + x3) ) /
             ( 2*(mb-ma) );
-    
+
     num y =	-(1.0 / ma) * (x - (x1 + x2)/2.0) + (y1 + y2)/2.0;
-    
+
     num radius = sqrt( Math::square(x2 - x) + Math::square(y2 - y) );
-    
+
     glPushMatrix();
     glTranslatef(x, y, 0.0);
     gluDisk(quadric, radius, radius, 128, 8);
@@ -828,13 +828,13 @@ void render_(const CircleEnt& c, GLUquadricObj* quadric)
 void render_(const polygon& p)
 {
     glColor3f(p.colour[R], p.colour[G], p.colour[B]);
-    
+
     glBegin(GL_POLYGON);
-    
+
     foreach (Vector3 v, *p.points)
     {
         glVertex3f(v[X], v[Y], v[Z]);
     }
-    
+
     glEnd();
 }

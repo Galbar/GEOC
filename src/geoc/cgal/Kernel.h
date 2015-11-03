@@ -24,9 +24,9 @@ template <class K_, class K_Base>
 class ViewerCartesian_base : public K_Base::template Base<K_>::Type
 {
     typedef typename K_Base::template Base<K_>::Type   OldK;
-    
+
 public:
-    
+
     typedef K_ Kernel;
     typedef Vector2 Point_2;
     typedef Vector2 Vector_2;
@@ -37,18 +37,18 @@ public:
     typedef LineSegment Segment_3;
     typedef Triangle Triangle_3;
     typedef Circle Circle_3;
-    
+
     typedef const num* Cartesian_const_iterator_2;
     typedef const num* Cartesian_const_iterator_3;
-    
+
     typedef geoc::Construct_Vector2_iterator Construct_cartesian_const_iterator_2;
     typedef geoc::Construct_Vector3_iterator Construct_cartesian_const_iterator_3;
-    
+
     typedef Viewer_Point_2_cons<Kernel, OldK> Construct_point_2;
     typedef Viewer_Point_3_cons<Kernel, OldK> Construct_point_3;
     typedef Segment_3_cons Construct_segment_3;
     typedef Triangle_3_cons Construct_triangle_3;
-    
+
     Construct_point_2 construct_point_2_object() const { return Construct_point_2(); }
     Construct_point_3 construct_point_3_object() const { return Construct_point_3(); }
     Construct_segment_3 construct_segment_3_object() const { return Construct_segment_3(); }
@@ -57,10 +57,10 @@ public:
 
 
 template <class FT>
-struct Viewer_Kernel : 
-        public CGAL::Type_equality_wrapper< 
-        ViewerCartesian_base< Viewer_Kernel<FT>, CGAL::Cartesian<FT> >, 
-        Viewer_Kernel<FT> 
+struct Viewer_Kernel :
+        public CGAL::Type_equality_wrapper<
+        ViewerCartesian_base< Viewer_Kernel<FT>, CGAL::Cartesian<FT> >,
+        Viewer_Kernel<FT>
         >
 {};
 

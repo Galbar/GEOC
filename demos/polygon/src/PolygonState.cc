@@ -20,15 +20,15 @@ GEOC_APP_REQUEST_CODE PolygonState::mouseRightClick(const Vector3& pos)
 {
     vertices.push_front(pos);
     Polygon* p = new Polygon;
-    
+
     foreach (const Vector3& v, vertices)
     {
 	p->addVertex(v);
     }
-    
+
     enters(p);
     vertices.clear();
-    
+
     return GEOC_APP_REDISPLAY;
 }
 
@@ -39,7 +39,7 @@ GEOC_APP_REQUEST_CODE PolygonState::mouseMove(const Vector3& pos)
     {
 	vertices.front() = pos;
     }
-    
+
     return GEOC_APP_REDISPLAY;
 }
 
@@ -60,12 +60,12 @@ void PolygonState::draw(Graphics& gfx)
     {
 	list<Vector3>::const_iterator vertex = vertices.begin();
 	vertex++;
-	
+
 	while (vertex != vertices.end())
 	{
 	    list<Vector3>::const_iterator previous = vertex;
 	    previous--;
-	    
+
 	    gfx.drawSegment(*previous, *vertex);
 	    vertex++;
 	}

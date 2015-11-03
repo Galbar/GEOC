@@ -16,15 +16,15 @@ class MyObserver : public geoc::Observer<geoc::Point>,
 {
     geoc::SceneManager* sceneMgr;
     ConvexHull* ch;
-    
+
 public:
-    
+
     MyObserver(geoc::SceneManager* sceneMgr);
     ~MyObserver();
-    
+
     void enters(geoc::Point* s);
     void enters(ConvexHull* ch);
-    
+
     void leaves(geoc::Entity* e);
 };
 

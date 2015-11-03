@@ -24,12 +24,12 @@ MyObserver::MyObserver(SceneManager* scenemgr, OutputSystem* outputSys) :
 void MyObserver::enters(geoc::Point* p)
 {
     sceneMgr->attach(p);
-    
+
     num_points++;
     ostringstream label;
     label << num_points;
     p->setLabel(label.str());
-    
+
     if (circle)
     {
 	Colour3 colour;

@@ -12,7 +12,7 @@ using namespace std;
 void geoc::read_vector3(std::istream& is, Vector3& v)
 {
     if (!is.good()) return;
-    
+
     // Skip leading white space.
     char k = is.peek();
     while (k == '\r' || k == '\n' || k == '\t' || k == ' ')
@@ -20,16 +20,16 @@ void geoc::read_vector3(std::istream& is, Vector3& v)
         is.get();
         k = is.peek();
     }
-    
+
     // If we reach EOF, there is no data to parse => read fails.
     if (is.eof())
     {
         is.setstate(ios::failbit);
         return;
     }
-    
+
     num vals[] = {0, 0, 0};
-    
+
     int i = 0;
     num val = 0;
     num dec = 0;
@@ -56,7 +56,7 @@ void geoc::read_vector3(std::istream& is, Vector3& v)
             period = false;
             exp = false;
             i++;
-            
+
             if (c == '\n' || is.eof()) break;
         }
         else if (c == '.')
@@ -98,11 +98,11 @@ void geoc::read_vector3(std::istream& is, Vector3& v)
             return;
         }
     }
-    
+
     v[0] = vals[0];
     v[1] = vals[1];
     v[2] = vals[2];
-    
+
     // Skip trailing whitespace.
     c = is.peek();
     while (c == '\r' || c == '\n' || c == '\t' || c == ' ')
@@ -110,7 +110,7 @@ void geoc::read_vector3(std::istream& is, Vector3& v)
         is.get();
         c = is.peek();
     }
-    
+
     if (is.eof()) is.clear(ios::eofbit);
 }
 

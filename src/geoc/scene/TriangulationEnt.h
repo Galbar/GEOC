@@ -31,46 +31,46 @@ enum TRIANGULATION_DRAW_MODE
 class DECLDIR TriangulationEnt : public Entity
 {
     TriangulationBase* triang;
-    
+
     static const int nDrawModes = 5;
-    
+
     std::vector<LineSegmentEnt>	segments;	  //Segments vector, ex4.
     std::vector<TriangleEnt>	triangles;	  //Triangles vector, ex4 / ex5.
     std::vector<TriangleEnt>	triangles_pruned; //Pruned triangulation, ex5.
-    
+
     BoundingBox3     m_bb;
     std::vector<int> geometry;
     Graphics*        gfx;
-    
+
     template <class triang_t> friend TriangulationEnt* make_triangulation_ent();
-    
+
 public:
-    
+
     TRIANGULATION_DRAW_MODE	drawMode;
-    
+
     //! Creates a new triangulation.
     TriangulationEnt(TriangulationBase* tb) : triang(tb), geometry(nDrawModes, -1), drawMode(TRIANGULATION_2D_RAW) {}
-    
+
     //! Destroys a triangulation.
     virtual ~TriangulationEnt();
-    
+
     void prepare(Graphics* gfx, bool enable_3d);
-    
+
     //! Draws the triangulation.
     void draw(Graphics& gfx) const;
-    
+
     //! Draws the triangulation's labels.
     void drawLabel(const Font& font) const;
-    
+
     //! Gets the bounding box surrounding this triangulation.
     BoundingBox3 bb() const { return m_bb; }
-    
+
     //! Gets the header for triangulations.
     static const char* header() { return "triangulation"; }
-    
+
     //! Gets the header for triangulations.
     const char* getHeader() const { return TriangulationEnt::header(); }
-    
+
     //! Reads a triangulation from an input stream.
     static void read(std::istream& is, TriangulationEnt& t);
 };

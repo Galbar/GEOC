@@ -11,7 +11,7 @@ namespace geoc {
 class IdleState : public IScreenState
 {
 public:
-    
+
     const char* description() const { return "Idle"; }
 };
 

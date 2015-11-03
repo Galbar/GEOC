@@ -31,6 +31,6 @@ void Triangulation::triangulate(const std::vector<Vector3>& ps,
                                 std::vector<TriangleEnt>& triangles_pruned)
 {
     printf("Compiling student triangulation\n");
-    
+
     // Add code here.
 }
