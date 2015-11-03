@@ -3,4 +3,9 @@
 /Debug/
 /Debug.mk
 CMakeFiles/
+CMakeCache.txt
+*.cmake
 */**/Makefile
+lib/
+compiler_config.h
+*.o
