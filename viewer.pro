@@ -45,37 +45,17 @@ else {
 }
 
 
-unix|macx {
-	QMAKE_CXXFLAGS_RELEASE	= -O2 -frounding-math
-	QMAKE_CXXFLAGS_DEBUG	+= -g
+QMAKE_CXXFLAGS_RELEASE	= -O2 -frounding-math
+QMAKE_CXXFLAGS_DEBUG	+= -g
 
-	LIBS					+= -lGLU
+LIBS					+= -lGLU
 
-	PRECOMPILED_HEADER		= \
-							src/geoc/math/Vector.h \
-                            src/geoc/higher_order_cpp.h \
-							src/geoc/geoc.h
+PRECOMPILED_HEADER		= \
+						src/geoc/math/Vector.h \
+		    src/geoc/higher_order_cpp.h \
+						src/geoc/geoc.h
 
-	QMAKE_CLEAN				+= bin/*.so*
-}
-else {
-	DEFINES					+= WIN32 _SCL_SECURE_NO_WARNINGS _CRT_SECURE_NO_WARNINGS DLL_EXPORT
-	QMAKE_CXXFLAGS_RELEASE	= /O2
-	QMAKE_CXXFLAGS			= /EHsc /W1 /wd4251 /wd4305 /wd4244 /wd4244 /wd4100
-	QMAKE_CLEAN				+= bin/*.dll
-
-	!isEmpty (GEOC_BOOST_PATH) {
-		LIBS	+= -L"$${GEOC_BOOST_PATH}/lib"
-	}
-
-	!isEmpty (GEOC_CGAL_PATH) {
-		LIBS	+= -L"$${GEOC_CGAL_PATH}"/lib
-	}
-	else {
-		LIBS	+= -L/CGAL-3.8/lib
-	}
-}
-
+QMAKE_CLEAN				+= bin/*.so*
 
 SOURCES     = \
              src/geoc/scene/cmd/Command.cc\
