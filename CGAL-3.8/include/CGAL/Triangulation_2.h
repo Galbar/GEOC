@@ -633,8 +633,8 @@ public:
 			   EdgeIt edge_end,
 			   FaceIt face_begin,
 			   FaceIt face_end) {
-    typedef typename Triangulation_data_structure::Edge  Tds_Edge;
-    typedef typename Triangulation_data_structure::Face  Tds_Face;
+    //typedef typename Triangulation_data_structure::Edge  Tds_Edge;
+    //typedef typename Triangulation_data_structure::Face  Tds_Face;
     Vertex_handle v = _tds.star_hole( edge_begin, edge_end,
 				      face_begin, face_end);
     v->set_point(p);
@@ -2148,7 +2148,7 @@ move_if_no_collision_and_give_new_faces(Vertex_handle v,
 {
   CGAL_triangulation_precondition(!is_infinite(v));		
   if(v->point() == p) return v;	
-  typedef std::list<Face_handle>                        Faces_list;	
+  //typedef std::list<Face_handle>                        Faces_list;	
   const int dim = this->dimension();
 
   Locate_type lt;
