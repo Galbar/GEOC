@@ -6,7 +6,7 @@ contains (CONFIG, debug) {
 	CONFIG			+= debug
 	OBJECTS_DIR		= ./Debug
 	DEFINES			= _GEOC_DEBUG
-	
+
 	unix|macx {
 		MAKEFILE	= Debug.mk
 	}
@@ -14,7 +14,7 @@ contains (CONFIG, debug) {
 else {
 	CONFIG			+= release
 	OBJECTS_DIR		= ./Release
-	
+
 	unix|macx {
 		MAKEFILE	= Release.mk
 	}
@@ -48,14 +48,14 @@ else {
 unix|macx {
 	QMAKE_CXXFLAGS_RELEASE	= -O2 -frounding-math
 	QMAKE_CXXFLAGS_DEBUG	+= -g
-	
+
 	LIBS					+= -lGLU
-	
+
 	PRECOMPILED_HEADER		= \
 							src/geoc/math/Vector.h \
                             src/geoc/higher_order_cpp.h \
 							src/geoc/geoc.h
-							
+
 	QMAKE_CLEAN				+= bin/*.so*
 }
 else {
@@ -63,11 +63,11 @@ else {
 	QMAKE_CXXFLAGS_RELEASE	= /O2
 	QMAKE_CXXFLAGS			= /EHsc /W1 /wd4251 /wd4305 /wd4244 /wd4244 /wd4100
 	QMAKE_CLEAN				+= bin/*.dll
-	
+
 	!isEmpty (GEOC_BOOST_PATH) {
 		LIBS	+= -L"$${GEOC_BOOST_PATH}/lib"
 	}
-	
+
 	!isEmpty (GEOC_CGAL_PATH) {
 		LIBS	+= -L"$${GEOC_CGAL_PATH}"/lib
 	}
