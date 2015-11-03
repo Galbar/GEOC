@@ -2,3 +2,5 @@
 /Release.mk
 /Debug/
 /Debug.mk
+CMakeFiles/
+*/**/Makefile
