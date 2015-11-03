@@ -2,26 +2,27 @@
 
 set -e
 
-ROOT=`/bin/pwd`
-EXERCISES_DIR=$ROOT/exercises
-DEMOS_DIR=$ROOT/demos
-CGAL_DIR=$ROOT/CGAL-3.8
+EXERCISES_DIR=exercises
+DEMOS_DIR=demos
+CGAL_DIR=CGAL-3.8
 MAKE_ARGS=$1
 
 function build {
 	for proj in `ls $1`; do
-		cd $1/$proj
+		pushd $1/$proj
 		qmake >/dev/null || continue
 		make $MAKE_ARGS
+		popd
 	done
 }
 
 echo "Setting up geoc viewer installation"
 
 echo "Compiling CGAL"
-cd $CGAL_DIR
+pushd $CGAL_DIR
 cmake .
 make $1
+popd
 
 echo "Making initial library build (release mode)"
 make $MAKE_ARGS
@@ -34,6 +35,3 @@ build $DEMOS_DIR
 
 echo "Compiling additional demos"
 build $DEMOS_DIR/make_grid
-
-cd $ROOT
-echo "All done."
