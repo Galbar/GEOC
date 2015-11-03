@@ -21,15 +21,17 @@ function build {
 	done
 }
 
-pushd $CGAL_DIR
-cmake .
-make -j4
-popd
+if [ ! -f bin/libgeoc.so ]; then
+	pushd $CGAL_DIR
+	cmake .
+	make -j4
+	popd
 
-$QMAKE CONFIG=release -o Release.mk
+	$QMAKE CONFIG=release -o Release.mk
 
-mkdir -p Release
-make -f Release.mk
+	mkdir -p Release
+	make -f Release.mk
+fi
 
 build $EXERCISES_DIR
 
