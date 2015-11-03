@@ -9,3 +9,10 @@ CMakeCache.txt
 lib/
 compiler_config.h
 *.o
+*.so
+*.cxx
+/bin/convex_hull_2
+/bin/ex*
+*-solution.txt
+moc_*.cpp
+__/
