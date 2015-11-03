@@ -182,10 +182,6 @@ if ( CMAKE_COMPILER_IS_GNUCXX )
   endif()
   
   if ( GCC_FOUND )
-  
-    if ( RUNNING_CGAL_AUTO_TEST )
-      uniquely_add_flags( CGAL_CXX_FLAGS "-Wall" )
-    endif()
     
     if ( "${GCC_VERSION}" MATCHES "^4." )
       message( STATUS "Using gcc version 4 or later. Adding -frounding-math" )
