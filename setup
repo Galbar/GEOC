@@ -24,7 +24,7 @@ make
 popd
 
 echo "Making initial library build (release mode)"
-make
+make release
 
 echo "Compiling exercises"
 build $EXERCISES_DIR
