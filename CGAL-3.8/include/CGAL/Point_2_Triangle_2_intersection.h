@@ -80,7 +80,7 @@ template <class K>
 typename Point_2_Triangle_2_pair<K>::Intersection_results
 Point_2_Triangle_2_pair<K>::intersection_type() const
 {
-    typedef typename K::Line_2 line_t;
+    //typedef typename K::Line_2 line_t;
     if (_known)
         return _result;
 // The non const this pointer is used to cast away const.

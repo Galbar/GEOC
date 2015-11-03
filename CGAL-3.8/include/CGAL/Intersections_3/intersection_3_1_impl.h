@@ -202,7 +202,7 @@ intersection(const typename K::Line_3 &l1,
 	     const K&)
 {
   typedef typename K::FT           FT;
-  typedef typename K::Line_3       Line_3;
+  //typedef typename K::Line_3       Line_3;
   typedef typename K::Point_3      Point_3;
   typedef typename K::Vector_3     Vector_3;
 
@@ -237,8 +237,8 @@ do_intersect(const typename K::Line_3 &l1,
 	     const typename K::Line_3 &l2,
 	     const K&)
 {
-  typedef typename K::FT           FT;
-  typedef typename K::Line_3       Line_3;
+  //typedef typename K::FT           FT;
+  //typedef typename K::Line_3       Line_3;
   typedef typename K::Point_3      Point_3;
   typedef typename K::Vector_3     Vector_3;
 
@@ -626,9 +626,9 @@ intersection(const typename K::Plane_3 &p,
              const typename K::Sphere_3 &s,
              const K&)
 {
-  typedef typename K::Sphere_3 Sphere_3;
+  //typedef typename K::Sphere_3 Sphere_3;
   typedef typename K::Circle_3 Circle_3;
-  typedef typename K::Plane_3 Plane_3;
+  //typedef typename K::Plane_3 Plane_3;
   typedef typename K::Point_3 Point_3;
   typedef typename K::FT FT;
   const FT d2 = CGAL::square(p.a()*s.center().x() + 
@@ -652,10 +652,10 @@ do_intersect(const typename K::Plane_3 &p,
              const typename K::Sphere_3 &s,
              const K&)
 {
-  typedef typename K::Sphere_3 Sphere_3;
-  typedef typename K::Circle_3 Circle_3;
-  typedef typename K::Plane_3 Plane_3;
-  typedef typename K::Point_3 Point_3;
+  //typedef typename K::Sphere_3 Sphere_3;
+  //typedef typename K::Circle_3 Circle_3;
+  //typedef typename K::Plane_3 Plane_3;
+  //typedef typename K::Point_3 Point_3;
   typedef typename K::FT FT;
   const FT d2 = CGAL::square(p.a()*s.center().x() + 
                              p.b()*s.center().y() + 
@@ -693,7 +693,7 @@ intersection(const typename K::Sphere_3 &s1,
              const K& k)
 {
   typedef typename K::Plane_3 Plane_3;
-  typedef typename K::Sphere_3 Sphere_3;
+  //typedef typename K::Sphere_3 Sphere_3;
   if(s1.center() == s2.center()) {
     if(s1.squared_radius() == s2.squared_radius()) {
       if(is_zero(s1.squared_radius())) return make_object(s1.center());
@@ -712,7 +712,7 @@ do_intersect(const typename K::Sphere_3 &s1,
              const K& k)
 {
   typedef typename K::Plane_3 Plane_3;
-  typedef typename K::Sphere_3 Sphere_3;
+  //typedef typename K::Sphere_3 Sphere_3;
   if(s1.center() == s2.center()) {
     return s1.squared_radius() == s2.squared_radius();
   }
@@ -1091,7 +1091,7 @@ intersection(const typename K::Line_3 &line,
     typedef typename K::Point_3 Point_3;
     typedef typename K::Vector_3 Vector_3;
     typedef typename K::Segment_3 Segment_3;
-    typedef typename K::RT RT;
+    //typedef typename K::RT RT;
     typedef typename K::FT FT;
     bool all_values = true;
     FT _min = 0, _max = 0; // initialization to stop compiler warning
@@ -1165,7 +1165,7 @@ intersection(const typename K::Ray_3 &ray,
     typedef typename K::Point_3 Point_3;
     typedef typename K::Vector_3 Vector_3;
     typedef typename K::Segment_3 Segment_3;
-    typedef typename K::RT RT;
+    //typedef typename K::RT RT;
     typedef typename K::FT FT;
     bool all_values = true;
     FT _min = 0, _max = 0; // initialization to prevent compiler warning
@@ -1237,7 +1237,7 @@ intersection(const typename K::Segment_3 &seg,
     typedef typename K::Point_3 Point_3;
     typedef typename K::Vector_3 Vector_3;
     typedef typename K::Segment_3 Segment_3;
-    typedef typename K::RT RT;
+    //typedef typename K::RT RT;
     typedef typename K::FT FT;
     FT _min = 0, _max;
 
@@ -1316,7 +1316,7 @@ intersection(
     min_points[1] = (icub2.min)();
     max_points[0] = (icub1.max)();
     max_points[1] = (icub2.max)();
-    typedef typename K::FT FT;
+    //typedef typename K::FT FT;
     const int DIM = 3;
     int min_idx[DIM];
     int max_idx[DIM];

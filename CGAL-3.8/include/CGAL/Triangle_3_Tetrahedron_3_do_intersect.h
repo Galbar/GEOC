@@ -38,7 +38,7 @@ do_intersect(const typename K::Triangle_3 &tr,
              const K & k)
 {
     typedef typename K::Triangle_3 Triangle;
-    typedef typename K::Point_3    Point;
+    //typedef typename K::Point_3    Point;
 
     CGAL_kernel_precondition( ! k.is_degenerate_3_object() (tr) );
     CGAL_kernel_precondition( ! k.is_degenerate_3_object() (tet) );

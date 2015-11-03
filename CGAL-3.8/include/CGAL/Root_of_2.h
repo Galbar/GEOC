@@ -1004,8 +1004,8 @@ Root_of_2<RT>
 operator-(const Root_of_2<RT> &a,
 	  const typename Root_of_traits< RT >::RootOf_1& b)
 {
-  typedef typename Root_of_traits< RT >::RootOf_1  RootOf_1;
-  typedef Rational_traits< RootOf_1 >        Rational;
+  //typedef typename Root_of_traits< RT >::RootOf_1  RootOf_1;
+  //typedef Rational_traits< RootOf_1 >        Rational;
   //RT should be the same as Rational::RT
 
   CGAL_assertion(is_valid(a) & is_valid(b));
@@ -1030,8 +1030,8 @@ template < typename RT >
 Root_of_2<RT>
 operator-(const Root_of_2<RT> &a, const RT& b)
 {
-  typedef typename Root_of_traits< RT >::RootOf_1  RootOf_1;
-  typedef Rational_traits< RootOf_1 >        Rational;
+  //typedef typename Root_of_traits< RT >::RootOf_1  RootOf_1;
+  //typedef Rational_traits< RootOf_1 >        Rational;
   //RT should be the same as Rational::RT
 
   CGAL_assertion(is_valid(a) & is_valid(b));
@@ -1104,8 +1104,8 @@ Root_of_2<RT>
 operator*(const Root_of_2<RT> &a,
 	  const typename Root_of_traits< RT >::RootOf_1& b)
 {
-  typedef typename Root_of_traits< RT >::RootOf_1  RootOf_1;
-  typedef Rational_traits< RootOf_1 >        Rational;
+  //typedef typename Root_of_traits< RT >::RootOf_1  RootOf_1;
+  //typedef Rational_traits< RootOf_1 >        Rational;
   //RT should be the same as Rational::RT
 
   CGAL_assertion(is_valid(a) & is_valid(b));
@@ -1134,8 +1134,8 @@ template < typename RT >
 Root_of_2<RT>
 operator*(const Root_of_2<RT> &a, const RT& b)
 {
-  typedef typename Root_of_traits< RT >::RootOf_1  RootOf_1;
-  typedef Rational_traits< RootOf_1 >        Rational;
+  //typedef typename Root_of_traits< RT >::RootOf_1  RootOf_1;
+  //typedef Rational_traits< RootOf_1 >        Rational;
   //RT should be the same as Rational::RT
 
   CGAL_assertion(is_valid(a) & is_valid(b));
@@ -1173,7 +1173,7 @@ template < typename RT >
 Root_of_2<RT>
 operator/(const Root_of_2<RT> &a, const RT& b)
 {
-  typedef typename Root_of_traits< RT >::RootOf_1  RootOf_1;
+  //typedef typename Root_of_traits< RT >::RootOf_1  RootOf_1;
 
   CGAL_assertion(b != 0);
   CGAL_assertion(is_valid(a));
@@ -1210,7 +1210,7 @@ Root_of_2<RT>
 operator/(const Root_of_2<RT> &a,
 	  const typename Root_of_traits< RT >::RootOf_1& b)
 {
-  typedef typename Root_of_traits< RT >::RootOf_1  RootOf_1;
+  //typedef typename Root_of_traits< RT >::RootOf_1  RootOf_1;
 
   CGAL_assertion(b != 0);
   CGAL_assertion(is_valid(a));
