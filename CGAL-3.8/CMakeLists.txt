@@ -199,6 +199,8 @@ if ( CMAKE_COMPILER_IS_GNUCXX )
     endif()
     
   endif()
+
+  uniquely_add_flags( CGAL_CXX_FLAGS "-w" )
   
 endif()
 
