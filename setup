@@ -21,7 +21,6 @@ function build {
 	done
 }
 
-echo "Compiling CGAL"
 pushd $CGAL_DIR
 cmake .
 make
@@ -29,15 +28,11 @@ popd
 
 $QMAKE CONFIG=release -o Release.mk
 
-echo "Making initial library build"
 mkdir -p Release
 make -f Release.mk
 
-echo "Compiling exercises"
 build $EXERCISES_DIR
 
-echo "Compiling demos"
 build $DEMOS_DIR
 
-echo "Compiling additional demos"
 build $DEMOS_DIR/make_grid
