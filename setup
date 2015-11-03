@@ -21,8 +21,6 @@ function build {
 	done
 }
 
-echo "Setting up geoc viewer installation"
-
 echo "Compiling CGAL"
 pushd $CGAL_DIR
 cmake .
@@ -30,13 +28,10 @@ make
 popd
 
 $QMAKE CONFIG=release -o Release.mk
-#$QMAKE CONFIG=debug -o Debug.mk
 
 echo "Making initial library build"
 mkdir -p Release
 make -f Release.mk
-#mkdir -p Debug
-#make -f Debug.mk
 
 echo "Compiling exercises"
 build $EXERCISES_DIR
