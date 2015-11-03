@@ -23,7 +23,7 @@ function build {
 
 pushd $CGAL_DIR
 cmake .
-make
+make -j4
 popd
 
 $QMAKE CONFIG=release -o Release.mk
