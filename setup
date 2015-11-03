@@ -9,7 +9,7 @@ CGAL_DIR=CGAL-3.8
 function build {
 	for d in $1/*; do
 		pushd $d
-		qmake >/dev/null || continue
+		qmake
 		make
 		popd
 	done
