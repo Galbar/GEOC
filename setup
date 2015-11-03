@@ -7,8 +7,8 @@ DEMOS_DIR=demos
 CGAL_DIR=CGAL-3.8
 
 function build {
-	for proj in `ls $1`; do
-		pushd $1/$proj
+	for d in $1/*; do
+		pushd $d
 		qmake >/dev/null || continue
 		make
 		popd
