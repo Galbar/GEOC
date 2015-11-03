@@ -23,11 +23,6 @@ cd $CGAL_DIR
 cmake .
 make $1
 
-echo "Generating Makefiles for the viewer library"
-cd $ROOT
-qmake CONFIG=debug
-qmake CONFIG=release
-
 echo "Making initial library build (release mode)"
 make $MAKE_ARGS
 
