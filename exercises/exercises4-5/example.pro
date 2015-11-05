@@ -34,7 +34,7 @@ win32 {
 	QMAKE_CXXFLAGS		= /EHsc /W1 /wd4251
 }
 else {
-	QMAKE_CXXFLAGS		+= -frounding-math
+	QMAKE_CXXFLAGS		+= -frounding-math -std=c++11
 	QMAKE_CXXFLAGS_DEBUG	+= -g
 }
 
