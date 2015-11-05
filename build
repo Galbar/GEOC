@@ -15,30 +15,32 @@ command_test qmake-qt4 && QMAKE=qmake-qt4 || QMAKE=qmake
 build() {
 	for d in $1/*; do
 		[ ! -f $d/example.pro ] && continue
-		echo " == Building $d"
+		echo " == $d"
 		pushd $d >/dev/null
-		echo "   -> qmake"
-		$QMAKE
-		echo "   -> make"
+		if [ ! -f Makefile ]; then
+			echo "    -> qmake"
+			$QMAKE
+		fi
+		echo "    -> make"
 		make -j4 -s
 		popd >/dev/null
 	done
 }
 
 if [ ! -f bin/libgeoc.so ]; then
-	echo " == Building cgal"
+	echo " == cgal"
 	pushd $CGAL_DIR >/dev/null
-	echo "   -> cmake"
+	echo "    -> cmake"
 	cmake . -Wno-dev >/dev/null
-	echo "   -> make"
+	echo "    -> make"
 	make -j4 -s >/dev/null
 	popd >/dev/null
 
-	echo " == Building ligbeoc"
-	echo "   -> qmake"
+	echo " == ligbeoc"
+	echo "    -> qmake"
 	$QMAKE CONFIG=release -o Release.mk
 	mkdir -p Release
-	echo "   -> make"
+	echo "    -> make"
 	make -f Release.mk -j4 -s
 fi
 
