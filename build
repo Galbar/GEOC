@@ -17,7 +17,9 @@ build() {
 		[ ! -f $d/example.pro ] && continue
 		echo " == Building $d"
 		pushd $d >/dev/null
+		echo "   -> qmake"
 		$QMAKE
+		echo "   -> make"
 		make -j4 -s
 		popd >/dev/null
 	done
@@ -26,13 +28,17 @@ build() {
 if [ ! -f bin/libgeoc.so ]; then
 	echo " == Building cgal"
 	pushd $CGAL_DIR >/dev/null
+	echo "   -> cmake"
 	cmake . -Wno-dev >/dev/null
-	make -j4 -s
+	echo "   -> make"
+	make -j4 -s >/dev/null
 	popd >/dev/null
 
 	echo " == Building ligbeoc"
+	echo "   -> qmake"
 	$QMAKE CONFIG=release -o Release.mk
 	mkdir -p Release
+	echo "   -> make"
 	make -f Release.mk -j4 -s
 fi
 
