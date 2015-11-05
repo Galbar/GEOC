@@ -40,18 +40,6 @@
 #include <list>
 #include <iterator>
 
-#define CGAL_GPS_POLYGON_VALIDATION_2_TYPEDEF                           \
-  typedef Gps_traits_adaptor<Traits_2>              Traits_adapter_2;   \
-  typedef typename Traits_2::Curve_const_iterator                       \
-    Curve_const_iterator;                                               \
-  typedef std::pair<Curve_const_iterator,Curve_const_iterator>          \
-    Cci_pair;                                                           \
-  typedef typename Traits_2::Construct_curves_2                         \
-    Construct_curves_2;                                                 \
-  typedef typename Traits_adapter_2::Construct_vertex_2                 \
-    Construct_vertex_2
-  
-
 namespace CGAL {
 
 /*Arrangement is templated with extended face dcel*/
@@ -187,7 +175,11 @@ template <typename Traits_2>
 bool is_closed_polygon(const typename Traits_2::Polygon_2& pgn, Traits_2 traits)
 {
   
-  CGAL_GPS_POLYGON_VALIDATION_2_TYPEDEF;
+  typedef Gps_traits_adaptor<Traits_2> Traits_adapter_2;
+  typedef typename Traits_2::Curve_const_iterator Curve_const_iterator;
+  typedef std::pair<Curve_const_iterator,Curve_const_iterator> Cci_pair;
+  //typedef typename Traits_2::Construct_curves_2 Construct_curves_2;
+  typedef typename Traits_adapter_2::Construct_vertex_2 Construct_vertex_2;
   Cci_pair              itr_pair = traits.construct_curves_2_object()(pgn);
   Curve_const_iterator  begin = itr_pair.first;
   Curve_const_iterator  end = itr_pair.second;
@@ -238,7 +230,11 @@ template <typename Traits_2>
 bool is_simple_polygon(const typename Traits_2::Polygon_2& pgn, Traits_2 traits)
 {
 
-  CGAL_GPS_POLYGON_VALIDATION_2_TYPEDEF;
+  //typedef Gps_traits_adaptor<Traits_2> Traits_adapter_2;
+  typedef typename Traits_2::Curve_const_iterator Curve_const_iterator;
+  typedef std::pair<Curve_const_iterator,Curve_const_iterator> Cci_pair;
+  //typedef typename Traits_2::Construct_curves_2 Construct_curves_2;
+  //typedef typename Traits_adapter_2::Construct_vertex_2 Construct_vertex_2;
   // Sweep the boundary curves and look for intersections.
   typedef Gps_polygon_validation_visitor<Traits_2>  Visitor;
   typedef Sweep_line_2<Traits_2, Visitor>           Sweep_line;
@@ -276,7 +272,11 @@ template <typename Traits_2>
 bool has_valid_orientation_polygon (const typename Traits_2::Polygon_2& pgn,
                                     Traits_2 traits)
 {
-  CGAL_GPS_POLYGON_VALIDATION_2_TYPEDEF;
+  typedef Gps_traits_adaptor<Traits_2> Traits_adapter_2;
+  typedef typename Traits_2::Curve_const_iterator Curve_const_iterator;
+  typedef std::pair<Curve_const_iterator,Curve_const_iterator> Cci_pair;
+  //typedef typename Traits_2::Construct_curves_2 Construct_curves_2;
+  //typedef typename Traits_adapter_2::Construct_vertex_2 Construct_vertex_2;
 
   Cci_pair         itr_pair = traits.construct_curves_2_object()(pgn);
   Traits_adapter_2 traits_adapter;
@@ -343,7 +343,11 @@ bool
 is_crossover_outer_boundary(const typename Traits_2::Polygon_with_holes_2& pgn,
                             Traits_2 traits, PointLocation& pl)
 {
-  CGAL_GPS_POLYGON_VALIDATION_2_TYPEDEF;
+  //typedef Gps_traits_adaptor<Traits_2> Traits_adapter_2;
+  typedef typename Traits_2::Curve_const_iterator Curve_const_iterator;
+  typedef std::pair<Curve_const_iterator,Curve_const_iterator> Cci_pair;
+  //typedef typename Traits_2::Construct_curves_2 Construct_curves_2;
+  //typedef typename Traits_adapter_2::Construct_vertex_2 Construct_vertex_2;
   typedef typename Traits_2::Point_2                 Point_2;
   typedef typename Traits_2::Compare_endpoints_xy_2  Compare_endpoints_xy_2;
   typedef typename Traits_2::Construct_min_vertex_2  Construct_min_vertex_2; 
@@ -487,7 +491,11 @@ template <typename Traits_2>
 bool is_relatively_simple_polygon_with_holes
 (const typename Traits_2::Polygon_with_holes_2& pgn, Traits_2 traits)
 {
-  CGAL_GPS_POLYGON_VALIDATION_2_TYPEDEF;
+  //typedef Gps_traits_adaptor<Traits_2> Traits_adapter_2;
+  typedef typename Traits_2::Curve_const_iterator Curve_const_iterator;
+  typedef std::pair<Curve_const_iterator,Curve_const_iterator> Cci_pair;
+  typedef typename Traits_2::Construct_curves_2 Construct_curves_2;
+  //typedef typename Traits_adapter_2::Construct_vertex_2 Construct_vertex_2;
   typedef typename Traits_2::X_monotone_curve_2     X_monotone_curve_2;
   typedef Gps_polygon_validation_visitor<Traits_2>  Visitor;
   typedef Sweep_line_2<Traits_2, Visitor>           Sweep_line;
@@ -541,9 +549,13 @@ template <typename Traits_2>
 bool has_valid_orientation_polygon_with_holes
 (const typename Traits_2::Polygon_with_holes_2& pgn, Traits_2 traits)
 {
-  CGAL_GPS_POLYGON_VALIDATION_2_TYPEDEF;
+  typedef Gps_traits_adaptor<Traits_2> Traits_adapter_2;
+  typedef typename Traits_2::Curve_const_iterator Curve_const_iterator;
+  typedef std::pair<Curve_const_iterator,Curve_const_iterator> Cci_pair;
+  typedef typename Traits_2::Construct_curves_2 Construct_curves_2;
+  //typedef typename Traits_adapter_2::Construct_vertex_2 Construct_vertex_2;
   //typedef typename Traits_2::X_monotone_curve_2       X_monotone_curve_2;
-  typedef Gps_polygon_validation_visitor<Traits_2>      Visitor;
+  //typedef Gps_polygon_validation_visitor<Traits_2>      Visitor;
   //typedef Sweep_line_2<Traits_2, Visitor>               Sweep_line;
   typedef typename Traits_adapter_2::Orientation_2      Check_orientation_2;
   typedef typename Traits_2::Polygon_with_holes_2       Polygon_with_holes_2;
@@ -596,7 +608,10 @@ template <class Traits_2>
 bool are_holes_and_boundary_pairwise_disjoint
 (const typename Traits_2::Polygon_with_holes_2& pwh, Traits_2& traits)
 {
-  CGAL_GPS_POLYGON_VALIDATION_2_TYPEDEF;
+  //typedef Gps_traits_adaptor<Traits_2> Traits_adapter_2;
+  typedef typename Traits_2::Curve_const_iterator Curve_const_iterator;
+  typedef std::pair<Curve_const_iterator,Curve_const_iterator> Cci_pair;
+  typedef typename Traits_2::Construct_curves_2 Construct_curves_2;
 
   typedef CGAL::Gps_default_dcel<Traits_2>                 Dcel;
   // IMPORTATNT! TODO!
