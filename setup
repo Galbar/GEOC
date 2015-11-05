@@ -14,6 +14,7 @@ command_test qmake-qt4 && QMAKE=qmake-qt4 || QMAKE=qmake
 
 build() {
 	for d in $1/*; do
+		[ ! -f $d/example.pro ] && continue
 		echo " == Building $d"
 		pushd $d >/dev/null
 		$QMAKE
