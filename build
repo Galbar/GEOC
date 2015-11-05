@@ -13,7 +13,7 @@ command_test() {
 command_test qmake-qt4 && QMAKE=qmake-qt4 || QMAKE=qmake
 
 build() {
-	for d in $1/*; do
+	for d in "$@"; do
 		[ ! -f $d/example.pro ] && continue
 		echo " == $d"
 		pushd $d >/dev/null
@@ -44,8 +44,6 @@ if [ ! -f bin/libgeoc.so ]; then
 	make -f Release.mk -j4 -s
 fi
 
-build $EXERCISES_DIR
-
-build $DEMOS_DIR
-
-build $DEMOS_DIR/make_grid
+build exercises/*
+build demos/*
+build demos/make_grid/*
