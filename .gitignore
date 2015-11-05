@@ -15,8 +15,10 @@ lib/
 *.so
 *.cxx
 
+/bin/*
+!/bin/*/
+!/bin/debug
+!/bin/grind
+!/bin/run
+
 *-solution.txt
-/bin/ex*
-/bin/convex_hull*
-/bin/make-grid*
-/bin/polygon*
