@@ -17,7 +17,7 @@ void ConsoleOutput::write(const std::string& str)
 }
 
 
-void ConsoleOutput::write(const std::ostringstream& str)
-{
-    cout << str << endl;
-}
+//void ConsoleOutput::write(const std::ostringstream& str)
+//{
+    //cout << str << endl;
+//}

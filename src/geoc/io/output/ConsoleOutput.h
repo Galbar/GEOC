@@ -16,7 +16,7 @@ public:
 
     void write(const char* str);
     void write(const std::string& str);
-    void write(const std::ostringstream& str);
+    //void write(const std::ostringstream& str);
 };
 
 } //namespace geoc
