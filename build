@@ -26,7 +26,7 @@ build() {
 if [ ! -f bin/libgeoc.so ]; then
 	echo " == Building cgal"
 	pushd $CGAL_DIR >/dev/null
-	cmake .
+	cmake . -Wno-dev >/dev/null
 	make -j4 -s
 	popd >/dev/null
 
