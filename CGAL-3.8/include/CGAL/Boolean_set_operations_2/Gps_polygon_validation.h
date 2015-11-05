@@ -280,7 +280,7 @@ bool has_valid_orientation_polygon (const typename Traits_2::Polygon_2& pgn,
 
   Cci_pair         itr_pair = traits.construct_curves_2_object()(pgn);
   Traits_adapter_2 traits_adapter;
-  typedef typename Traits_adapter_2::Orientation_2  Check_orientation_2;
+  //typedef typename Traits_adapter_2::Orientation_2  Check_orientation_2;
 
   if(itr_pair.first == itr_pair.second)
     return true; // empty polygon
@@ -357,8 +357,8 @@ is_crossover_outer_boundary(const typename Traits_2::Polygon_with_holes_2& pgn,
                                                      Topology_traits;
   typedef CGAL::Gps_on_surface_base_2<Traits_2, Topology_traits> 
     Polygon_set_2;
-  typedef typename Traits_2::Polygon_with_holes_2
-    Polygon_with_holes_2;
+  //typedef typename Traits_2::Polygon_with_holes_2
+    //Polygon_with_holes_2;
   typedef typename Polygon_set_2::Arrangement_on_surface_2 Arrangement_2;
   typedef typename Arrangement_2::Halfedge_handle          Halfedge_handle;
   typedef typename Arrangement_2::Vertex_handle            Vertex_handle;
@@ -542,9 +542,9 @@ bool has_valid_orientation_polygon_with_holes
 (const typename Traits_2::Polygon_with_holes_2& pgn, Traits_2 traits)
 {
   CGAL_GPS_POLYGON_VALIDATION_2_TYPEDEF;
-  typedef typename Traits_2::X_monotone_curve_2       X_monotone_curve_2;
+  //typedef typename Traits_2::X_monotone_curve_2       X_monotone_curve_2;
   typedef Gps_polygon_validation_visitor<Traits_2>      Visitor;
-  typedef Sweep_line_2<Traits_2, Visitor>               Sweep_line;
+  //typedef Sweep_line_2<Traits_2, Visitor>               Sweep_line;
   typedef typename Traits_adapter_2::Orientation_2      Check_orientation_2;
   typedef typename Traits_2::Polygon_with_holes_2       Polygon_with_holes_2;
 
@@ -618,7 +618,7 @@ bool are_holes_and_boundary_pairwise_disjoint
   typedef typename Traits_2::Construct_curves_2            Construct_curves_2;
   typedef typename Traits_2::Construct_general_polygon_with_holes_2
     Construct_polygon_with_holes_2;
-  typedef typename Traits_adapter_2::Construct_vertex_2    Construct_vertex_2;
+  //typedef typename Traits_adapter_2::Construct_vertex_2    Construct_vertex_2;
   typedef Gps_polygon_validation_visitor<Traits_2>         Visitor;
   typedef Sweep_line_2<Traits_2, Visitor>                  Sweep_line ;
   typedef typename Polygon_set_2::Arrangement_on_surface_2 Arrangement_2;
