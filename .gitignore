@@ -17,8 +17,5 @@ lib/
 
 /bin/*
 !/bin/*/
-!/bin/debug
-!/bin/grind
-!/bin/run
 
 *-solution.txt

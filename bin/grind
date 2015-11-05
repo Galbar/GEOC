@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-export LD_LIBRARY_PATH=.:../CGAL-3.8/lib:$LD_LIBRARY_PATH
-valgrind --tool=callgrind ./$1 $2 $3 $4
