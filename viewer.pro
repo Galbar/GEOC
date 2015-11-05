@@ -34,8 +34,8 @@ else {
 	DEPENDPATH  += CGAL-3.8/include
 }
 
-QMAKE_CXXFLAGS_RELEASE = -w -O2 -frounding-math
-QMAKE_CXXFLAGS_DEBUG   += -w -g
+QMAKE_CXXFLAGS_RELEASE = -std=c++11 -w -O2 -frounding-math
+QMAKE_CXXFLAGS_DEBUG   += -std=c++11 -w -g
 
 LIBS += -lGLU
 
