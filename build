@@ -18,7 +18,7 @@ build() {
 		echo " == Building $d"
 		pushd $d >/dev/null
 		$QMAKE
-		make
+		make -j4
 		popd >/dev/null
 	done
 }
