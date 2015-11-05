@@ -14,18 +14,19 @@ command_test qmake-qt4 && QMAKE=qmake-qt4 || QMAKE=qmake
 
 build() {
 	for d in $1/*; do
-		pushd $d
+		echo " == Building $d"
+		pushd $d >/dev/null
 		$QMAKE
 		make
-		popd
+		popd >/dev/null
 	done
 }
 
 if [ ! -f bin/libgeoc.so ]; then
-	pushd $CGAL_DIR
+	pushd $CGAL_DIR >/dev/null
 	cmake .
 	make -j4
-	popd
+	popd >/dev/null
 
 	$QMAKE CONFIG=release -o Release.mk
 
