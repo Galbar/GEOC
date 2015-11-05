@@ -32,7 +32,7 @@ if [ ! -f bin/libgeoc.so ]; then
 	$QMAKE CONFIG=release -o Release.mk
 
 	mkdir -p Release
-	make -f Release.mk
+	make -f Release.mk -j4
 fi
 
 build $EXERCISES_DIR
