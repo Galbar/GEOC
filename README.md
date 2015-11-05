@@ -12,3 +12,13 @@ GEOC viewer that actually compiles on a current machine.
 ### Build
 
 	./build
+
+### Run
+
+To run `ex1`, for example:
+
+	./run bin/ex1
+
+If you wish to run it through Valgrind:
+
+	./run valgrind bin/ex1
