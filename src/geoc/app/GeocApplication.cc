@@ -200,6 +200,7 @@ void GeocApplication::keyPressEvent(QKeyEvent* event)
     switch (key)
     {
     case Keyboard::Key_escape:
+    case Keyboard::Key_Q:
         quit();
 
     case Keyboard::Key_G:
