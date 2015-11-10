@@ -8,11 +8,9 @@ namespace geoc {
 class SceneManager;
 }
 
-
 namespace polygon {
 class Polygon;
 }
-
 
 class MyObserver : public geoc::Observer<polygon::Polygon>
 {

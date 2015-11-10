@@ -17,7 +17,6 @@ MyObserver::MyObserver(SceneManager* scenemgr, OutputSystem* outSys) :
 {
 }
 
-
 void MyObserver::enters(Point* p)
 {
     sceneMgr->attach(p);
@@ -25,7 +24,6 @@ void MyObserver::enters(Point* p)
     os << "Point enters: " << *p;
     outputSystem->write(os);
 }
-
 
 void MyObserver::enters(LineSegmentEnt* s)
 {
@@ -35,13 +33,11 @@ void MyObserver::enters(LineSegmentEnt* s)
     outputSystem->write(os);
 }
 
-
 void MyObserver::enters(TriangleEnt* t)
 {
     sceneMgr->attach(t);
     outputSystem->write("Triangle enters (coords not shown)");
 }
-
 
 void MyObserver::enters(CircleEnt* c)
 {

@@ -13,7 +13,6 @@ MyObserver::MyObserver(SceneManager* scenemgr, OutputSystem* outputSys,
     : sceneMgr(scenemgr), outputSystem(outputSys), gfx(graphics), enable_3d(enable3d), t(0)
 {}
 
-
 void MyObserver::enters(TriangulationEnt* t)
 {
     this->t = t;
@@ -22,12 +21,10 @@ void MyObserver::enters(TriangulationEnt* t)
     outputSystem->write("Triangulation loaded");
 }
 
-
 void MyObserver::sceneCleared()
 {
     t = 0;
 }
-
 
 void MyObserver::setDrawMode(TRIANGULATION_DRAW_MODE mode)
 {

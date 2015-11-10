@@ -38,7 +38,6 @@ typedef std::vector<Boundary> BoundaryContainer; //
  *    - Boundaries
  */
 
-
 template <class OutputIterator>
 void alpha_edges(const Alpha_shape_2& A, OutputIterator out)
 {
@@ -86,7 +85,6 @@ void make_boundaries(const SegmentContainer& segments, BoundaryContainer& bc)
         bc.push_back(b);
     }
 }
-
 
 int main(int argc, char *argv[])
 {

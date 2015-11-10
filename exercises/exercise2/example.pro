@@ -7,7 +7,6 @@ CONFIG += thread
 
 QT += opengl
 
-
 INCLUDEPATH += ../../src
 DEPENDPATH += ../../src
 
@@ -37,7 +36,6 @@ else {
 	QMAKE_CXXFLAGS			+= -frounding-math -std=c++11
 	QMAKE_CXXFLAGS_DEBUG	+= -g
 }
-
 
 QMAKE_CLEAN += ../../bin/ex2
 

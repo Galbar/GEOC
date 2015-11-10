@@ -11,10 +11,8 @@
 #include <geoc/geometry/CgalTriangulation.h>
 #include <geoc/scene/TriangulationEnt.h>
 
-
 using namespace geoc;
 using namespace std;
-
 
 void ExampleApp::init(int argc, char** argv)
 {
@@ -65,14 +63,12 @@ void ExampleApp::init(int argc, char** argv)
     printf("Example application initialised.\n");
 }
 
-
 void ExampleApp::shutdown()
 {
     printf("Example application shutting down.\n");
 
     safe_delete(myObserver);
 }
-
 
 void ExampleApp::keyPressed(geoc::GeocWidget&, Keyboard::key key)
 {
@@ -95,7 +91,6 @@ void ExampleApp::keyPressed(geoc::GeocWidget&, Keyboard::key key)
 	changed = true;
 	break;
 
-
     case Keyboard::Key_J:	//3D Pruned
 	myObserver->setDrawMode(TRIANGULATION_3D_PRUNED);
 	changed = true;
@@ -111,7 +106,6 @@ void ExampleApp::keyPressed(geoc::GeocWidget&, Keyboard::key key)
 
     if (changed) redisplay();
 }
-
 
 void ExampleApp::parse_args(int argc, char** argv)
 {

@@ -45,7 +45,6 @@ typedef CGAL::Polygon_with_holes_2<K> Polygon_with_holes;
 typedef std::vector<Polygon_with_holes> PwhContainer;
 typedef CGAL::Bbox_2 Bbox;
 
-
 /**
  *  Version 4: compute
  *    - Delone triangulation

@@ -7,10 +7,8 @@
 #include <algorithm>
 #include <sstream>
 
-
 using namespace geoc;
 using namespace std;
-
 
 MyObserver::MyObserver(SceneManager* scenemgr, OutputSystem* outputSys) :
     sceneMgr(scenemgr), outputSystem(outputSys), triangle(0), num_points(0)
@@ -18,7 +16,6 @@ MyObserver::MyObserver(SceneManager* scenemgr, OutputSystem* outputSys) :
     FileOutput* fOutput = new FileOutput("exercise2-solution.txt");
     outputSystem->attach(fOutput);
 }
-
 
 void MyObserver::enters(geoc::Point* p)
 {
@@ -44,13 +41,11 @@ void MyObserver::enters(geoc::Point* p)
     }
 }
 
-
 void MyObserver::enters(geoc::TriangleEnt* t)
 {
     sceneMgr->attach(t);
     triangle = t;
 }
-
 
 void MyObserver::leaves(geoc::Entity* e)
 {

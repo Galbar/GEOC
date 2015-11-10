@@ -5,20 +5,16 @@
 #include <sstream>
 #include <string>
 
-
 using namespace geoc;
 using namespace std;
-
 
 MyObserver::MyObserver(SceneManager* sceneMgr_) : sceneMgr(sceneMgr_), ch(0)
 {
 }
 
-
 MyObserver::~MyObserver()
 {
 }
-
 
 void MyObserver::enters(Point* p)
 {
@@ -33,12 +29,10 @@ void MyObserver::enters(Point* p)
     sceneMgr->attach(p);
 }
 
-
 void MyObserver::enters(ConvexHull* ch)
 {
     this->ch = ch;
 }
-
 
 void MyObserver::leaves(Entity* e)
 {

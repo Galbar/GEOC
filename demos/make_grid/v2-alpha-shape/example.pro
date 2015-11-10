@@ -40,9 +40,7 @@ else {
 	QMAKE_CXXFLAGS_DEBUG	+= -g
 }
 
-
 QMAKE_CLEAN += ../../../bin/make-grid-v2-alpha-shape
-
 
 LIBS += -lQtOpenGL
 LIBS += -lgeoc

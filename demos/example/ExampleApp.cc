@@ -26,7 +26,6 @@ void ExampleApp::init(int argc, char** argv)
     TriangleState*		tState = new TriangleState;
     CircleState*		cState = new CircleState;
 
-
     ScreenInput& screenInput = w.screenInput();
     screenInput.setTransition(Keyboard::Key_P, pState);
     screenInput.setTransition(Keyboard::Key_S, sState);
@@ -67,7 +66,6 @@ void ExampleApp::init(int argc, char** argv)
 
     printf("Example application initialised.\n");
 }
-
 
 void ExampleApp::shutdown()
 {

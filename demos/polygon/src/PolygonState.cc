@@ -2,11 +2,9 @@
 #include <Polygon.h>
 #include <geoc/gfx/Graphics.h>
 
-
 using namespace geoc;
 using namespace std;
 using namespace polygon;
-
 
 GEOC_APP_REQUEST_CODE PolygonState::mouseClick(const Vector3& pos)
 {
@@ -14,7 +12,6 @@ GEOC_APP_REQUEST_CODE PolygonState::mouseClick(const Vector3& pos)
     vertices.push_front(pos);
     return GEOC_APP_REDISPLAY;
 }
-
 
 GEOC_APP_REQUEST_CODE PolygonState::mouseRightClick(const Vector3& pos)
 {
@@ -32,7 +29,6 @@ GEOC_APP_REQUEST_CODE PolygonState::mouseRightClick(const Vector3& pos)
     return GEOC_APP_REDISPLAY;
 }
 
-
 GEOC_APP_REQUEST_CODE PolygonState::mouseMove(const Vector3& pos)
 {
     if (vertices.size() >= 1)
@@ -43,12 +39,10 @@ GEOC_APP_REQUEST_CODE PolygonState::mouseMove(const Vector3& pos)
     return GEOC_APP_REDISPLAY;
 }
 
-
 void PolygonState::cancel()
 {
     vertices.clear();
 }
-
 
 void PolygonState::draw(Graphics& gfx)
 {
@@ -71,7 +65,6 @@ void PolygonState::draw(Graphics& gfx)
 	}
     }
 }
-
 
 const char* PolygonState::description() const
 {

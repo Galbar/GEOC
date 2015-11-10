@@ -40,9 +40,7 @@ else {
 	QMAKE_CXXFLAGS_DEBUG	+= -g
 }
 
-
 QMAKE_CLEAN += ../../../bin/make-grid-v3-boundary-components
-
 
 LIBS += -lQtOpenGL
 LIBS += -lgeoc

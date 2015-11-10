@@ -1,7 +1,6 @@
 #ifndef _CONVEX_HULL_HPP
 #define _CONVEX_HULL_HPP
 
-
 #include <geoc/geoc.h>
 #include <geoc/cgal/Kernel.h>
 #include <geoc/math/Vector.h>
@@ -10,7 +9,6 @@
 #include <geoc/gfx/Graphics.h>
 #include <geoc/io/aux_functions.h>
 #include <vector>
-
 
 class ConvexHull : public geoc::Entity
 {
@@ -37,6 +35,5 @@ public:
 
     static void read(std::istream& is, ConvexHull& ch);
 };
-
 
 #endif // _CONVEX_HULL_HPP

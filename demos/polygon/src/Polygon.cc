@@ -2,11 +2,9 @@
 #include <geoc/io/aux_functions.h>
 #include <geoc/gfx/Graphics.h>
 
-
 using namespace geoc;
 using namespace std;
 using namespace polygon;
-
 
 void Polygon::addVertex(const Vector3& v)
 {
@@ -14,30 +12,25 @@ void Polygon::addVertex(const Vector3& v)
     m_bb.add(v);
 }
 
-
 void Polygon::draw(Graphics& gfx) const
 {
     gfx.drawPolygon(&points[0], points.size(), colour);
 }
-
 
 geoc::BoundingBox3 Polygon::bb() const
 {
     return m_bb;
 }
 
-
 const char* Polygon::getHeader() const
 {
     return Polygon::header();
 }
 
-
 const char* Polygon::header()
 {
     return "polygon";
 }
-
 
 void Polygon::write(std::fstream& fs) const
 {
@@ -49,7 +42,6 @@ void Polygon::write(std::fstream& fs) const
     }
     fs << endl;
 }
-
 
 void Polygon::read(std::istream& is, Polygon& p)
 {

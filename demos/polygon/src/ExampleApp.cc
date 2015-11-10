@@ -9,10 +9,8 @@
 #include <cstdio>
 #include "Polygon.h"
 
-
 using namespace geoc;
 using namespace std;
-
 
 void ExampleApp::init(int argc, char** argv)
 {
@@ -45,7 +43,6 @@ void ExampleApp::init(int argc, char** argv)
 
     printf("Example application initialised.\n");
 }
-
 
 void ExampleApp::shutdown()
 {

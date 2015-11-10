@@ -29,7 +29,6 @@ typedef K::Segment_3  Segment; //
  *    - Alpha shapes
  */
 
-
 template <class OutputIterator>
 void alpha_edges(const Alpha_shape_2& A, OutputIterator out)
 {

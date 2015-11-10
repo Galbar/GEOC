@@ -5,7 +5,6 @@
 
 #include <fstream>
 
-
 typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
 typedef CGAL::Projection_traits_xy_3<K>  Gt;
 typedef CGAL::Delaunay_triangulation_2<Gt> Delaunay;

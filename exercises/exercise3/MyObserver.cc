@@ -8,10 +8,8 @@
 #include <string>
 #include <sstream>
 
-
 using namespace geoc;
 using namespace std;
-
 
 MyObserver::MyObserver(SceneManager* scenemgr, OutputSystem* outputSys) :
     sceneMgr(scenemgr), outputSystem(outputSys), circle(0), num_points(0)
@@ -19,7 +17,6 @@ MyObserver::MyObserver(SceneManager* scenemgr, OutputSystem* outputSys) :
     FileOutput* fOutput = new FileOutput("exercise3-solution.txt");
     outputSystem->attach(fOutput);
 }
-
 
 void MyObserver::enters(geoc::Point* p)
 {
@@ -40,14 +37,12 @@ void MyObserver::enters(geoc::Point* p)
     }
 }
 
-
 void MyObserver::enters(geoc::CircleEnt* c)
 {
     circle = c;
     c->colour = Colour3(0.0, 0.0, 0.0);
     sceneMgr->attach(c);
 }
-
 
 void MyObserver::leaves(geoc::Entity* e)
 {

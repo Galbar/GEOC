@@ -38,8 +38,6 @@ public:
     void write(std::fstream& fs) const;
 };
 
-
 } // polygon namespace end
-
 
 #endif //_GEOC_POLYGON_H

@@ -6,7 +6,6 @@
 
 class MyObserver;
 
-
 class ExampleApp : public geoc::GeocApplication
 {
     MyObserver* myObserver;

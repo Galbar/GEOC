@@ -36,7 +36,6 @@ void ExampleApp::init(int argc, char** argv)
     printf("Example application initialised.\n");
 }
 
-
 void ExampleApp::shutdown()
 {
     printf("Example application shutting down.\n");

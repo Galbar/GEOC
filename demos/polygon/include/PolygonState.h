@@ -24,5 +24,4 @@ public:
     const char* description() const;
 };
 
-
 #endif //_GEOC_POLYGON_STATE_H
