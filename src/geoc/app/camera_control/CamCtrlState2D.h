@@ -8,26 +8,24 @@ namespace geoc {
 
 /** \ingroup CamCtrl */
 //! State for controlling the camera in 2D.
-class CamCtrlState2D : public CamCtrlState
-{
-public:
+class CamCtrlState2D : public CamCtrlState {
+       public:
+	CamCtrlState2D(Camera& cam, const Input& input, Graphics& gfx, SceneManager& sceneMgr)
+	    : CamCtrlState(cam, input, gfx, sceneMgr) {}
 
-    CamCtrlState2D(Camera& cam, const Input& input, Graphics& gfx, SceneManager& sceneMgr)
-        : CamCtrlState(cam, input, gfx, sceneMgr) {}
+	int keyPressed(Keyboard::key key);
 
-    int keyPressed(Keyboard::key key);
+	int mouseMoved(const ScreenPos& pos);
 
-    int mouseMoved(const ScreenPos& pos);
+	int mouseWheel(int delta);
 
-    int mouseWheel(int delta);
+	virtual void resetCamera();
 
-    virtual void resetCamera();
+	virtual void updateZoom();
 
-    virtual void updateZoom();
-
-    virtual void centerCamera();
+	virtual void centerCamera();
 };
 
-} //namespace geoc
+}  //namespace geoc
 
-#endif //_INPUT_STATE_2D_H
+#endif  //_INPUT_STATE_2D_H

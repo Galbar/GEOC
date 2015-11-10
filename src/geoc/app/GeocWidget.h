@@ -29,128 +29,128 @@ class Font;
  * GeocWidget is the core component of a viewer application, holding an instance
  * of every subsystem except for OutputSystem.
  */
-class QDESIGNER_WIDGET_EXPORT GeocWidget : public QGLWidget
-{
-    Q_OBJECT
+class QDESIGNER_WIDGET_EXPORT GeocWidget : public QGLWidget {
+	Q_OBJECT
 
-    SceneManager*	_sceneMgr;
-    CamCtrlContext*	_camCtrlContext;
-    Graphics*		_gfx;
-    Input*		_input;
-    Keyboard*		_kbd;
-    Mouse*		_mouse;
-    ScreenPos*		_prev_mouse_pos;
-    ScreenInput*	_screenInput;
-    ObjectLoader*	_objectLoader;
-    Font*		_font;
+	SceneManager* _sceneMgr;
+	CamCtrlContext* _camCtrlContext;
+	Graphics* _gfx;
+	Input* _input;
+	Keyboard* _kbd;
+	Mouse* _mouse;
+	ScreenPos* _prev_mouse_pos;
+	ScreenInput* _screenInput;
+	ObjectLoader* _objectLoader;
+	Font* _font;
 
-    bool _drawLabels;
-    bool _mouseMoved;
-    bool _designer;
+	bool _drawLabels;
+	bool _mouseMoved;
+	bool _designer;
 
-    std::string	_saveFile;
-    std::string	_lastFileLoaded;
+	std::string _saveFile;
+	std::string _lastFileLoaded;
 
-    void updateStatus();
+	void updateStatus();
 
-public:
+       public:
+	GeocWidget(QWidget* parent = 0, bool designer = false);
 
-    GeocWidget(QWidget* parent = 0, bool designer = false);
+	~GeocWidget();
 
-    ~GeocWidget();
+	//! Requests a redisplay.
+	void redisplay() { updateGL(); }
 
-    //! Requests a redisplay.
-    void redisplay() { updateGL(); }
-
-    //! Toggles labels in the scene.
-    /*!
+	//! Toggles labels in the scene.
+	/*!
      * \param key True if the labels were toggled with a key binding, false otherwise.
      */
-    void toggleLabels(bool key = false);
+	void toggleLabels(bool key = false);
 
-    //! Centers the camera.
-    void resetCamera();
+	//! Centers the camera.
+	void resetCamera();
 
-    //! Loads a scene from the given file.
-    void loadScene(const char* filename);
+	//! Loads a scene from the given file.
+	void loadScene(const char* filename);
 
-    //! Loads a scene, prompting the user for the scene file to be loaded.
-    void loadScene();
+	//! Loads a scene, prompting the user for the scene file to be loaded.
+	void loadScene();
 
-    //! Reloads the scene that was last loaded.
-    void reloadScene();
+	//! Reloads the scene that was last loaded.
+	void reloadScene();
 
-    //! Saves the widget's scene.
-    void saveScene();
+	//! Saves the widget's scene.
+	void saveScene();
 
-    //! Saves the widget's scene to the specified file.
-    void saveSceneAs();
+	//! Saves the widget's scene to the specified file.
+	void saveSceneAs();
 
-    //! Retrieves the scene manager associated with this widget.
-    /**
+	//! Retrieves the scene manager associated with this widget.
+	/**
      * \sa SceneManager
      */
-    SceneManager& sceneManager() { return *_sceneMgr; }
+	SceneManager& sceneManager() { return *_sceneMgr; }
 
-    //! Retrieves the screen input instance associated with this widget.
-    /**
+	//! Retrieves the screen input instance associated with this widget.
+	/**
      * \sa ScreenInput
      */
-    ScreenInput& screenInput() { return *_screenInput; }
+	ScreenInput& screenInput() { return *_screenInput; }
 
-    //! Retrieves the object loader associated with this widget.
-    /**
+	//! Retrieves the object loader associated with this widget.
+	/**
      * \sa ObjectLoader
      */
-    ObjectLoader& objectLoader() { return *_objectLoader; }
+	ObjectLoader& objectLoader() { return *_objectLoader; }
 
-    //! Retrieves the graphics instance associated with this widget.
-    /**
+	//! Retrieves the graphics instance associated with this widget.
+	/**
      * The widget must have been initialised prior to this call.
      * \sa Graphics
      * \sa initializeGL
      */
-    Graphics& gfx() { makeCurrent(); return *_gfx; }
+	Graphics& gfx() {
+		makeCurrent();
+		return *_gfx;
+	}
 
-signals:
+       signals:
 
-    //! Emited on every redraw.
-    void render();
+	//! Emited on every redraw.
+	void render();
 
-    //! Emited when the camera and input states change.
-    void updateStatus(const std::string& camera_mode,
-                      const std::string& camera_projection,
-                      const std::string& input_desc);
+	//! Emited when the camera and input states change.
+	void updateStatus(const std::string& camera_mode,
+	                  const std::string& camera_projection,
+	                  const std::string& input_desc);
 
-    //! Emited when labels are toggled.
-    void labelsToggled(GeocWidget& widget, bool key);
+	//! Emited when labels are toggled.
+	void labelsToggled(GeocWidget& widget, bool key);
 
-    //! Emited on every key press.
-    void keyPressed(GeocWidget& widget, Keyboard::key key);
+	//! Emited on every key press.
+	void keyPressed(GeocWidget& widget, Keyboard::key key);
 
-    //! Emited on every mouse click.
-    void mouseClicked(GeocWidget& widget, const ScreenPos& pos, Mouse::button button);
+	//! Emited on every mouse click.
+	void mouseClicked(GeocWidget& widget, const ScreenPos& pos, Mouse::button button);
 
-    //! Emited on every mouse movement.
-    void mouseMoved(GeocWidget& widget, const ScreenPos& old_pos, const ScreenPos& pos);
+	//! Emited on every mouse movement.
+	void mouseMoved(GeocWidget& widget, const ScreenPos& old_pos, const ScreenPos& pos);
 
-    //! Emited when the user requests the application to exit.
-    void requestExit();
+	//! Emited when the user requests the application to exit.
+	void requestExit();
 
-protected:
-
-    void initializeGL();
-    void resizeGL(int w, int h);
-    void paintGL();
-    void mousePressEvent(QMouseEvent* event);
-    void mouseReleaseEvent(QMouseEvent* event);
-    void mouseMoveEvent(QMouseEvent* event);
-    void wheelEvent(QWheelEvent* event);
-    void keyPressEvent(QKeyEvent* event);
-    void keyReleaseEvent(QKeyEvent* event);
-    void handleRequest(char code);
+       protected:
+	void initializeGL();
+	void resizeGL(int w, int h);
+	void paintGL();
+	void mousePressEvent(QMouseEvent* event);
+	void mouseReleaseEvent(QMouseEvent* event);
+	void mouseMoveEvent(QMouseEvent* event);
+	void wheelEvent(QWheelEvent* event);
+	void keyPressEvent(QKeyEvent* event);
+	void keyReleaseEvent(QKeyEvent* event);
+	void handleRequest(char code);
 };
 
-} // geoc namespace end
+}  // geoc namespace end
 
-#endif //_GEOC_WIDGET_H
+#endif  //_GEOC_WIDGET_H

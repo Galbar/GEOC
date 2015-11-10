@@ -14,30 +14,27 @@ class Graphics;
 
 namespace polygon {
 
-class Polygon : public geoc::Entity
-{
-    std::vector<geoc::Vector3> points;
-    geoc::BoundingBox3 m_bb;
+class Polygon : public geoc::Entity {
+	std::vector<geoc::Vector3> points;
+	geoc::BoundingBox3 m_bb;
 
-public:
+       public:
+	geoc::Colour3 colour;
 
-    geoc::Colour3 colour;
+       public:
+	void addVertex(const geoc::Vector3& v);
 
-public:
+	void draw(geoc::Graphics& gfx) const;
 
-    void addVertex(const geoc::Vector3& v);
+	geoc::BoundingBox3 bb() const;
 
-    void draw(geoc::Graphics& gfx) const;
+	const char* getHeader() const;
+	static const char* header();
 
-    geoc::BoundingBox3 bb() const;
-
-    const char* getHeader() const;
-    static const char* header();
-
-    static void read(std::istream& is, Polygon& p);
-    void write(std::fstream& fs) const;
+	static void read(std::istream& is, Polygon& p);
+	void write(std::fstream& fs) const;
 };
 
-} // polygon namespace end
+}  // polygon namespace end
 
-#endif //_GEOC_POLYGON_H
+#endif  //_GEOC_POLYGON_H

@@ -13,37 +13,35 @@ namespace geoc {
  * The output subsystem provides the means to write a string to multiple streams
  * in an easy manner.
  */
-class DECLDIR OutputSystem : public OutputStream
-{
-    std::list<OutputStream*>	streams;
+class DECLDIR OutputSystem : public OutputStream {
+	std::list<OutputStream*> streams;
 
-public:
+       public:
+	~OutputSystem();
 
-    ~OutputSystem();
-
-    //! Attaches an output stream to the output system.
-    /*!
+	//! Attaches an output stream to the output system.
+	/*!
      * The OutputSystem takes ownership of the given OutputStream.
      * \sa OutputStream
      */
-    void attach(OutputStream* stream);
+	void attach(OutputStream* stream);
 
-    //! Detaches an output stream from the output system.
-    /**
+	//! Detaches an output stream from the output system.
+	/**
      * \sa OutputStream
      */
-    void detach(OutputStream* stream);
+	void detach(OutputStream* stream);
 
-    //! Writes the given C string to all output streams.
-    void write(const char* str);
+	//! Writes the given C string to all output streams.
+	void write(const char* str);
 
-    //! Writes the given string to all output streams.
-    void write(const std::string& str);
+	//! Writes the given string to all output streams.
+	void write(const std::string& str);
 
-    //! Writes the given ostringstream to all output streams.
-    void write(const std::ostringstream& str);
+	//! Writes the given ostringstream to all output streams.
+	void write(const std::ostringstream& str);
 };
 
-} //namespace geoc
+}  //namespace geoc
 
-#endif //_GEOC_OUTPUT_SYSTEM_H
+#endif  //_GEOC_OUTPUT_SYSTEM_H

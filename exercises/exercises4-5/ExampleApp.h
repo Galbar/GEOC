@@ -12,21 +12,19 @@ class GeocWidget;
 
 class MyObserver;
 
-class ExampleApp : public geoc::GeocApplication
-{
-    MyObserver* myObserver;
-    bool        enable_3d;
-    bool        use_cgal;
+class ExampleApp : public geoc::GeocApplication {
+	MyObserver* myObserver;
+	bool enable_3d;
+	bool use_cgal;
 
-    void parse_args(int argc, char** argv);
+	void parse_args(int argc, char** argv);
 
-public:
+       public:
+	ExampleApp() : enable_3d(false), use_cgal(false) {}
 
-    ExampleApp() : enable_3d(false), use_cgal(false) {}
-
-    void init(int argc, char** argv);
-    void shutdown();
-    void keyPressed(geoc::GeocWidget&, geoc::Keyboard::key key);
+	void init(int argc, char** argv);
+	void shutdown();
+	void keyPressed(geoc::GeocWidget&, geoc::Keyboard::key key);
 };
 
-#endif //_EXAMPLE_APP_H
+#endif  //_EXAMPLE_APP_H

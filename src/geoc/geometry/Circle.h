@@ -11,25 +11,24 @@ class Point;
 
 /** \ingroup Geometry */
 //! A circle in 3D space.
-class DECLDIR Circle
-{
-    Vector3 points[3];
+class DECLDIR Circle {
+	Vector3 points[3];
 
-    template <class iter_t> friend Circle circle(iter_t);
+	template <class iter_t>
+	friend Circle circle(iter_t);
 
-public:
-
-    //! Default constructor.
-    /*!
+       public:
+	//! Default constructor.
+	/*!
      * Points are set to the origin.
      */
-    Circle() {}
+	Circle() {}
 
-    //! Builds a circle from three points.
-    Circle(const Vector3& v1, const Vector3& v2, const Vector3& v3);
+	//! Builds a circle from three points.
+	Circle(const Vector3& v1, const Vector3& v2, const Vector3& v3);
 
-    //! Gets the ith vertex.
-    const Vector3& operator[](int index) const;
+	//! Gets the ith vertex.
+	const Vector3& operator[](int index) const;
 };
 
 //! Builds a circle from three points, provided an iterator.
@@ -38,11 +37,10 @@ public:
  * The given iterator must point to a sequence of at least three points.
  */
 template <class iter_t>
-Circle circle(iter_t it)
-{
-    Circle c;
-    for (int i = 0; i != 3; ++i) c.points[i] = *it++;
-    return c;
+Circle circle(iter_t it) {
+	Circle c;
+	for (int i = 0; i != 3; ++i) c.points[i] = *it++;
+	return c;
 }
 
 //! Classifies a given point's position relative to the given circle.
@@ -53,6 +51,6 @@ Circle circle(iter_t it)
  */
 DECLDIR void classify(const Circle& c, const Vector3& p, Colour3& colour, std::string& desc);
 
-} //namespace geoc
+}  //namespace geoc
 
-#endif //_GEOC_CIRCLE_H
+#endif  //_GEOC_CIRCLE_H

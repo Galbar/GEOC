@@ -3,7 +3,6 @@
 
 using namespace geoc;
 
-TriangulationEnt* geoc::make_student_triangulation()
-{
-    return new TriangulationEnt(new Triangulation);
+TriangulationEnt* geoc::make_student_triangulation() {
+	return new TriangulationEnt(new Triangulation);
 }

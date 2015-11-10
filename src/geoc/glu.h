@@ -7,4 +7,4 @@
 #endif
 #include <GL/glu.h>
 
-#endif //_GEOC_GLU_H
+#endif  //_GEOC_GLU_H

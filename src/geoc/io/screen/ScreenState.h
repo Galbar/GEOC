@@ -12,13 +12,11 @@ namespace geoc {
 /** \ingroup Screen */
 //! Base class for all screen input states.
 template <class T>
-class ScreenState :	public IScreenState, public Subject<T>
-{
-public:
-
-    virtual ~ScreenState() {}
+class ScreenState : public IScreenState, public Subject<T> {
+       public:
+	virtual ~ScreenState() {}
 };
 
-} //namespace geoc
+}  //namespace geoc
 
-#endif //_GEOC_SCREEN_STATE_H
+#endif  //_GEOC_SCREEN_STATE_H

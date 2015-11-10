@@ -7,4 +7,4 @@
 #include <boost/lambda/bind.hpp>
 #include <boost/bind.hpp>
 
-#endif //_GEOC_HIGHER_ORDER_CPP
+#endif  //_GEOC_HIGHER_ORDER_CPP

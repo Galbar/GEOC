@@ -26,11 +26,23 @@ typedef double num;
 
 namespace geoc {
 
-template <class T> inline void safe_free(T*& p) { free((void*)p); p = 0; }
-template <class T> inline void safe_delete(T*& p) { delete p; p = 0; }
-template <class T> inline void safe_delete_array(T*& p) { delete[] p; p = 0; }
+template <class T>
+inline void safe_free(T*& p) {
+	free((void*)p);
+	p = 0;
+}
+template <class T>
+inline void safe_delete(T*& p) {
+	delete p;
+	p = 0;
+}
+template <class T>
+inline void safe_delete_array(T*& p) {
+	delete[] p;
+	p = 0;
+}
 
-} //namespace geoc
+}  //namespace geoc
 
 #ifdef _MSC_VER
 #ifdef DLL_EXPORT
@@ -44,4 +56,4 @@ template <class T> inline void safe_delete_array(T*& p) { delete[] p; p = 0; }
 #define DECLDIR
 #endif
 
-#endif //_GEOC_H
+#endif  //_GEOC_H

@@ -8,13 +8,11 @@ namespace geoc {
 
 /** \ingroup Screen */
 //! A screen state which basically does nothing.
-class IdleState : public IScreenState
-{
-public:
-
-    const char* description() const { return "Idle"; }
+class IdleState : public IScreenState {
+       public:
+	const char* description() const { return "Idle"; }
 };
 
-} //namespace geoc
+}  //namespace geoc
 
-#endif //_GEOC_IDLE_STATE
+#endif  //_GEOC_IDLE_STATE

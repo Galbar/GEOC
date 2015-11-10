@@ -13,20 +13,18 @@ class TriangleEnt;
 
 /** \ingroup Geometry */
 //! A triangulation of a set of points in the plane.
-class Triangulation : public TriangulationBase
-{
-public:
+class Triangulation : public TriangulationBase {
+       public:
+	Triangulation();
+	~Triangulation();
 
-    Triangulation();
-    ~Triangulation();
-
-    void triangulate(const std::vector<Vector3>& ps,
-                     const std::vector<int>& idxs,
-                     std::vector<LineSegmentEnt>& segments,
-                     std::vector<TriangleEnt>& triangles,
-                     std::vector<TriangleEnt>& triangles_pruned);
+	void triangulate(const std::vector<Vector3>& ps,
+	                 const std::vector<int>& idxs,
+	                 std::vector<LineSegmentEnt>& segments,
+	                 std::vector<TriangleEnt>& triangles,
+	                 std::vector<TriangleEnt>& triangles_pruned);
 };
 
-} // namespace geoc
+}  // namespace geoc
 
-#endif //_GEOC_TRIANGULATION_H
+#endif  //_GEOC_TRIANGULATION_H

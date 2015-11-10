@@ -11,22 +11,20 @@ class OutputSystem;
 }
 
 class MyObserver : public geoc::Observer<geoc::LineSegmentEnt>,
-	public geoc::Observer<geoc::Entity>
-{
-    geoc::SceneManager*   sceneMgr;
-    geoc::OutputSystem*   outputSystem;
-    geoc::LineSegmentEnt* previous_segment;
-    int num_segments;
-    int pair_num;
+                   public geoc::Observer<geoc::Entity> {
+	geoc::SceneManager* sceneMgr;
+	geoc::OutputSystem* outputSystem;
+	geoc::LineSegmentEnt* previous_segment;
+	int num_segments;
+	int pair_num;
 
-public:
+       public:
+	MyObserver(geoc::SceneManager* sceneMgr, geoc::OutputSystem* outputSystem);
+	~MyObserver();
 
-    MyObserver(geoc::SceneManager* sceneMgr, geoc::OutputSystem* outputSystem);
-    ~MyObserver();
-
-    void enters(geoc::LineSegmentEnt* s);
-    void leaves(geoc::Entity* e);
-    void sceneCleared();
+	void enters(geoc::LineSegmentEnt* s);
+	void leaves(geoc::Entity* e);
+	void sceneCleared();
 };
 
-#endif //_MY_OBSERVER_H
+#endif  //_MY_OBSERVER_H

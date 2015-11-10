@@ -9,7 +9,6 @@ namespace geoc {
 
 Keyboard::key translate_key(int qt_key);
 Mouse::button translate_mouse(Qt::MouseButton qt_bt);
-
 }
 
-#endif //_GEOC_INPUT_TRANSLATION_H
+#endif  //_GEOC_INPUT_TRANSLATION_H

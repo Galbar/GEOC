@@ -8,19 +8,17 @@ namespace geoc {
 
 /** \ingroup CamCtrl */
 //! State for controlling the camera in 3D.
-class CamCtrlState3D : public CamCtrlState2D
-{
-    ScreenPos old_pos;
-    bool initial_drag;
+class CamCtrlState3D : public CamCtrlState2D {
+	ScreenPos old_pos;
+	bool initial_drag;
 
-public:
+       public:
+	CamCtrlState3D(Camera& cam, const Input& input, Graphics& gfx, SceneManager& sceneMgr)
+	    : CamCtrlState2D(cam, input, gfx, sceneMgr), initial_drag(true) {}
 
-    CamCtrlState3D(Camera& cam, const Input& input, Graphics& gfx, SceneManager& sceneMgr)
-        : CamCtrlState2D(cam, input, gfx, sceneMgr), initial_drag (true) {}
-
-    int mouseMoved(const ScreenPos& pos);
+	int mouseMoved(const ScreenPos& pos);
 };
 
-} //namespace geoc
+}  //namespace geoc
 
-#endif //_INPUT_STATE_3D_H
+#endif  //_INPUT_STATE_3D_H

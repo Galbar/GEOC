@@ -12,15 +12,13 @@ namespace polygon {
 class Polygon;
 }
 
-class MyObserver : public geoc::Observer<polygon::Polygon>
-{
-    geoc::SceneManager* sceneMgr;
+class MyObserver : public geoc::Observer<polygon::Polygon> {
+	geoc::SceneManager* sceneMgr;
 
-public:
+       public:
+	MyObserver(geoc::SceneManager* sceneMgr);
 
-    MyObserver(geoc::SceneManager* sceneMgr);
-
-    void enters(polygon::Polygon* p);
+	void enters(polygon::Polygon* p);
 };
 
-#endif //_MY_OBSERVER_H
+#endif  //_MY_OBSERVER_H

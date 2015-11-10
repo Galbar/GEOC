@@ -29,7 +29,7 @@ void createPitchFromForward(const Vector3& forward, num& pitch);
 void createYawFromForward(const Vector3& forward, num& yaw);
 
 //! Creates a roll value from the given right vector.
-void createRollFromRight(const Vector3& right, num&roll);
+void createRollFromRight(const Vector3& right, num& roll);
 
 //! Calculates an object's vectors from the given rotation angles.
 void calculateVectors(num yaw, num pitch, num roll, Vector3& right, Vector3& up, Vector3& forward);
@@ -77,13 +77,13 @@ inline int round(num x);
 inline num square(num x);
 
 int nextMultiple(int a, int b);
-}; // namespace Math
+};  // namespace Math
 
-const num TO_RAD = M_PI/180.0;
-const num TO_DEG = 180.0/M_PI;
+const num TO_RAD = M_PI / 180.0;
+const num TO_DEG = 180.0 / M_PI;
 
-} // namespace geoc
+}  // namespace geoc
 
 #include "Math_inline.cc"
 
-#endif //_GEOC_MATH_H
+#endif  //_GEOC_MATH_H

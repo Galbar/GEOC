@@ -22,6 +22,6 @@ DECLDIR void read_vector3(std::istream& is, Vector3& v);
  */
 DECLDIR void write_vector3(std::ostream& os, const Vector3& v);
 
-} //namespace geoc
+}  //namespace geoc
 
-#endif //_GEOC_IO_AUX_FUNCTIONS_H
+#endif  //_GEOC_IO_AUX_FUNCTIONS_H

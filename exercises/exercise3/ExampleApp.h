@@ -10,14 +10,13 @@ class Graphics;
 
 class MyObserver;
 
-class ExampleApp : public geoc::GeocApplication
-{
-    MyObserver* myObserver;
+class ExampleApp : public geoc::GeocApplication {
+	MyObserver* myObserver;
 
-public:
-    void init(int argc, char** argv);
-    void initGraphics();
-    void shutdown();
+       public:
+	void init(int argc, char** argv);
+	void initGraphics();
+	void shutdown();
 };
 
-#endif //_EXAMPLE_APP_H
+#endif  //_EXAMPLE_APP_H

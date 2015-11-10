@@ -17,110 +17,108 @@ class SceneManager;
 
 /** \ingroup CamCtrl */
 //! The subsystem responsible for controlling the camera.
-class CamCtrlContext
-{
-    CamCtrlState*   currentState;
-    CamCtrlState*   state2D;
-    CamCtrlState*   state3D;
-    Camera          cam;
+class CamCtrlContext {
+	CamCtrlState* currentState;
+	CamCtrlState* state2D;
+	CamCtrlState* state3D;
+	Camera cam;
 
-public:
+       public:
+	CamCtrlContext(const Input& input, Graphics& gfx, SceneManager& sceneMgr);
 
-    CamCtrlContext(const Input& input, Graphics& gfx, SceneManager& sceneMgr);
+	~CamCtrlContext();
 
-    ~CamCtrlContext();
-
-    //! Changes the camera's transform accordingly.
-    /*!
+	//! Changes the camera's transform accordingly.
+	/*!
      * \param key The pressed key.
      * \return A GEOC_APP_REQUEST_CODE.
      * \sa GEOC_APP_REQUEST_CODE
      * \sa Keyboard::key
      */
-    int keyPressed(Keyboard::key key);
+	int keyPressed(Keyboard::key key);
 
-    //! Changes the camera's transform accordingly.
-    /*!
+	//! Changes the camera's transform accordingly.
+	/*!
      * \param pos The current mouse position.
      * \return A GEOC_APP_REQUEST_CODE.
      * \sa GEOC_APP_REQUEST_CODE
      * \sa ScreenPos
      */
-    int mouseMoved(const ScreenPos& pos);
+	int mouseMoved(const ScreenPos& pos);
 
-    //! Changes the camera's transform accordingly.
-    /*!
+	//! Changes the camera's transform accordingly.
+	/*!
      * \param delta The distance the wheel is rotated.
      * \return A GEOC_APP_REQUEST_CODE.
      * \sa GEOC_APP_REQUEST_CODE
      */
-    int mouseWheel(int delta);
+	int mouseWheel(int delta);
 
-    //! Changes the CamCtrlContext's state.
-    /*!
+	//! Changes the CamCtrlContext's state.
+	/*!
      * \param state The state to set the CamCtrlContext to.
      * \sa CamCtrlState
      */
-    void setState(CamCtrlState* state);
+	void setState(CamCtrlState* state);
 
-    //! Sets default values for the camera.
-    void resetCamera();
+	//! Sets default values for the camera.
+	void resetCamera();
 
-    //! Updates the camera's zoom.
-    /*!
+	//! Updates the camera's zoom.
+	/*!
     * Call this whenever the scene dimensions change to let the camera update
     * its zoom so that the entire scene is viewed on the screen.
     */
-    void updateZoom();
+	void updateZoom();
 
-    //! Centers the camera.
-    /*!
+	//! Centers the camera.
+	/*!
     * Call this when the scene dimensions change so that the camera can
     * center itself properly.
     */
-    void centerCamera();
+	void centerCamera();
 
-    //! Updates the camera's viewport settings.
-    /*!
+	//! Updates the camera's viewport settings.
+	/*!
      * \param width The viewport's width.
      * \param height The viewport's height.
      */
-    void setDimensions(int width, int height) { cam.setDimensions(width, height); }
+	void setDimensions(int width, int height) { cam.setDimensions(width, height); }
 
-    //! Gets a string describing the current camera mode.
-    std::string getCameraMode();
+	//! Gets a string describing the current camera mode.
+	std::string getCameraMode();
 
-    //! Gets a string describing the camera's projection.
-    std::string getCameraProjection();
+	//! Gets a string describing the camera's projection.
+	std::string getCameraProjection();
 
-    //! Gets the context's camera.
-    /*!
+	//! Gets the context's camera.
+	/*!
      * \sa Camera
      */
-    const Camera& camera () const { return cam; }
+	const Camera& camera() const { return cam; }
 
-    //! Gets the current state.
-    /*!
+	//! Gets the current state.
+	/*!
      * \return The current CamCtrlState.
      * \sa CamCtrlState
      */
-    CamCtrlState* getState() const { return currentState; }
+	CamCtrlState* getState() const { return currentState; }
 
-    //! Gets the 2D state.
-    /*!
+	//! Gets the 2D state.
+	/*!
      * \return The machine's CamCtrlState2D.
      * \sa CamCtrlState
      */
-    CamCtrlState* get2Dstate() const { return state2D; }
+	CamCtrlState* get2Dstate() const { return state2D; }
 
-    //! Gets the 3D state.
-    /*!
+	//! Gets the 3D state.
+	/*!
     * \return The machine's CamCtrlState3D.
     * \sa CamCtrlState
     */
-    CamCtrlState* get3Dstate() const { return state3D; }
+	CamCtrlState* get3Dstate() const { return state3D; }
 };
 
-} //namespace geoc
+}  //namespace geoc
 
-#endif //_GEOC_INPUT_CONTROL_H
+#endif  //_GEOC_INPUT_CONTROL_H

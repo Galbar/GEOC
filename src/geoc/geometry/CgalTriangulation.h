@@ -16,25 +16,22 @@ class TriangleEnt;
 
 /** \ingroup Geometry */
 //! A delaunay triangulation of a set of points in the plane.
-class DECLDIR CgalTriangulation : public TriangulationBase
-{
-    typedef Viewer_Kernel<num> VK_;
-    typedef CGAL::Filtered_kernel_adaptor<VK_> K_;
-    typedef CGAL::Projection_traits_xy_3<K_> K;
-    typedef CGAL::Delaunay_triangulation_2<K> Delaunay_triangulation_2;
+class DECLDIR CgalTriangulation : public TriangulationBase {
+	typedef Viewer_Kernel<num> VK_;
+	typedef CGAL::Filtered_kernel_adaptor<VK_> K_;
+	typedef CGAL::Projection_traits_xy_3<K_> K;
+	typedef CGAL::Delaunay_triangulation_2<K> Delaunay_triangulation_2;
 
-    Delaunay_triangulation_2 dt;
+	Delaunay_triangulation_2 dt;
 
-public:
-
-    void triangulate(const std::vector<Vector3>& ps,
-                     const std::vector<int>& idxs,
-                     std::vector<LineSegmentEnt>& segments,
-                     std::vector<TriangleEnt>& triangles,
-                     std::vector<TriangleEnt>& triangles_pruned);
-
+       public:
+	void triangulate(const std::vector<Vector3>& ps,
+	                 const std::vector<int>& idxs,
+	                 std::vector<LineSegmentEnt>& segments,
+	                 std::vector<TriangleEnt>& triangles,
+	                 std::vector<TriangleEnt>& triangles_pruned);
 };
 
-} // namespace geoc
+}  // namespace geoc
 
-#endif // _GEOC_CGAL_TRIANGULATION_H
+#endif  // _GEOC_CGAL_TRIANGULATION_H

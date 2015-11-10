@@ -9,22 +9,20 @@ namespace geoc {
 
 /** \ingroup Output */
 //! A scroll list kind of output stream.
-class ScrollList : public OutputStream, public QListWidget
-{
-public:
+class ScrollList : public OutputStream, public QListWidget {
+       public:
+	ScrollList(QWidget* parent = 0);
 
-    ScrollList(QWidget* parent = 0);
+	//! Adds a line to the scroll list.
+	void write(const char* str);
 
-    //! Adds a line to the scroll list.
-    void write(const char* str);
+	//! Adds a line to the scroll list.
+	void write(const std::string& str);
 
-    //! Adds a line to the scroll list.
-    void write(const std::string& str);
-
-    //! Adds a line to the scroll list.
-    void write(const std::ostringstream& str);
+	//! Adds a line to the scroll list.
+	void write(const std::ostringstream& str);
 };
 
-} //namespace geoc
+}  //namespace geoc
 
-#endif //_GEOC_SCROLL_LIST_H
+#endif  //_GEOC_SCROLL_LIST_H

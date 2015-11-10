@@ -14,34 +14,32 @@ namespace geoc {
  * to add functionality to it.
  * \sa Loader
  */
-class DECLDIR ObjectLoader
-{
-    typedef std::list<ILoader*> LoaderList;
-    typedef LoaderList::iterator LoaderList_iterator;
-    typedef LoaderList::const_iterator LoaderList_const_iterator;
+class DECLDIR ObjectLoader {
+	typedef std::list<ILoader*> LoaderList;
+	typedef LoaderList::iterator LoaderList_iterator;
+	typedef LoaderList::const_iterator LoaderList_const_iterator;
 
-    LoaderList loaders;
+	LoaderList loaders;
 
-public:
+       public:
+	~ObjectLoader();
 
-    ~ObjectLoader();
+	//! Attempts to load elements from the given file stream.
+	void load(const char* filename);
 
-    //! Attempts to load elements from the given file stream.
-    void load(const char* filename);
-
-    //! Attaches a loader to the object loader.
-    /*!
+	//! Attaches a loader to the object loader.
+	/*!
      * The object loader takes ownership of the attached loader.
      */
-    void attach(ILoader* load);
+	void attach(ILoader* load);
 
-    //! Detaches a loder from the object loader.
-    /*!
+	//! Detaches a loder from the object loader.
+	/*!
      * The specified loader is detached and deleted from memory.
      */
-    void detach(ILoader* loader);
+	void detach(ILoader* loader);
 };
 
-} //namespace geoc
+}  //namespace geoc
 
-#endif //_GEOC_OBJECT_LOADER_H
+#endif  //_GEOC_OBJECT_LOADER_H

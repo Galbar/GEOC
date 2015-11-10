@@ -14,21 +14,19 @@ class OutputSystem;
 }
 
 class MyObserver : public geoc::Observer<geoc::Point>,
-	           public geoc::Observer<geoc::LineSegmentEnt>,
-	           public geoc::Observer<geoc::TriangleEnt>,
-	           public geoc::Observer<geoc::CircleEnt>
-{
-    geoc::SceneManager* sceneMgr;
-    geoc::OutputSystem* outputSystem;
+                   public geoc::Observer<geoc::LineSegmentEnt>,
+                   public geoc::Observer<geoc::TriangleEnt>,
+                   public geoc::Observer<geoc::CircleEnt> {
+	geoc::SceneManager* sceneMgr;
+	geoc::OutputSystem* outputSystem;
 
-public:
+       public:
+	MyObserver(geoc::SceneManager* sceneMgr, geoc::OutputSystem* outputSystem);
 
-    MyObserver(geoc::SceneManager* sceneMgr, geoc::OutputSystem* outputSystem);
-
-    void enters(geoc::Point* p);
-    void enters(geoc::LineSegmentEnt* s);
-    void enters(geoc::TriangleEnt* t);
-    void enters(geoc::CircleEnt* c);
+	void enters(geoc::Point* p);
+	void enters(geoc::LineSegmentEnt* s);
+	void enters(geoc::TriangleEnt* t);
+	void enters(geoc::CircleEnt* c);
 };
 
-#endif //_MY_OBSERVER_H
+#endif  //_MY_OBSERVER_H

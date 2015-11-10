@@ -6,10 +6,10 @@
 
 namespace geoc {
 
-inline int Math::round(num x) { return (int)(x+0.5); }
+inline int Math::round(num x) { return (int)(x + 0.5); }
 
-inline num Math::square(num x) { return x*x; }
+inline num Math::square(num x) { return x * x; }
 
-} //namespace geoc
+}  //namespace geoc
 
-#endif //_MATH_INLINE_CC
+#endif  //_MATH_INLINE_CC

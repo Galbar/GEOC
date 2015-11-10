@@ -7,4 +7,4 @@
 #endif
 #include <GL/gl.h>
 
-#endif //_GEOC_GL_H
+#endif  //_GEOC_GL_H

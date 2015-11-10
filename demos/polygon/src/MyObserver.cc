@@ -8,8 +8,7 @@ using namespace polygon;
 
 MyObserver::MyObserver(SceneManager* scenemgr) : sceneMgr(scenemgr) {}
 
-void MyObserver::enters(Polygon* p)
-{
-    p->colour = Colour3(0, 0, 0);
-    sceneMgr->attach(p);
+void MyObserver::enters(Polygon* p) {
+	p->colour = Colour3(0, 0, 0);
+	sceneMgr->attach(p);
 }

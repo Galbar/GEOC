@@ -25,7 +25,6 @@ DECLDIR void skipLine(std::fstream& f);
 /** \ingroup IO */
 //! Reads a string from the given file stream.
 DECLDIR void readString(std::fstream& f, std::string& s);
-
 }
 
-#endif //_GEOC_FILE_UTILS_H
+#endif  //_GEOC_FILE_UTILS_H

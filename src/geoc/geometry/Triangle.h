@@ -5,7 +5,9 @@
 #include <geoc/math/Vector.h>
 #include <CGAL/Cartesian.h>
 
-namespace CGAL { class Bbox_3; }
+namespace CGAL {
+class Bbox_3;
+}
 
 namespace geoc {
 
@@ -20,58 +22,55 @@ class Plane_3;
  * This class is meant for heavy geometric computations, having no overhead and
  * exposing a minimal interface.
  */
-class DECLDIR Triangle
-{
-    Vector3 points[3];
+class DECLDIR Triangle {
+	Vector3 points[3];
 
-    template <class iter_t> friend Triangle triangle(iter_t);
+	template <class iter_t>
+	friend Triangle triangle(iter_t);
 
-public:
-
-    //! Default constructor.
-    /*!
+       public:
+	//! Default constructor.
+	/*!
      * Points are set to the origin.
      */
-    Triangle() {}
+	Triangle() {}
 
-    //! Builds a triangle from three points.
-    Triangle(const Vector3& p1, const Vector3& p2, const Vector3& p3);
+	//! Builds a triangle from three points.
+	Triangle(const Vector3& p1, const Vector3& p2, const Vector3& p3);
 
-    //! Tests two triangles for equality.
-    bool operator==(const Triangle& t) const;
+	//! Tests two triangles for equality.
+	bool operator==(const Triangle& t) const;
 
-    //! Tests two triangles of inequality.
-    bool operator!=(const Triangle& t) const { return !((*this) == t); }
+	//! Tests two triangles of inequality.
+	bool operator!=(const Triangle& t) const { return !((*this) == t); }
 
-    //! Gets the ith vertex modulo 3.
-    const Vector3& vertex(int index) const
-    {
-        return points[index%3];
-    }
+	//! Gets the ith vertex modulo 3.
+	const Vector3& vertex(int index) const {
+		return points[index % 3];
+	}
 
-    //! Gets the ith vertex.
-    /*!
+	//! Gets the ith vertex.
+	/*!
      * The index is checked in debug mode, but not in release mode.
      */
-    const Vector3& operator[](int index) const
-    {
-        GEOC_DEBUG_ASSERT(index >= 0 && index <= 2);
-        return points[index];
-    }
+	const Vector3& operator[](int index) const {
+		GEOC_DEBUG_ASSERT(index >= 0 && index <= 2);
+		return points[index];
+	}
 
-    //! Returns the triangle's supporting plane, with the same orientation.
-    CGAL::Cartesian<num>::Plane_3 supporting_plane() const;
+	//! Returns the triangle's supporting plane, with the same orientation.
+	CGAL::Cartesian<num>::Plane_3 supporting_plane() const;
 
-    // Returns true if the triangle's vertices are collinear, false otherwise.
-    //bool is_degenerate() const;
+	// Returns true if the triangle's vertices are collinear, false otherwise.
+	//bool is_degenerate() const;
 
-    //bool has_on(const Vector3& p) const;
+	//bool has_on(const Vector3& p) const;
 
-    //! Returns the triangle's area squared.
-    num squared_area() const;
+	//! Returns the triangle's area squared.
+	num squared_area() const;
 
-    //! Returns a bounding box containing the triangle.
-    CGAL::Bbox_3 bbox() const;
+	//! Returns a bounding box containing the triangle.
+	CGAL::Bbox_3 bbox() const;
 };
 
 //! Builds a triangle from three points, provided an iterator.
@@ -80,11 +79,10 @@ public:
  * The given iterator must point to a sequence of at least three points.
  */
 template <class iter_t>
-Triangle triangle(iter_t it)
-{
-    Triangle t;
-    for (int i = 0; i < 3; ++i) t.points[i] = *it++;
-    return t;
+Triangle triangle(iter_t it) {
+	Triangle t;
+	for (int i = 0; i < 3; ++i) t.points[i] = *it++;
+	return t;
 }
 
 //! Computes the given triangle's normal.
@@ -98,6 +96,6 @@ DECLDIR Vector3 normal(const Triangle& t);
  */
 DECLDIR void classify(const Triangle& t, const Vector3& p, Colour3& colour, std::string& desc);
 
-} //namespace geoc
+}  //namespace geoc
 
-#endif //_GEOC_TRIANGLE_H
+#endif  //_GEOC_TRIANGLE_H

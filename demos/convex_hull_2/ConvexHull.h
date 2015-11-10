@@ -10,30 +10,28 @@
 #include <geoc/io/aux_functions.h>
 #include <vector>
 
-class ConvexHull : public geoc::Entity
-{
-    typedef std::vector<geoc::Vector2> container_t;
+class ConvexHull : public geoc::Entity {
+	typedef std::vector<geoc::Vector2> container_t;
 
-    geoc::BoundingBox3 _bb;
-    container_t points;
-    container_t hull;
-    int n_points;
+	geoc::BoundingBox3 _bb;
+	container_t points;
+	container_t hull;
+	int n_points;
 
-public:
+       public:
+	ConvexHull() : n_points(0) {}
 
-    ConvexHull() : n_points(0) {}
+	void addPoint(const geoc::Vector3& p);
 
-    void addPoint(const geoc::Vector3& p);
+	void update();
 
-    void update();
+	void draw(geoc::Graphics& gfx) const;
 
-    void draw(geoc::Graphics& gfx) const;
+	geoc::BoundingBox3 bb() const { return _bb; }
 
-    geoc::BoundingBox3 bb() const { return _bb; }
+	static const char* header() { return "convex hull"; }
 
-    static const char* header() { return "convex hull"; }
-
-    static void read(std::istream& is, ConvexHull& ch);
+	static void read(std::istream& is, ConvexHull& ch);
 };
 
-#endif // _CONVEX_HULL_HPP
+#endif  // _CONVEX_HULL_HPP

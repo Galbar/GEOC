@@ -9,59 +9,54 @@
 namespace geoc {
 
 template <class T>
-GEOC_LOADER_CODE Loader<T>::load(std::fstream& f)
-{
-    using std::string;
-    using std::fstream;
+GEOC_LOADER_CODE Loader<T>::load(std::fstream& f) {
+	using std::string;
+	using std::fstream;
 
-    //Read the section header.
-    string sectionHeader;
-    //f >> sectionHeader;
-    readString(f, sectionHeader);
+	//Read the section header.
+	string sectionHeader;
+	//f >> sectionHeader;
+	readString(f, sectionHeader);
 
-    if (f.fail()) return GEOC_LOADER_ERROR;
+	if (f.fail()) return GEOC_LOADER_ERROR;
 
-    //Check the value of the section header, then read elements.
-    if (sectionHeader.compare(T::header()) == 0)
-    {
-        //Skip any possible comment.
-        skipLine(f);
+	//Check the value of the section header, then read elements.
+	if (sectionHeader.compare(T::header()) == 0) {
+		//Skip any possible comment.
+		skipLine(f);
 
-        do
-        {
-            T* t = cons_f();
+		do {
+			T* t = cons_f();
 
-            int pos = f.tellg();
+			int pos = f.tellg();
 
-            //Read the next element.
-            load_f(f, *t);
+			//Read the next element.
+			load_f(f, *t);
 
-            if (f.bad())
-            {
-                delete t;
-                return GEOC_LOADER_ERROR;
-            }
+			if (f.bad()) {
+				delete t;
+				return GEOC_LOADER_ERROR;
+			}
 
-            if (f.fail()) //We reach the start of another section.
-            {
-                f.clear();
-                f.seekg(pos);
+			if (f.fail())  //We reach the start of another section.
+			{
+				f.clear();
+				f.seekg(pos);
 
-                delete t;
-                return GEOC_LOADER_SUCCESS;
-            }
+				delete t;
+				return GEOC_LOADER_SUCCESS;
+			}
 
-            //Send it to our observers.
-            Subject<T>::enters(t);
-        }
-        while (!f.eof());
+			//Send it to our observers.
+			Subject<T>::enters(t);
+		} while (!f.eof());
 
-        return GEOC_LOADER_SUCCESS;
-    }
+		return GEOC_LOADER_SUCCESS;
+	}
 
-    return GEOC_LOADER_UNEXPECTED_INPUT;
+	return GEOC_LOADER_UNEXPECTED_INPUT;
 }
 
-} //namespace geoc
+}  //namespace geoc
 
-#endif //_GEOC_LOADER_METHODS_CC
+#endif  //_GEOC_LOADER_METHODS_CC

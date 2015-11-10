@@ -8,17 +8,15 @@ namespace geoc {
 
 /** \ingroup Output */
 //! A stream for writing text to the console.
-class DECLDIR ConsoleOutput : public OutputStream
-{
-public:
+class DECLDIR ConsoleOutput : public OutputStream {
+       public:
+	ConsoleOutput();
 
-    ConsoleOutput();
-
-    void write(const char* str);
-    void write(const std::string& str);
-    //void write(const std::ostringstream& str);
+	void write(const char* str);
+	void write(const std::string& str);
+	//void write(const std::ostringstream& str);
 };
 
-} //namespace geoc
+}  //namespace geoc
 
-#endif //_GEOC_CONSOLE_OUTPUT_H
+#endif  //_GEOC_CONSOLE_OUTPUT_H

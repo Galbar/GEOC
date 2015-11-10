@@ -12,35 +12,29 @@
 using namespace geoc;
 using namespace std;
 
-MyObserver::MyObserver(SceneManager* scenemgr, OutputSystem* outSys) :
-    sceneMgr(scenemgr), outputSystem(outSys)
-{
+MyObserver::MyObserver(SceneManager* scenemgr, OutputSystem* outSys) : sceneMgr(scenemgr), outputSystem(outSys) {
 }
 
-void MyObserver::enters(Point* p)
-{
-    sceneMgr->attach(p);
-    ostringstream os;
-    os << "Point enters: " << *p;
-    outputSystem->write(os);
+void MyObserver::enters(Point* p) {
+	sceneMgr->attach(p);
+	ostringstream os;
+	os << "Point enters: " << *p;
+	outputSystem->write(os);
 }
 
-void MyObserver::enters(LineSegmentEnt* s)
-{
-    sceneMgr->attach(s);
-    ostringstream os;
-    os << "Segment enters: " << *s;
-    outputSystem->write(os);
+void MyObserver::enters(LineSegmentEnt* s) {
+	sceneMgr->attach(s);
+	ostringstream os;
+	os << "Segment enters: " << *s;
+	outputSystem->write(os);
 }
 
-void MyObserver::enters(TriangleEnt* t)
-{
-    sceneMgr->attach(t);
-    outputSystem->write("Triangle enters (coords not shown)");
+void MyObserver::enters(TriangleEnt* t) {
+	sceneMgr->attach(t);
+	outputSystem->write("Triangle enters (coords not shown)");
 }
 
-void MyObserver::enters(CircleEnt* c)
-{
-    sceneMgr->attach(c);
-    outputSystem->write("Circle enters (coords not shown)");
+void MyObserver::enters(CircleEnt* c) {
+	sceneMgr->attach(c);
+	outputSystem->write("Circle enters (coords not shown)");
 }

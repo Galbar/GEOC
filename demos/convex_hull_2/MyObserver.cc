@@ -8,33 +8,27 @@
 using namespace geoc;
 using namespace std;
 
-MyObserver::MyObserver(SceneManager* sceneMgr_) : sceneMgr(sceneMgr_), ch(0)
-{
+MyObserver::MyObserver(SceneManager* sceneMgr_) : sceneMgr(sceneMgr_), ch(0) {
 }
 
-MyObserver::~MyObserver()
-{
+MyObserver::~MyObserver() {
 }
 
-void MyObserver::enters(Point* p)
-{
-    if (!ch)
-    {
-	ch = new ConvexHull();
-	sceneMgr->attach(ch);
-    }
+void MyObserver::enters(Point* p) {
+	if (!ch) {
+		ch = new ConvexHull();
+		sceneMgr->attach(ch);
+	}
 
-    ch->addPoint(p->position());
-    ch->update();
-    sceneMgr->attach(p);
+	ch->addPoint(p->position());
+	ch->update();
+	sceneMgr->attach(p);
 }
 
-void MyObserver::enters(ConvexHull* ch)
-{
-    this->ch = ch;
+void MyObserver::enters(ConvexHull* ch) {
+	this->ch = ch;
 }
 
-void MyObserver::leaves(Entity* e)
-{
-    if (e == ch) ch = 0;
+void MyObserver::leaves(Entity* e) {
+	if (e == ch) ch = 0;
 }

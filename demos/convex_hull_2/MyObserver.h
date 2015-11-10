@@ -11,21 +11,19 @@ class SceneManager;
 }
 
 class MyObserver : public geoc::Observer<geoc::Point>,
-	           public geoc::Observer<ConvexHull>,
-	           public geoc::Observer<geoc::Entity>
-{
-    geoc::SceneManager* sceneMgr;
-    ConvexHull* ch;
+                   public geoc::Observer<ConvexHull>,
+                   public geoc::Observer<geoc::Entity> {
+	geoc::SceneManager* sceneMgr;
+	ConvexHull* ch;
 
-public:
+       public:
+	MyObserver(geoc::SceneManager* sceneMgr);
+	~MyObserver();
 
-    MyObserver(geoc::SceneManager* sceneMgr);
-    ~MyObserver();
+	void enters(geoc::Point* s);
+	void enters(ConvexHull* ch);
 
-    void enters(geoc::Point* s);
-    void enters(ConvexHull* ch);
-
-    void leaves(geoc::Entity* e);
+	void leaves(geoc::Entity* e);
 };
 
-#endif //_MY_OBSERVER_H
+#endif  //_MY_OBSERVER_H
