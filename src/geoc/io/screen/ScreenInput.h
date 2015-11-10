@@ -60,7 +60,6 @@ public:
     const char* stateDescription() const;
 };
 
-
 } //namespace geoc
 
 #endif //_GEOC_SCREEN_INPUT_H

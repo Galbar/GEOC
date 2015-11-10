@@ -1,15 +1,12 @@
 #ifndef _GEOC_INPUT_H
 #define _GEOC_INPUT_H
 
-
 #include <geoc/geoc.h>
 #include <geoc/math/Vector_fwd_decl.h>
 #include "Keyboard.h"
 #include "Mouse.h"
 
-
 namespace geoc {
-
 
 /** \ingroup Input */
 //! The input subsystem.
@@ -51,8 +48,6 @@ public:
     void getMouseDelta(Vector2& delta) const;
 };
 
-
 } //namespace geoc
-
 
 #endif //_GEOC_INPUT_H

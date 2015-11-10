@@ -1,7 +1,6 @@
 #ifndef _GEOC_CGAL_VECTOR_ITERATORS_H
 #define _GEOC_CGAL_VECTOR_ITERATORS_H
 
-
 #include <geoc/geoc.h>
 #include <geoc/math/Vector_fwd_decl.h>
 
@@ -27,8 +26,6 @@ public:
     const num* operator()(const Vector3& v, int);
 };
 
-
 } // namespace geoc
-
 
 #endif // _GEOC_CGAL_VECTOR_ITERATORS_H

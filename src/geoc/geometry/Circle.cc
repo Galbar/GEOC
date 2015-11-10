@@ -1,8 +1,6 @@
 #include <geoc/geometry/Circle.h>
 
-
 using namespace geoc;
-
 
 Circle::Circle(const Vector3& v1, const Vector3& v2, const Vector3& v3)
 {
@@ -10,7 +8,6 @@ Circle::Circle(const Vector3& v1, const Vector3& v2, const Vector3& v3)
     points[1] = v2;
     points[2] = v3;
 }
-
 
 const Vector3& Circle::operator[](int index) const
 {

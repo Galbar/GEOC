@@ -5,7 +5,6 @@
 using namespace geoc;
 using namespace std;
 
-
 void geoc::openFile(std::fstream& f, const char* filename, std::fstream::openmode flags)
 {
     f.open(filename, flags);
@@ -25,7 +24,6 @@ void geoc::openFile(std::fstream& f, const char* filename, std::fstream::openmod
     }
 }
 
-
 int geoc::getLineNumber(std::fstream& f)
 {
     streampos pos = f.tellg();
@@ -41,7 +39,6 @@ int geoc::getLineNumber(std::fstream& f)
 
     return line;
 }
-
 
 int geoc::getLinePosition(std::fstream& f)
 {
@@ -63,7 +60,6 @@ int geoc::getLinePosition(std::fstream& f)
     return pos;
 }
 
-
 void geoc::skipLine(std::fstream& f)
 {
     char c;
@@ -73,7 +69,6 @@ void geoc::skipLine(std::fstream& f)
     }
     while (c != '\n');
 }
-
 
 void geoc::readString(std::fstream& f, std::string& s)
 {

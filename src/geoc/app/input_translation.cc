@@ -1,9 +1,7 @@
 #include <geoc/app/input_translation.h>
 #include <QKeyEvent>
 
-
 using namespace geoc;
-
 
 Keyboard::key geoc::translate_key(int qt_key)
 {
@@ -62,7 +60,6 @@ Keyboard::key geoc::translate_key(int qt_key)
     default:				return Keyboard::Key_unknown;
     }
 }
-
 
 Mouse::button geoc::translate_mouse(Qt::MouseButton qt_bt)
 {

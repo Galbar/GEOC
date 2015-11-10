@@ -3,9 +3,7 @@
 #include <geoc/scene/TriangleEnt.h>
 #include <cstdio>
 
-
 using namespace geoc;
-
 
 void CgalTriangulation::triangulate(const std::vector<Vector3>& ps,
                                     const std::vector<int>& idxs,

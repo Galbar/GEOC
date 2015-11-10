@@ -147,5 +147,4 @@ public:
 
 } //namespace geoc
 
-
 #endif //_GEOC_CAMERA_H

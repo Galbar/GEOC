@@ -7,9 +7,7 @@
 #include <geoc/GeocException.h>
 #endif
 
-
 using namespace geoc;
-
 
 static num CAM_SENSITIVITY  = 0.5;
 static num MIN_ZOOM	    = 0.00025;
@@ -17,23 +15,19 @@ static num DEFAULT_NEAR     = 1.0;
 static num DEFAULT_FAR      = 5000.0;
 static num DEFAULT_FOV      = 45.0;
 
-
 Camera::Camera() : Spatial(Vector3(0, 0, 425), forward3),
     m_fov(DEFAULT_FOV), _near(DEFAULT_NEAR), _far(DEFAULT_FAR), m_zoom(1),
     m_sensitivity(CAM_SENSITIVITY), m_mode(CAMERA_ORTHOGONAL) {}
 
-
 Camera::Camera(const Vector3& pos, const Vector3& target) : Spatial(pos, target),
     m_fov(DEFAULT_FOV), _near(DEFAULT_NEAR),
     _far(DEFAULT_FAR), m_zoom(1), m_sensitivity(CAM_SENSITIVITY), m_mode(CAMERA_ORTHOGONAL) {}
-
 
 void Camera::applyTransformationMatrix() const
 {
     applyInverseTranslation();
     applyInverseRotation();
 }
-
 
 void Camera::applyProjectionMatrix() const
 {
@@ -51,7 +45,6 @@ void Camera::applyProjectionMatrix() const
     }
 }
 
-
 void Camera::applyPerspectiveView() const
 {
     num aspect = _width / _height;
@@ -61,7 +54,6 @@ void Camera::applyPerspectiveView() const
     gluPerspective(m_fov, aspect, _near, _far);
     glMatrixMode(GL_MODELVIEW);
 }
-
 
 void Camera::applyOrthogonalView() const
 {
@@ -75,12 +67,10 @@ void Camera::applyOrthogonalView() const
     glMatrixMode(GL_MODELVIEW);
 }
 
-
 void Camera::setMode(CAMERA_MODE mode)
 {
     m_mode = mode;
 }
-
 
 void Camera::toggleMode()
 {
@@ -88,19 +78,16 @@ void Camera::toggleMode()
     else setMode(CAMERA_PERSPECTIVE);
 }
 
-
 void Camera::zoom(num f)
 {
     setZoom(m_zoom + f * m_sensitivity * m_zoom * 0.003);
 }
-
 
 void Camera::setZoom(num zoom)
 {
     if (zoom < MIN_ZOOM) m_zoom = MIN_ZOOM;
     else m_zoom = zoom;
 }
-
 
 void Camera::computeZoom(num scene_width, num scene_height)
 {
@@ -118,7 +105,6 @@ void Camera::computeZoom(num scene_width, num scene_height)
         m_zoom = _height / scene_height * margin;
     }
 }
-
 
 void Camera::center(const Vector3& scene_center, num scene_width, num scene_height, num scene_depth)
 {
@@ -147,7 +133,6 @@ void Camera::center(const Vector3& scene_center, num scene_width, num scene_heig
     num range = off + _near + d + 1.0;
     _far = _far < range ? range : _far;
 }
-
 
 void Camera::setDimensions(int width, int height)
 {

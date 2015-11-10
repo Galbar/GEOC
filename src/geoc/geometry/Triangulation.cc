@@ -9,20 +9,16 @@
 #include <sstream>
 #include <cstdio>
 
-
 using namespace geoc;
 using namespace std;
-
 
 Triangulation::Triangulation()
 {
 }
 
-
 Triangulation::~Triangulation()
 {
 }
-
 
 void Triangulation::triangulate(const std::vector<Vector3>& ps,
                                 const std::vector<int>& idxs,

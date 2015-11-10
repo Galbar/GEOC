@@ -15,7 +15,6 @@ class Camera;
 class Graphics;
 class SceneManager;
 
-
 /** \ingroup CamCtrl */
 //! The subsystem responsible for controlling the camera.
 class CamCtrlContext

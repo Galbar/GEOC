@@ -94,7 +94,6 @@ public:
     }
 };
 
-
 //! Builds a line segment from two points, provided an iterator.
 /*!
  * The given iterator must be an iterator over Vector3.
@@ -108,7 +107,6 @@ LineSegment linesegment(iter_t it)
     return s;
 }
 
-
 //! Classifies the intersection between two line segments.
 /*!
  * \param s The segment to intersect this segment with.
@@ -117,8 +115,6 @@ LineSegment linesegment(iter_t it)
  */
 DECLDIR void classifyIntersection(const LineSegment& s, const LineSegment& t, Colour3& colour, std::string& desc);
 
-
 } //namespace geoc
-
 
 #endif //_GEOC_LINE_SEGMENT_H

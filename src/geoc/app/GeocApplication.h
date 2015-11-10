@@ -156,5 +156,4 @@ protected slots:
 
 } //geoc namespace end
 
-
 #endif //_GEOC_APPLICATION_H

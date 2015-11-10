@@ -3,9 +3,7 @@
 
 using namespace geoc;
 
-
 CircleState::CircleState() : points_entered(0) {}
-
 
 GEOC_APP_REQUEST_CODE CircleState::mouseClick(const Vector3& pos)
 {
@@ -27,7 +25,6 @@ GEOC_APP_REQUEST_CODE CircleState::mouseClick(const Vector3& pos)
     return GEOC_APP_REDISPLAY;
 }
 
-
 GEOC_APP_REQUEST_CODE CircleState::mouseMove(const Vector3& pos)
 {
     pts[points_entered] = pos;
@@ -35,13 +32,11 @@ GEOC_APP_REQUEST_CODE CircleState::mouseMove(const Vector3& pos)
     return GEOC_APP_REDISPLAY;
 }
 
-
 void CircleState::cancel()
 {
     points_entered = 0;
     pts[0] = pts[1] = pts[2] = zero3;
 }
-
 
 void CircleState::draw(Graphics& gfx)
 {
@@ -54,7 +49,6 @@ void CircleState::draw(Graphics& gfx)
         gfx.drawCircle(&circle);
     }
 }
-
 
 const char* CircleState::description() const
 {

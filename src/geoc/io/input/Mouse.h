@@ -4,9 +4,7 @@
 #include <geoc/geoc.h>
 #include <vector>
 
-
 namespace geoc {
-
 
 /** \ingroup Input */
 //! Represents the mouse.
@@ -22,7 +20,6 @@ public:
         LMB, RMB, unknown,
         Mouse_MAX
     };
-
 
 public:
 
@@ -70,8 +67,6 @@ private:
     std::vector<bool> buttons;
 };
 
-
 } //namespace geoc
-
 
 #endif //_GEOC_MOUSE_H

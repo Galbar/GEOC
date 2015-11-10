@@ -91,7 +91,6 @@ public:
     void write(std::fstream& fs) const;
 };
 
-
 } //namespace geoc
 
 #endif //_GEOC_POINT_H

@@ -15,7 +15,6 @@ public:
     CamCtrlState2D(Camera& cam, const Input& input, Graphics& gfx, SceneManager& sceneMgr)
         : CamCtrlState(cam, input, gfx, sceneMgr) {}
 
-
     int keyPressed(Keyboard::key key);
 
     int mouseMoved(const ScreenPos& pos);

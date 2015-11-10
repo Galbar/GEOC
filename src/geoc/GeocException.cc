@@ -7,10 +7,8 @@
 #include <sstream>	//ostringstream
 #include <string>	//string
 
-
 using namespace geoc;
 using namespace std;
-
 
 void GeocException::buildErrorString(const char* file, int line, const char* what)
 {
@@ -37,36 +35,30 @@ void GeocException::buildErrorString(const char* file, int line, const char* wha
     }
 }
 
-
 GeocException::GeocException(const char* what) throw()
 {
     buildErrorString(0, 0, what);
 }
-
 
 GeocException::GeocException(const std::ostringstream& what) throw()
 {
     buildErrorString(0, 0, what.str().c_str());
 }
 
-
 GeocException::GeocException(const char* file, int line, const char* what) throw()
 {
     buildErrorString(file, line, what);
 }
-
 
 GeocException::GeocException(const char* file, int line, const std::ostringstream& what) throw()
 {
     buildErrorString(file, line, what.str().c_str());
 }
 
-
 GeocException::~GeocException() throw()
 {
     if (mWhat) safe_free(mWhat);
 }
-
 
 const char* GeocException::what() const throw()
 {

@@ -16,13 +16,11 @@ struct Iseq : public std::pair<iter_t,iter_t>
     Iseq(const iter_t& it1, const iter_t& it2) : std::pair<iter_t,iter_t>(it1, it2) {}
 };
 
-
 template <class C>
 Iseq<typename C::iterator> iseq(C& c)
 {
     return Iseq<typename C::iterator>(c.begin(), c.end());
 }
-
 
 template <class C>
 Iseq<typename C::const_iterator> const_iseq(const C& c)
@@ -30,20 +28,17 @@ Iseq<typename C::const_iterator> const_iseq(const C& c)
     return Iseq<typename C::const_iterator>(c.begin(), c.end());
 }
 
-
 template <class T, int N>
 Vector<T,N>::Vector()
 {
     for (int i = 0; i < N; ++i) data[i] = num();
 }
 
-
 template <class T, int N>
 Vector<T,N>::Vector(T val)
 {
     memset(data, val, N);
 }
-
 
 template <class T, int N>
 Vector<T,N>::Vector(T x0, T x1)
@@ -52,7 +47,6 @@ Vector<T,N>::Vector(T x0, T x1)
     data[1] = x1;
 }
 
-
 template <class T, int N>
 Vector<T,N>::Vector(T x0, T x1, T x2)
 {
@@ -60,7 +54,6 @@ Vector<T,N>::Vector(T x0, T x1, T x2)
     data[1] = x1;
     data[2] = x2;
 }
-
 
 template <class T, int N>
 Vector<T,N>::Vector(T x0, T x1, T x2, T x3)
@@ -71,13 +64,11 @@ Vector<T,N>::Vector(T x0, T x1, T x2, T x3)
     data[3] = x3;
 }
 
-
 template <class T, int N>
 Vector<T,N>::Vector(T xs[N])
 {
     for (int i = 0; i < N; ++i) data[i] = xs[i];
 }
-
 
 template <class T, int N> template <int d>
 Vector<T,N>::Vector(const Vector<T,d>& v, const T& c)
@@ -87,15 +78,12 @@ Vector<T,N>::Vector(const Vector<T,d>& v, const T& c)
     for (int i = m; i < N; ++i) data[i] = c;
 }
 
-
-
 template <class T, int N>
 inline T& Vector<T,N>::operator[](int i)
 {
     GEOC_DEBUG_ASSERT( (i >= 0) && (i < N) );
     return data[i];
 }
-
 
 template <class T, int N>
 inline const T& Vector<T,N>::operator[](int i) const
@@ -104,14 +92,12 @@ inline const T& Vector<T,N>::operator[](int i) const
     return data[i];
 }
 
-
 template <class T, int N>
 inline const T& Vector<T,N>::x() const
 {
     GEOC_DEBUG_ASSERT(N >= 1);
     return data[X];
 }
-
 
 template <class T, int N>
 inline const T& Vector<T,N>::y() const
@@ -120,14 +106,12 @@ inline const T& Vector<T,N>::y() const
     return data[Y];
 }
 
-
 template <class T, int N>
 inline const T& Vector<T,N>::z() const
 {
     GEOC_DEBUG_ASSERT(N >= 3);
     return data[Z];
 }
-
 
 template <class T, int N>
 inline T& Vector<T,N>::x()
@@ -136,7 +120,6 @@ inline T& Vector<T,N>::x()
     return data[X];
 }
 
-
 template <class T, int N>
 inline T& Vector<T,N>::y()
 {
@@ -144,14 +127,12 @@ inline T& Vector<T,N>::y()
     return data[Y];
 }
 
-
 template <class T, int N>
 inline T& Vector<T,N>::z()
 {
     GEOC_DEBUG_ASSERT(N >= 3);
     return data[Z];
 }
-
 
 template <class T, int N>
 num Vector<T,N>::norm() const
@@ -167,7 +148,6 @@ num Vector<T,N>::normSq() const
     return mag;
 }
 
-
 template <class T, int N>
 Vector<T,N>& Vector<T,N>::normalise()
 {
@@ -176,8 +156,6 @@ Vector<T,N>& Vector<T,N>::normalise()
     geoc::map(mag * boost::lambda::_1, iseq(data));
     return *this;
 }
-
-
 
 template <class T, int N>
 inline Vector<T,N> Vector<T,N>::operator+(const Vector<T,N>& v) const
@@ -334,8 +312,6 @@ inline bool Vector<T,N>::operator<=(const Vector<T,N>&v ) const
     return true;
 }
 
-
-
 template <class T, int N>
 std::ostream& operator<<(std::ostream& os, const Vector<T,N>& v)
 {
@@ -371,7 +347,6 @@ std::fstream& operator<<(std::fstream& fs, const Vector<T,N>& v)
 
     return fs;
 }
-
 
 template <class T, int N>
 T dot(const Vector<T,N>& v1, const Vector<T,N>& v2)

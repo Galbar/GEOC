@@ -7,14 +7,12 @@
 using namespace geoc;
 using namespace std;
 
-
 void Math::createYawPitchRoll(	const Vector3& forward, const Vector3& right, num& yaw, num& pitch, num& roll)
 {
     createPitchFromForward(forward, pitch);
     createYawFromForward(forward, yaw);
     createRollFromRight(right, roll);
 }
-
 
 void Math::createPitchFromForward(const Vector3& forward, num& pitch)
 {
@@ -25,7 +23,6 @@ void Math::createPitchFromForward(const Vector3& forward, num& pitch)
     pitch = acos(dot(f, forward)) * TO_DEG * signOf(forward[Y]);
 }
 
-
 void Math::createYawFromForward(const Vector3& forward, num& yaw)
 {
     // Use the XY plane's normal - the forward vector.
@@ -33,7 +30,6 @@ void Math::createYawFromForward(const Vector3& forward, num& yaw)
     f.normalise();
     yaw = acos(dot(f, forward3)) * TO_DEG * -signOf(forward[X]);
 }
-
 
 void Math::createRollFromRight(const Vector3& right, num& roll)
 {
@@ -48,14 +44,12 @@ void Math::createRollFromRight(const Vector3& right, num& roll)
     }
 }
 
-
 void Math::calculateVectors(num yaw, num pitch, num roll, Vector3& right, Vector3& up, Vector3& forward)
 {
     calculateForwardVector(yaw, pitch, forward);
     calculateRightVector(yaw, roll, right);
     calculateUpVector(pitch, roll, up);
 }
-
 
 void Math::calculateVectors(const Vector3& forward, Vector3& right, Vector3& up)
 {
@@ -64,7 +58,6 @@ void Math::calculateVectors(const Vector3& forward, Vector3& right, Vector3& up)
     right.normalise();
     up.normalise();
 }
-
 
 void Math::calculateForwardVector(num yaw, num pitch, Vector3& out)
 {
@@ -76,7 +69,6 @@ void Math::calculateForwardVector(num yaw, num pitch, Vector3& out)
     out.normalise();
 }
 
-
 void Math::calculateRightVector(num yaw, num roll, Vector3& out)
 {
     // The results come from multiplying the matrices ROT_Y * ROT_Z and reading the 1st row.
@@ -87,7 +79,6 @@ void Math::calculateRightVector(num yaw, num roll, Vector3& out)
     out.normalise();
 }
 
-
 void Math::calculateUpVector(num pitch, num roll, Vector3& out)
 {
     // The results come from multiplying the matrices ROT_X * ROT_Z and reading the 2nd row.
@@ -97,7 +88,6 @@ void Math::calculateUpVector(num pitch, num roll, Vector3& out)
     out = Vector3(cos(-x)*sin(-z), cos(-x)*cos(-z), -sin(-x));
     out.normalise();
 }
-
 
 Vector3 intersect(const Vector3& p_near, const Vector3& p_far, const Spatial& cam)
 {
@@ -116,7 +106,6 @@ Vector3 intersect(const Vector3& p_near, const Vector3& p_far, const Spatial& ca
     // Insert t into the ray's parametric equation to find out the point's coordinates in object space.
     return p_near + ray * t;
 }
-
 
 Vector3 viewportToObjectSpace(num sx, num sy, num sz)
 {
@@ -138,7 +127,6 @@ Vector3 viewportToObjectSpace(num sx, num sy, num sz)
     return Vector3(x, y, z);
 }
 
-
 ScreenPos objectToViewportSpace(num x, num y, num z)
 {
     GLdouble model_mat[16], proj_mat[16];
@@ -158,7 +146,6 @@ ScreenPos objectToViewportSpace(num x, num y, num z)
     return ScreenPos(sx, sy);
 }
 
-
 ScreenPos Math::objectToViewport(const Spatial& spatial, const Spatial& cam, const Vector3& p)
 {
     glPushMatrix();
@@ -177,7 +164,6 @@ ScreenPos Math::objectToViewport(const Spatial& spatial, const Spatial& cam, con
 
     return pos;
 }
-
 
 Vector3 Math::viewportToObject(const ScreenPos& pos, const Spatial& cam, const Spatial& spatial)
 {
@@ -199,7 +185,6 @@ Vector3 Math::viewportToObject(const ScreenPos& pos, const Spatial& cam, const S
     return intersect(p_near, p_far, cam);
 }
 
-
 Vector3 Math::viewportToWorld(const ScreenPos& pos, const Spatial& cam)
 {
     glPushMatrix();
@@ -216,7 +201,6 @@ Vector3 Math::viewportToWorld(const ScreenPos& pos, const Spatial& cam)
     return intersect(p_near, p_far, cam);
 }
 
-
 void Math::makeCounterClockwise(Vector3& v1, Vector3& v2, Vector3& v3)
 {
     if (orientation2D(v1, v2, v3) < 0)
@@ -227,13 +211,11 @@ void Math::makeCounterClockwise(Vector3& v1, Vector3& v2, Vector3& v3)
     }
 }
 
-
 int Math::nextPowerOfTwo(int x)
 {
     double logbase2 = log((num)x) / log(2.0);
     return round(pow(2, ceil((num)logbase2)));
 }
-
 
 num Math::signOf(num x)
 {
@@ -241,14 +223,12 @@ num Math::signOf(num x)
     return 1;
 }
 
-
 num Math::max(num a, num b, num c)
 {
     if (a >= b && a >= c) return a;
     if (b >= a && b >= c) return b;
     return c;
 }
-
 
 int Math::nextMultiple(int a, int b)
 {

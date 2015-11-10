@@ -75,7 +75,6 @@ public:
     static void read(std::istream& is, TriangulationEnt& t);
 };
 
-
 // This is what I'd use in reality, but this forces ex4-5 application to
 // be recompiled when the student modifies Triangulation.h.
 //! Creates a new triangulation.
@@ -85,7 +84,6 @@ TriangulationEnt* make_triangulation_ent()
     TriangulationEnt* t = new TriangulationEnt(new triang_t);
     return t;
 }
-
 
 // Ugly, but avoids ex4-5 recompilation.
 DECLDIR TriangulationEnt* make_student_triangulation();

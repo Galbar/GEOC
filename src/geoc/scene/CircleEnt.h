@@ -80,7 +80,6 @@ public:
     void write(std::fstream& fs) const;
 };
 
-
 //! Builds a CircleEnt from three points, provided an iterator.
 /*!
  * The given iterator must be an iterator over Vector3.
@@ -96,7 +95,6 @@ CircleEnt circle_ent(iter_t it)
     c.box.add(c[2]);
     return c;
 }
-
 
 } //namespace geoc
 

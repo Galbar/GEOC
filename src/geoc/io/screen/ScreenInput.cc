@@ -12,14 +12,11 @@
 #include <cstdio>
 #include <iostream>
 
-
 using namespace geoc;
 using namespace std;
 
-
 typedef std::map<Keyboard::key, IScreenState*> StateTransitions;
 typedef pair<Keyboard::key, IScreenState*> StateTransition;
-
 
 struct geoc::ScreenInput_Impl
 {
@@ -33,7 +30,6 @@ struct geoc::ScreenInput_Impl
         : cam(camera), sceneMgr(scenemgr) {}
 };
 
-
 ScreenInput::ScreenInput(const Camera& cam, const SceneManager& sceneMgr)
     : impl(new ScreenInput_Impl(cam, sceneMgr))
 {
@@ -41,7 +37,6 @@ ScreenInput::ScreenInput(const Camera& cam, const SceneManager& sceneMgr)
     impl->currentState	= impl->idleState;
     setTransition(Keyboard::Key_space, impl->idleState);
 }
-
 
 ScreenInput::~ScreenInput()
 {
@@ -55,13 +50,11 @@ ScreenInput::~ScreenInput()
     }
 }
 
-
 char ScreenInput::mouseRightClicked(const ScreenPos& pos)
 {
     Vector3 world_pos = Math::viewportToObject(pos, impl->cam, impl->sceneMgr);
     return impl->currentState->mouseRightClick(world_pos);
 }
-
 
 char ScreenInput::mouseClicked(const ScreenPos& pos)
 {
@@ -69,13 +62,11 @@ char ScreenInput::mouseClicked(const ScreenPos& pos)
     return impl->currentState->mouseClick(world_pos);
 }
 
-
 char ScreenInput::mouseMoved(const ScreenPos& pos)
 {
     Vector3 world_pos = Math::viewportToObject(pos, impl->cam, impl->sceneMgr);
     return impl->currentState->mouseMove(world_pos);
 }
-
 
 char ScreenInput::keyPressed(Keyboard::key key, const ScreenPos& pos)
 {
@@ -99,24 +90,20 @@ char ScreenInput::keyPressed(Keyboard::key key, const ScreenPos& pos)
     return request;
 }
 
-
 void ScreenInput::draw(Graphics& gfx)
 {
     impl->currentState->draw(gfx);
 }
-
 
 void ScreenInput::setTransition(Keyboard::key key, IScreenState* state)
 {
     impl->transitions[key] = state;
 }
 
-
 void ScreenInput::setState(IScreenState* state)
 {
     impl->currentState = state;
 }
-
 
 const char* ScreenInput::stateDescription() const
 {

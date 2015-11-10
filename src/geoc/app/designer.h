@@ -1,12 +1,9 @@
 #ifndef _GEOC_DESIGNER_H
 #define _GEOC_DESIGNER_H
 
-
 #include <QtDesigner/QDesignerCustomWidgetInterface>
 
-
 namespace geoc {
-
 
 /** \ingroup App */
 //! Exposes GeocWidget to Qt Designer.
@@ -40,8 +37,6 @@ public:
     QString whatsThis() const { return "Geoc viewer widget"; }
 };
 
-
 } // namespace geoc end
-
 
 #endif //_GEOC_DESIGNER_H

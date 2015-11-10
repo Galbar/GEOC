@@ -6,9 +6,7 @@
 #include <geoc/app/update_requests.h>
 #include <geoc/camera/Camera.h>
 
-
 using namespace geoc;
-
 
 CamCtrlContext::CamCtrlContext(const Input& input, Graphics& gfx, SceneManager& sceneMgr)
 {
@@ -17,25 +15,21 @@ CamCtrlContext::CamCtrlContext(const Input& input, Graphics& gfx, SceneManager& 
     currentState = state2D;
 }
 
-
 CamCtrlContext::~CamCtrlContext()
 {
     delete state2D;
     delete state3D;
 }
 
-
 int CamCtrlContext::mouseMoved(const ScreenPos& pos)
 {
     return currentState->mouseMoved(pos);
 }
 
-
 int CamCtrlContext::mouseWheel(int delta)
 {
     return currentState->mouseWheel(delta);
 }
-
 
 int CamCtrlContext::keyPressed(Keyboard::key key)
 {
@@ -56,37 +50,31 @@ int CamCtrlContext::keyPressed(Keyboard::key key)
     return request_code;
 }
 
-
 void CamCtrlContext::setState(CamCtrlState* state)
 {
     currentState = state;
 }
-
 
 void CamCtrlContext::resetCamera()
 {
     currentState->resetCamera();
 }
 
-
 void CamCtrlContext::updateZoom()
 {
     currentState->updateZoom();
 }
-
 
 void CamCtrlContext::centerCamera()
 {
     currentState->centerCamera();
 }
 
-
 std::string CamCtrlContext::getCameraMode()
 {
     if (getState() == get2Dstate()) return "2D";
     return "3D";
 }
-
 
 std::string CamCtrlContext::getCameraProjection()
 {

@@ -32,7 +32,6 @@ public:
     const Vector3& operator[](int index) const;
 };
 
-
 //! Builds a circle from three points, provided an iterator.
 /*!
  * The given iterator must be an iterator over Vector3.
@@ -46,7 +45,6 @@ Circle circle(iter_t it)
     return c;
 }
 
-
 //! Classifies a given point's position relative to the given circle.
 /*!
  * \param p The point to classify.
@@ -54,7 +52,6 @@ Circle circle(iter_t it)
  * \return desc A description describing this classification.
  */
 DECLDIR void classify(const Circle& c, const Vector3& p, Colour3& colour, std::string& desc);
-
 
 } //namespace geoc
 

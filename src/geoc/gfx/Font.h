@@ -96,8 +96,6 @@ public:
     void draw3D(int x, int y, int z, const std::string& text, draw_style style = centered) const;
 };
 
-
 } //geoc namespace end
-
 
 #endif //_GEOC_FONT_H

@@ -20,9 +20,7 @@
 #include <QFileDialog>
 #include <QApplication>
 
-
 using namespace geoc;
-
 
 GeocWidget::GeocWidget(QWidget* parent, bool designer)
     : QGLWidget(parent),
@@ -47,7 +45,6 @@ GeocWidget::GeocWidget(QWidget* parent, bool designer)
     }
 }
 
-
 GeocWidget::~GeocWidget()
 {
     if (_sceneMgr)          safe_delete(_sceneMgr);
@@ -61,7 +58,6 @@ GeocWidget::~GeocWidget()
     if (_objectLoader)      safe_delete(_objectLoader);
     if (_font)              safe_delete(_font);
 }
-
 
 void GeocWidget::initializeGL()
 {
@@ -92,7 +88,6 @@ void GeocWidget::initializeGL()
     _screenInput = new ScreenInput(_camCtrlContext->camera(), *_sceneMgr);
 }
 
-
 void GeocWidget::resizeGL(int w, int h)
 {
     _gfx->setViewport(w, h, 0, 0);
@@ -104,7 +99,6 @@ void GeocWidget::resizeGL(int w, int h)
         _camCtrlContext->centerCamera();
     }
 }
-
 
 void GeocWidget::paintGL()
 {
@@ -153,7 +147,6 @@ void GeocWidget::paintGL()
     _gfx->endFrame();
 }
 
-
 void GeocWidget::mousePressEvent(QMouseEvent* event)
 {
     if (_designer) return;
@@ -177,7 +170,6 @@ void GeocWidget::mousePressEvent(QMouseEvent* event)
 
     setFocus();
 }
-
 
 void GeocWidget::mouseReleaseEvent(QMouseEvent* event)
 {
@@ -206,7 +198,6 @@ void GeocWidget::mouseReleaseEvent(QMouseEvent* event)
     emit mouseClicked(*this, pos, bt);
 }
 
-
 void GeocWidget::mouseMoveEvent(QMouseEvent* event)
 {
     if (_designer) return;
@@ -230,7 +221,6 @@ void GeocWidget::mouseMoveEvent(QMouseEvent* event)
     *_prev_mouse_pos = pos;
 }
 
-
 void GeocWidget::wheelEvent(QWheelEvent* event)
 {
     if (_designer) return;
@@ -241,7 +231,6 @@ void GeocWidget::wheelEvent(QWheelEvent* event)
     mouse->getPos(&x, &y);
     m_screenInput->mouseMoved(ScreenPos(x, y));*/
 }
-
 
 void GeocWidget::keyPressEvent(QKeyEvent* event)
 {
@@ -315,7 +304,6 @@ void GeocWidget::keyPressEvent(QKeyEvent* event)
     handleRequest(request);
 }
 
-
 void GeocWidget::keyReleaseEvent(QKeyEvent* event)
 {
     if (_designer) return;
@@ -327,13 +315,11 @@ void GeocWidget::keyReleaseEvent(QKeyEvent* event)
     emit keyPressed(*this, key);
 }
 
-
 void GeocWidget::handleRequest(char code)
 {
     if (code & GEOC_APP_REDISPLAY)          redisplay();
     if (code & GEOC_APP_STATUS_BAR_UPDATE)  updateStatus();
 }
-
 
 void GeocWidget::toggleLabels(bool key)
 {
@@ -344,7 +330,6 @@ void GeocWidget::toggleLabels(bool key)
     emit labelsToggled(*this, key);
 }
 
-
 void GeocWidget::resetCamera()
 {
     _camCtrlContext->resetCamera();
@@ -353,14 +338,12 @@ void GeocWidget::resetCamera()
     updateStatus();
 }
 
-
 void GeocWidget::updateStatus()
 {
     emit updateStatus(_camCtrlContext->getCameraMode(),
                       _camCtrlContext->getCameraProjection(),
                       _screenInput->stateDescription());
 }
-
 
 void GeocWidget::loadScene(const char* filename)
 {
@@ -383,7 +366,6 @@ void GeocWidget::loadScene(const char* filename)
     _lastFileLoaded = filename;
 }
 
-
 void GeocWidget::loadScene()
 {
     QString file = QFileDialog::getOpenFileName(this, "Load Scene", ".", "Scene files (*.txt)", 0, QFileDialog::DontUseNativeDialog);
@@ -393,7 +375,6 @@ void GeocWidget::loadScene()
         loadScene(file.toStdString().c_str());
     }
 }
-
 
 void GeocWidget::reloadScene()
 {
@@ -407,12 +388,10 @@ void GeocWidget::reloadScene()
     }
 }
 
-
 void GeocWidget::saveScene()
 {
     _sceneMgr->save(_saveFile.c_str());
 }
-
 
 void GeocWidget::saveSceneAs()
 {

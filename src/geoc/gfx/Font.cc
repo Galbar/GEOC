@@ -16,7 +16,6 @@ void leave2D();
 
 void flip_vertically(unsigned char* img_data, int width, int height, int bpp);
 
-
 struct Font::Font_impl
 {
     GLuint      tex;           // Texture id.
@@ -24,7 +23,6 @@ struct Font::Font_impl
     num         size;          // Font size.
     render_mode mode;          // Current render mode.
 };
-
 
 Font::Font(num size)
 {
@@ -55,13 +53,11 @@ Font::Font(num size)
     impl->size = size;
 }
 
-
 Font::~Font()
 {
     glDeleteTextures(1, &impl->tex);
     delete impl;
 }
-
 
 void Font::startRender(render_mode mode) const
 {
@@ -86,7 +82,6 @@ void Font::startRender(render_mode mode) const
     else impl->mode = render_3d;
 }
 
-
 void Font::endRender() const
 {
     if (impl->mode == render_2d)
@@ -102,12 +97,10 @@ void Font::endRender() const
     glPopAttrib();
 }
 
-
 void Font::setSize(float size)
 {
     impl->size = size;
 }
-
 
 void Font::draw2D(const Vector2& pos, const std::string& text, draw_style style) const
 {
@@ -116,12 +109,10 @@ void Font::draw2D(const Vector2& pos, const std::string& text, draw_style style)
     leave2D();
 }
 
-
 void Font::draw2D(int x, int y, const std::string& text, draw_style style) const
 {
     draw2D(Vector2(x, y), text, style);
 }
-
 
 void Font::draw3D(const Vector3& pos, const std::string& text, draw_style style) const
 {
@@ -163,12 +154,10 @@ void Font::draw3D(const Vector3& pos, const std::string& text, draw_style style)
     renderText(text.c_str(), pos_, impl->letter_stride, impl->size);
 }
 
-
 void Font::draw3D(int x, int y, int z, const std::string& text, draw_style style) const
 {
     draw3D(Vector3(x, y, z), text, style);
 }
-
 
 void renderText(const char* text, Vector3 pos, int letter_stride, num size)
 {
@@ -213,7 +202,6 @@ void renderText(const char* text, Vector3 pos, int letter_stride, num size)
     }
 }
 
-
 void enter2D()
 {
     int vPort[4];
@@ -230,7 +218,6 @@ void enter2D()
     glLoadIdentity();
 }
 
-
 void leave2D()
 {
     glMatrixMode(GL_PROJECTION);
@@ -239,7 +226,6 @@ void leave2D()
     glMatrixMode(GL_MODELVIEW);
     glPopMatrix();
 }
-
 
 void flip_vertically(unsigned char* img_data, int width, int height, int bpp)
 {

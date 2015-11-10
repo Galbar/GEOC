@@ -1,9 +1,7 @@
 #include <geoc/geoc.h>
 #include <geoc/scene/cmd/Command.h>
 
-
 using namespace geoc;
-
 
 void Command::undo()
 {
@@ -18,7 +16,6 @@ void Command::undo()
         break;
     }
 }
-
 
 void Command::redo()
 {

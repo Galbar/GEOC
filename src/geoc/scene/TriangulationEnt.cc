@@ -15,13 +15,10 @@
 #include <cstdio>
 #include <sstream>
 
-
 using namespace geoc;
 using namespace std;
 
-
 Colour3 computeColour(const Colour3& colour, num height, num factor);
-
 
 class CompareVec3
 {
@@ -36,7 +33,6 @@ public:
         return false;
     }
 };
-
 
 void TriangulationEnt::read(std::istream& is, TriangulationEnt& t)
 {
@@ -120,7 +116,6 @@ void TriangulationEnt::read(std::istream& is, TriangulationEnt& t)
     is.clear((is.rdstate() & ~ios::failbit) | ios::eofbit);
 }
 
-
 TriangulationEnt::~TriangulationEnt()
 {
     for (int i = 0; i < nDrawModes; ++i)
@@ -129,7 +124,6 @@ TriangulationEnt::~TriangulationEnt()
         geometry[i] = -1;
     }
 }
-
 
 void TriangulationEnt::prepare(Graphics* gfx, bool enable_3d)
 {
@@ -257,7 +251,6 @@ void TriangulationEnt::prepare(Graphics* gfx, bool enable_3d)
     printf("Preparation done\n");
 }
 
-
 void TriangulationEnt::draw(Graphics& gfx) const
 {
     if (geometry[drawMode] != -1)
@@ -281,7 +274,6 @@ void TriangulationEnt::draw(Graphics& gfx) const
     }
 }
 
-
 void TriangulationEnt::drawLabel(const Font& f) const
 {
     if (geometry[drawMode] != -1)
@@ -297,7 +289,6 @@ void TriangulationEnt::drawLabel(const Font& f) const
         }
     }
 }
-
 
 Colour3 computeColour(const Colour3& colour, num height, num factor)
 {

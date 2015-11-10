@@ -4,10 +4,8 @@
 #include <cstdlib>
 #include <cmath>
 
-
 using namespace geoc;
 using namespace std;
-
 
 void geoc::read_vector3(std::istream& is, Vector3& v)
 {
@@ -113,7 +111,6 @@ void geoc::read_vector3(std::istream& is, Vector3& v)
 
     if (is.eof()) is.clear(ios::eofbit);
 }
-
 
 void geoc::write_vector3(std::ostream& os, const Vector3& v)
 {

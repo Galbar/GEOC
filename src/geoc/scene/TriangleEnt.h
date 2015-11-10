@@ -107,7 +107,6 @@ public:
     void write(std::fstream& fs) const;
 };
 
-
 //! Builds a TriangleEnt from three points, provided an iterator.
 /*!
  * The given iterator must be an iterator over Vector3.
@@ -120,7 +119,6 @@ TriangleEnt triangle_ent(iter_t it)
     (Triangle&)t = triangle(it);
     return t;
 }
-
 
 } //namespace geoc
 

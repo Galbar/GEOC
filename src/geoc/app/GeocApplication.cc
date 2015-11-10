@@ -32,10 +32,8 @@
 #include <QGridLayout>
 #include <QMessageBox>
 
-
 using namespace geoc;
 using namespace std;
-
 
 GeocApplication::GeocApplication(QWidget* parent) : QMainWindow(parent),
     _geocWidget(0), _outputSystem(0), _scrollList(0), _statusBar(0),
@@ -47,7 +45,6 @@ GeocApplication::GeocApplication(QWidget* parent) : QMainWindow(parent),
     setMouseTracking(true);
 }
 
-
 GeocApplication::~GeocApplication()
 {
     if (_geocWidget)	safe_delete(_geocWidget);
@@ -57,7 +54,6 @@ GeocApplication::~GeocApplication()
         safe_delete(_outputSystem);
     }
 }
-
 
 void GeocApplication::setup(int argc, char** argv, int width, int height)
 {
@@ -191,7 +187,6 @@ void GeocApplication::setup(int argc, char** argv, int width, int height)
     _geocWidget->resetCamera();
 }
 
-
 void GeocApplication::keyPressEvent(QKeyEvent* event)
 {
     Keyboard::key key = translate_key(event->key());
@@ -212,19 +207,16 @@ void GeocApplication::keyPressEvent(QKeyEvent* event)
     }
 }
 
-
 void GeocApplication::closeEvent(QCloseEvent* event)
 {
     shutdown();
     event->accept();
 }
 
-
 void GeocApplication::quit()
 {
     close();
 }
-
 
 void GeocApplication::updateStatusBar(const std::string& camCtrlContext_state,
                                       const std::string& camera_mode,
@@ -243,24 +235,20 @@ void GeocApplication::updateStatusBar(const std::string& camCtrlContext_state,
     _statusBar->showMessage(QString(os.str().c_str()));
 }
 
-
 void GeocApplication::labelsToggled(GeocWidget&, bool key)
 {
     if (key) _labels->setChecked(!_labels->isChecked());
 }
-
 
 void GeocApplication::loadScene(const char* filename)
 {
     _geocWidget->loadScene(filename);
 }
 
-
 void GeocApplication::loadScene()
 {
     _geocWidget->loadScene();
 }
-
 
 void GeocApplication::reloadScene()
 {
@@ -268,30 +256,25 @@ void GeocApplication::reloadScene()
     _geocWidget->reloadScene();
 }
 
-
 void GeocApplication::saveScene()
 {
     _geocWidget->saveScene();
 }
-
 
 void GeocApplication::saveSceneAs()
 {
     _geocWidget->saveSceneAs();
 }
 
-
 void GeocApplication::showAbout()
 {
     QMessageBox::about(this, "Geoc Viewer", "Geoc viewer, Spring 2012");
 }
 
-
 void GeocApplication::toggleLabels()
 {
     _geocWidget->toggleLabels();
 }
-
 
 void GeocApplication::redisplay()
 {

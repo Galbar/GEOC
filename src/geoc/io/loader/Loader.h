@@ -11,7 +11,6 @@
 
 namespace geoc {
 
-
 /** \ingroup Loader */
 //! An entity that can load elements from a file.
 template <class T>
@@ -32,7 +31,6 @@ public:
      */
     GEOC_LOADER_CODE load(std::fstream& f);
 };
-
 
 } //namespace geoc
 

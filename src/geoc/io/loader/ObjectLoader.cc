@@ -6,10 +6,8 @@
 #include <cstdio>
 #include <iostream>
 
-
 using namespace geoc;
 using namespace std;
-
 
 ObjectLoader::~ObjectLoader()
 {
@@ -21,19 +19,16 @@ ObjectLoader::~ObjectLoader()
     loaders.clear();
 }
 
-
 void ObjectLoader::attach(ILoader* loader)
 {
     loaders.push_back(loader);
 }
-
 
 void ObjectLoader::detach(ILoader* loader)
 {
     loaders.remove(loader);
     delete loader;
 }
-
 
 void ObjectLoader::load(const char* filename)
 {

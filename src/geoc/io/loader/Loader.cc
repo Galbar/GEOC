@@ -1,14 +1,12 @@
 #ifndef _GEOC_LOADER_METHODS_CC
 #define _GEOC_LOADER_METHODS_CC
 
-
 #include <geoc/geoc.h>
 #include "Loader.h"
 #include <geoc/io/File_utils.h>
 #include <string>
 
 namespace geoc {
-
 
 template <class T>
 GEOC_LOADER_CODE Loader<T>::load(std::fstream& f)
@@ -63,7 +61,6 @@ GEOC_LOADER_CODE Loader<T>::load(std::fstream& f)
 
     return GEOC_LOADER_UNEXPECTED_INPUT;
 }
-
 
 } //namespace geoc
 

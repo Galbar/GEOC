@@ -5,18 +5,15 @@
 
 using namespace geoc;
 
-
 Spatial::Spatial(const Vector3 &position, const Vector3 &target) : pos(position)
 {
     lookAt(target);
 }
 
-
 void Spatial::applyTranslation() const
 {
     glTranslatef(pos[X], pos[Y], pos[Z]);
 }
-
 
 void Spatial::applyRotation() const
 {
@@ -25,12 +22,10 @@ void Spatial::applyRotation() const
     glRotatef (angle, s*rot.x, s*rot.y, s*rot.z);
 }
 
-
 void Spatial::applyInverseTranslation() const
 {
     glTranslatef(-pos[X], -pos[Y], -pos[Z]);
 }
-
 
 void Spatial::applyInverseRotation() const
 {
@@ -39,30 +34,25 @@ void Spatial::applyInverseRotation() const
     glRotatef (-angle, s*rot.x, s*rot.y, s*rot.z);
 }
 
-
 void Spatial::rotate(num angle, num x, num y, num z)
 {
     rot = qAxisAngle (angle, x, y, z) * rot;
 }
-
 
 void Spatial::yaw(const num angle)
 {
     rot = qAxisAngle (angle, 0.0, 1.0, 0.0) * rot;
 }
 
-
 void Spatial::pitch(const num angle)
 {
     rot = qAxisAngle (angle, 1.0, 0.0, 0.0) * rot;
 }
 
-
 void Spatial::roll(const num angle)
 {
     rot = qAxisAngle (angle, 0.0, 0.0, 1.0) * rot;
 }
-
 
 void Spatial::setOrientation(const Vector3 &forward)
 {
@@ -71,7 +61,6 @@ void Spatial::setOrientation(const Vector3 &forward)
     Math::createYawFromForward(forward, yaw);
     rot = qAxisAngle (pitch, 1.0, 0.0, 0.0) * qAxisAngle (yaw, 0.0, 1.0, 0.0);
 }
-
 
 void Spatial::setRotation(num pitch, num yaw, num roll)
 {

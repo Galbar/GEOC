@@ -153,5 +153,4 @@ protected:
 
 } // geoc namespace end
 
-
 #endif //_GEOC_WIDGET_H

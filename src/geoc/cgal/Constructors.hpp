@@ -34,7 +34,6 @@ public:
     { return Vector2(x,y); }
 };
 
-
 /** \ingroup CGAL */
 //! Point_3 constructor.
 template <typename K, typename OldK>
@@ -61,7 +60,6 @@ public:
     { return Vector3(x,y,z); }
 };
 
-
 /** \ingroup CGAL */
 //! Segment_3 constructor.
 class Segment_3_cons
@@ -73,7 +71,6 @@ public:
     }
 };
 
-
 /** \ingroup CGAL */
 //! Triangle_3 constructor.
 class Triangle_3_cons
@@ -84,7 +81,6 @@ public:
         return Triangle(p, q, r);
     }
 };
-
 
 /** \ingroup CGAL */
 //! Circle_3 constructor.

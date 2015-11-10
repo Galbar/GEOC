@@ -1,14 +1,11 @@
 #ifndef _GEOC_SPATIAL_H
 #define _GEOC_SPATIAL_H
 
-
 #include <geoc/geoc.h>
 #include "Vector.h"
 #include "Quaternion.h"
 
-
 namespace geoc {
-
 
 /** \ingroup Math */
 //! A spatial in 3D space.
@@ -140,8 +137,6 @@ public:
     const Vector3 up() const { return geoc::rotate (rot, up3); }
 };
 
-
 } //namespace geoc
-
 
 #endif //_GEOC_SPATIAL_H

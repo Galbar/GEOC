@@ -11,7 +11,6 @@ namespace geoc {
 class LineSegmentEnt;
 class TriangleEnt;
 
-
 /** \ingroup Geometry */
 //! A triangulation of a set of points in the plane.
 class Triangulation : public TriangulationBase
@@ -29,6 +28,5 @@ public:
 };
 
 } // namespace geoc
-
 
 #endif //_GEOC_TRIANGULATION_H

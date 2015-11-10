@@ -15,10 +15,8 @@
 #include <cstdio>
 #include <iostream>
 
-
 using namespace geoc;
 using namespace std;
-
 
 const size_t max_command_size = 10;
 
@@ -33,12 +31,10 @@ struct geoc::SceneManager_Impl
     BoundingBox3		bb;
 };
 
-
 SceneManager::SceneManager()
 {
     impl = new SceneManager_Impl;
 }
-
 
 SceneManager::~SceneManager()
 {
@@ -48,7 +44,6 @@ SceneManager::~SceneManager()
         safe_delete(impl);
     }
 }
-
 
 void SceneManager::attach(Entity* e)
 {
@@ -78,12 +73,10 @@ void SceneManager::attach(Entity* e)
     Spatial::setPosition(impl->bb.center());
 }
 
-
 void SceneManager::attachObserver(Observer<Entity>* o)
 {
     Subject<Entity>::attach(o);
 }
-
 
 void SceneManager::detachLast()
 {
@@ -111,7 +104,6 @@ void SceneManager::detachLast()
     commands.push_back(cmd);
 }
 
-
 void SceneManager::undo()
 {
     list<Command>& commands = impl->commands;
@@ -124,7 +116,6 @@ void SceneManager::undo()
     cmd.undo();
     impl->redo_commands.push_back(cmd);
 }
-
 
 void SceneManager::redo()
 {
@@ -150,7 +141,6 @@ void SceneManager::redo()
     commands.push_back(cmd);
 }
 
-
 void SceneManager::clear()
 {
     foreach (Entity* e, impl->all_entities)
@@ -166,7 +156,6 @@ void SceneManager::clear()
     sceneCleared();
 }
 
-
 void SceneManager::render(Graphics& gfx) const
 {
     foreach (Entity* entity, impl->entities)
@@ -174,7 +163,6 @@ void SceneManager::render(Graphics& gfx) const
         entity->draw(gfx);
     }
 }
-
 
 void SceneManager::renderLabels(Font& font, const Camera& cam) const
 {
@@ -202,7 +190,6 @@ void SceneManager::renderLabels(Font& font, const Camera& cam) const
 
     font.endRender();
 }
-
 
 void SceneManager::save(const char* filename) const
 {
@@ -248,54 +235,45 @@ void SceneManager::save(const char* filename) const
     f.close();
 }
 
-
 Vector3 SceneManager::center() const
 {
     return impl->bb.center();
 }
-
 
 const Vector3& SceneManager::min() const
 {
     return impl->bb.min();
 }
 
-
 const Vector3& SceneManager::max() const
 {
     return impl->bb.max();
 }
-
 
 num SceneManager::width() const
 {
     return impl->bb.max()[X] - impl->bb.min()[X];
 }
 
-
 num SceneManager::height() const
 {
     return impl->bb.max()[Y] - impl->bb.min()[Y];
 }
-
 
 num SceneManager::depth() const
 {
     return impl->bb.max()[Z] - impl->bb.min()[Z];
 }
 
-
 num SceneManager::radius() const
 {
     return (impl->bb.max() - impl->bb.min()).norm() * 0.5;
 }
 
-
 bool SceneManager::empty() const
 {
     return impl->all_entities.empty();
 }
-
 
 void writeToFile(const std::string& header, list<const Entity*>& entities, fstream& f)
 {

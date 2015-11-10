@@ -3,16 +3,13 @@
 
 #include <geoc/geoc.h>
 
-
 namespace geoc {
-
 
 #ifdef WIN32
 typedef __int64 timeReading;
 #else
 typedef double timeReading;
 #endif
-
 
 /** \ingroup IO */
 //! A high resolution timer.
@@ -71,7 +68,6 @@ public:
     //! Returns true if the timer is running, false otherwise.
     bool running() const { return !stopped; }
 };
-
 
 } // namespace geoc
 

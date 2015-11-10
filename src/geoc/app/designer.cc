@@ -2,9 +2,7 @@
 #include <geoc/app/designer.h>
 #include <QtPlugin>
 
-
 using namespace geoc;
-
 
 const char domxml[] =
         "<ui language=\"c++\">\n"
@@ -26,18 +24,15 @@ const char domxml[] =
         " </widget>\n"
         "</ui>\n";
 
-
 QString GeocWidgetInterface::domXml() const
 {
     return domxml;
 }
-
 
 QWidget* GeocWidgetInterface::createWidget(QWidget* parent)
 {
     GeocWidget* w = new GeocWidget(parent, true);
     return w;
 }
-
 
 Q_EXPORT_PLUGIN2(geoc, GeocWidgetInterface)

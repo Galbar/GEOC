@@ -55,8 +55,6 @@ public:
     bool up(Keyboard::key key) const { return !keys[key]; }
 };
 
-
 } //namespace geoc
-
 
 #endif // KEYBOARD_H_INCLUDED

@@ -55,13 +55,11 @@ public:
     virtual void write(std::fstream&) const {}
 };
 
-
 inline std::ostream& operator<<(std::ostream& os, const Entity& e)
 {
     e.write(os);
     return os;
 }
-
 
 inline std::fstream& operator<<(std::fstream& f, const Entity& e)
 {

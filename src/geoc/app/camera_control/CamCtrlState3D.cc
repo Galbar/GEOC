@@ -3,9 +3,7 @@
 #include <geoc/camera/Camera.h>
 #include <geoc/scene/SceneManager.h>
 
-
 using namespace geoc;
-
 
 int CamCtrlState3D::mouseMoved(const ScreenPos& pos)
 {

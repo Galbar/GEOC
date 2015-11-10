@@ -82,7 +82,6 @@ public:
     void write(std::fstream& fs) const;
 };
 
-
 //! Builds a LineSegmentEnt from two points, provided an iterator.
 /*!
  * The given iterator must be an iterator over Vector3.
@@ -98,8 +97,6 @@ LineSegmentEnt linesegment_ent(iter_t it)
     return s;
 }
 
-
 } //namespace geoc
-
 
 #endif //_GEOC_LINE_SEGMENT_ENT_H

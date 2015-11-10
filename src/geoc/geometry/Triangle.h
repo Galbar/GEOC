@@ -74,7 +74,6 @@ public:
     CGAL::Bbox_3 bbox() const;
 };
 
-
 //! Builds a triangle from three points, provided an iterator.
 /*!
  * The given iterator must be an iterator over Vector3.
@@ -88,10 +87,8 @@ Triangle triangle(iter_t it)
     return t;
 }
 
-
 //! Computes the given triangle's normal.
 DECLDIR Vector3 normal(const Triangle& t);
-
 
 //! Classifies a given point's position relative to the given triangle.
 /*!
@@ -100,7 +97,6 @@ DECLDIR Vector3 normal(const Triangle& t);
  * \return desc A description about the classification.
  */
 DECLDIR void classify(const Triangle& t, const Vector3& p, Colour3& colour, std::string& desc);
-
 
 } //namespace geoc
 

@@ -14,9 +14,7 @@
 #include "Constructors.hpp"
 #include "Vector_iterators.h"
 
-
 namespace geoc {
-
 
 /** \ingroup CGAL */
 //! A CGAL kernel that integrates the viewer's geometric types into CGAL.
@@ -55,7 +53,6 @@ public:
     Construct_triangle_3 construct_triangle_3_object() const { return Construct_triangle_3(); }
 };
 
-
 template <class FT>
 struct Viewer_Kernel :
         public CGAL::Type_equality_wrapper<
@@ -63,7 +60,6 @@ struct Viewer_Kernel :
         Viewer_Kernel<FT>
         >
 {};
-
 
 } // namespace geoc
 

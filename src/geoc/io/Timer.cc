@@ -2,7 +2,6 @@
 
 using namespace geoc;
 
-
 #ifdef __APPLE__
 #include <mach/mach_time.h>
 #elif WIN32
@@ -12,9 +11,7 @@ using namespace geoc;
 const double NSEC_TO_SEC = 1.0f/1000000000.0f;
 #endif
 
-
 timeReading now();
-
 
 Timer::Timer()
     : secondsPerCount(0.0), deltaTime(0.0), baseTime(0), pausedTime(0.0), curTime(0.0), stopped(true)
@@ -117,7 +114,6 @@ void Timer::start()
 timeReading now()
 {
     timeReading t;
-
 
 #ifdef __APPLE__
     t = mach_absolute_time();

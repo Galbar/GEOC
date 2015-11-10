@@ -6,12 +6,9 @@
 using namespace geoc;
 using namespace std;
 
-
 Point::Point(const Vector3& position, const Colour3& color) : pos(position), box(BoundingBox3(&pos, &pos+1)), colour(color) {}
 
-
 Point::Point(num x, num y, num z, num r, num g, num b) : pos(Vector3(x,y,z)), box(BoundingBox3(&pos, &pos+1)), colour(Vector3(r,g,b)) {}
-
 
 const num& Point::operator[](int coord) const
 {
@@ -19,24 +16,20 @@ const num& Point::operator[](int coord) const
     return pos[coord];
 }
 
-
 void Point::draw(Graphics& gfx) const
 {
     gfx.drawPoint(this);
 }
-
 
 void Point::drawLabel(const Font& font) const
 {
     if (!label.empty()) font.draw3D(pos, label);
 }
 
-
 void Point::setLabel(const std::string& label)
 {
     this->label = label;
 }
-
 
 void Point::read(std::istream& is, Point& p)
 {
@@ -44,7 +37,6 @@ void Point::read(std::istream& is, Point& p)
     read_vector3(is, v);
     p = Point(v);
 }
-
 
 void Point::write(std::ostream& os) const
 {

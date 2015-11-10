@@ -84,7 +84,6 @@ public:
     typename boost::array<T,N>::const_iterator end() const { return data.end(); }
 };
 
-
 template <class T, int N>
 std::ostream& operator<<(std::ostream& os, const Vector<T,N>& v);
 
@@ -94,7 +93,6 @@ std::istream& operator>>(std::istream& is, Vector<T,N>& v);
 template <class T, int N>
 std::fstream& operator<<(std::fstream& fs, const Vector<T,N>& v);
 
-
 const Vector3 zero3 = Vector3(0.0, 0.0, 0.0);
 const Vector3 forward3 = Vector3(0.0, 0.0, -1.0);
 const Vector3 right3 = Vector3(1.0, 0.0, 0.0);
@@ -103,16 +101,12 @@ const Vector3 up3 = Vector3(0.0, 1.0, 0.0);
 enum COORD { X, Y, Z, W };
 enum COLOUR {R, G, B, A};
 
-
-
 //! Returns the dot product between the given vectors.
 template <class T, int N>
 T dot(const Vector<T,N>& v1, const Vector<T,N>& v2);
 
-
 //! Returns the cross product between the given vectors.
 Vector3 cross(const Vector3& v1, const Vector3& v2);
-
 
 } //namespace geoc
 

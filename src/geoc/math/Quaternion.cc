@@ -5,7 +5,6 @@ static const num TO_RAD = M_PI / 180.0;
 
 using namespace geoc;
 
-
 Quaternion geoc::operator* (Quaternion q1, Quaternion q2)
 {
     num w, x, y, z;
@@ -15,7 +14,6 @@ Quaternion geoc::operator* (Quaternion q1, Quaternion q2)
     z = q1.w*q2.z + q1.x*q2.y - q1.y*q2.x + q1.z*q2.w;
     return Quaternion (w, x, y, z);
 }
-
 
 Quaternion geoc::qAxisAngle (num angle, num x, num y, num z)
 {
@@ -31,7 +29,6 @@ Quaternion geoc::qAxisAngle (num angle, num x, num y, num z)
     return Quaternion (_w, _x, _y, _z);
 }
 
-
 Quaternion geoc::inverse (Quaternion q)
 {
     num magsq = q.w*q.w + q.x*q.x + q.y*q.y + q.z*q.z;
@@ -39,12 +36,10 @@ Quaternion geoc::inverse (Quaternion q)
     return Quaternion (q.w / magsq, -q.x / magsq, -q.y / magsq, -q.z / magsq);
 }
 
-
 Quaternion geoc::conjugate (Quaternion q)
 {
     return Quaternion (q.w, -q.x, -q.y, -q.z);
 }
-
 
 Vector3 geoc::rotate (Quaternion q, Vector3 v)
 {

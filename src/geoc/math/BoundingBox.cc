@@ -8,13 +8,11 @@
 
 namespace geoc {
 
-
 template <int N> template <class iter_t>
 BoundingBox<N>::BoundingBox(iter_t begin, const iter_t& end) : first_point(true)
 {
     mapM(boost::bind(&BoundingBox<N>::add, this, _1), begin, end);
 }
-
 
 template <int N>
 void BoundingBox<N>::add(const Vector<num,N>& v)
@@ -35,7 +33,6 @@ void BoundingBox<N>::add(const Vector<num,N>& v)
     }
 }
 
-
 template <int N>
 const Vector<num,N> BoundingBox<N>::center() const
 {
@@ -43,6 +40,5 @@ const Vector<num,N> BoundingBox<N>::center() const
 }
 
 } //namespace geoc
-
 
 #endif //_GEOC_BOUNDING_BOX_CC

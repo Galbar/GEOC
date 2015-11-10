@@ -14,15 +14,12 @@
 #include <vector>
 #include <algorithm>
 
-
 using namespace geoc;
 using std::list;
 using std::vector;
 using std::search;
 
-
 static const num g_thickness_step = 0.5;
-
 
 template <class T>
 struct element
@@ -34,7 +31,6 @@ struct element
         item = t;
     }
 };
-
 
 struct polygon
 {
@@ -53,13 +49,11 @@ struct polygon
     }
 };
 
-
 void render_(const Point& p);
 void render_(const LineSegmentEnt& s);
 void render_(const TriangleEnt& t);
 void render_(const CircleEnt& c, GLUquadricObj* quadric);
 void render_(const polygon& p);
-
 
 struct geoc::Graphics_impl
 {
@@ -90,7 +84,6 @@ struct geoc::Graphics_impl
     vector< element<polygon> >        polygons;
 };
 
-
 Graphics::Graphics()
 {
     impl = new Graphics_impl;
@@ -110,7 +103,6 @@ Graphics::Graphics()
     gluQuadricTexture(impl->quadric, GL_FALSE);
 }
 
-
 Graphics::~Graphics()
 {
     if (impl->quadric) gluDeleteQuadric(impl->quadric);
@@ -126,7 +118,6 @@ Graphics::~Graphics()
     safe_delete(impl);
 }
 
-
 void Graphics::resize(int width, int height)
 {
     glViewport(impl->x, impl->y, width, height);
@@ -135,7 +126,6 @@ void Graphics::resize(int width, int height)
     impl->width	= width;
     impl->height	= height;
 }
-
 
 void Graphics::initialise(int width, int height, num x, num y)
 {
@@ -172,18 +162,15 @@ void Graphics::initialise(int width, int height, num x, num y)
     setViewport(width, height, x, y);
 }
 
-
 void Graphics::shutdown()
 {
 }
-
 
 void Graphics::setViewport(int width, int height, num x, num y)
 {
     setOrigin(x, y);
     resize(width, height);
 }
-
 
 void Graphics::drawCube(const Vector3& pos, num d)
 {
@@ -243,38 +230,32 @@ void Graphics::drawCube(const Vector3& pos, num d)
     glPopMatrix();
 }
 
-
 void Graphics::drawPoint(const Point* p) const
 {
     element<Point> e = element<Point>(p);
     impl->points.push_back(e);
 }
 
-
 void Graphics::drawPoint(const Vector3& v) const
 {
     impl->point_pool.push_back(Point(v));
 }
-
 
 void Graphics::drawPoint(const Vector2& v) const
 {
     impl->point_pool.push_back(Point(v));
 }
 
-
 void Graphics::drawPoint(num x, num y, num z) const
 {
     drawPoint(Vector3(x, y, z));
 }
-
 
 void Graphics::drawSegment(const LineSegmentEnt* s) const
 {
     element<LineSegmentEnt> e = element<LineSegmentEnt>(s);
     impl->segments.push_back(e);
 }
-
 
 void Graphics::drawSegment(const Vector3& p1, const Vector3& p2) const
 {
@@ -288,7 +269,6 @@ void Graphics::drawSegment(const Vector2& p1, const Vector2& p2) const
     impl->segment_pool.push_back(s);
 }
 
-
 void Graphics::drawSegment(const Vector3 ps[2]) const
 {
     drawSegment(ps[0], ps[1]);
@@ -300,18 +280,15 @@ void Graphics::drawTriangle(const TriangleEnt* t) const
     impl->triangles.push_back(e);
 }
 
-
 void Graphics::drawTriangle(const Vector3 p1, const Vector3& p2, const Vector3& p3) const
 {
     impl->triangle_pool.push_back(TriangleEnt(p1, p2, p3));
 }
 
-
 void Graphics::drawTriangle(const Vector3 ps[3]) const
 {
     drawTriangle(ps[0], ps[1], ps[2]);
 }
-
 
 void Graphics::drawCircle(const CircleEnt* c) const
 {
@@ -319,18 +296,15 @@ void Graphics::drawCircle(const CircleEnt* c) const
     impl->circles.push_back(e);
 }
 
-
 void Graphics::drawCircle(const Vector3& p1, const Vector3& p2, const Vector3& p3) const
 {
     impl->circle_pool.push_back(CircleEnt(p1, p2, p3));
 }
 
-
 void Graphics::drawCircle(const Vector3 ps[3]) const
 {
     drawCircle(ps[0], ps[1], ps[2]);
 }
-
 
 void Graphics::drawPolygon(const Vector3* ps, int n, const Colour3& colour) const
 {
@@ -347,7 +321,6 @@ void Graphics::drawPolygon(const Vector3* ps, int n, const Colour3& colour) cons
     impl->polygons.push_back(e);
 }
 
-
 void Graphics::drawPolygon(const Vector2* ps, int n, const Colour3& colour) const
 {
     vector<Vector3>* points = new vector<Vector3>(n);
@@ -363,7 +336,6 @@ void Graphics::drawPolygon(const Vector2* ps, int n, const Colour3& colour) cons
     element<polygon> e = element<polygon>(p);
     impl->polygons.push_back(e);
 }
-
 
 unsigned int Graphics::createStaticGeometry(const TriangleEnt* t, int n, const Vector3* normals, const Vector3* colours, bool flat, bool grayscale)
 {
@@ -397,7 +369,6 @@ unsigned int Graphics::createStaticGeometry(const TriangleEnt* t, int n, const V
         }
         glVertex3f(triangle[0][X], triangle[0][Y], flat ? 0.0 : triangle[0][Z]);
 
-
         if (colours)
         {
             glColor3f((*colours)[R], (*colours)[G], (*colours)[B]);
@@ -409,7 +380,6 @@ unsigned int Graphics::createStaticGeometry(const TriangleEnt* t, int n, const V
             normals++;
         }
         glVertex3f(triangle[1][X], triangle[1][Y], flat ? 0.0 : triangle[1][Z]);
-
 
         if (colours)
         {
@@ -433,7 +403,6 @@ unsigned int Graphics::createStaticGeometry(const TriangleEnt* t, int n, const V
 
     return id;
 }
-
 
 unsigned int Graphics::createStaticGeometry(const LineSegmentEnt* s, int n, bool flat)
 {
@@ -462,7 +431,6 @@ unsigned int Graphics::createStaticGeometry(const LineSegmentEnt* s, int n, bool
     return id;
 }
 
-
 void Graphics::deleteStaticGeometry(unsigned int id)
 {
     int id_arr[1];
@@ -478,12 +446,10 @@ void Graphics::deleteStaticGeometry(unsigned int id)
     else throw GEOC_EXCEPTION("The ID specified does not belong to any created static geometry");
 }
 
-
 void Graphics::drawStaticGeometry(unsigned int id) const
 {
     glCallList(id);
 }
-
 
 void Graphics::newFrame()
 {
@@ -491,12 +457,10 @@ void Graphics::newFrame()
     glLoadIdentity();
 }
 
-
 void Graphics::endFrame()
 {
     glFlush();
 }
-
 
 void Graphics::flush()
 {
@@ -537,25 +501,21 @@ void Graphics::flush()
     impl->polygon_pool.clear();
 }
 
-
 void Graphics::setOrigin(int x, int y)
 {
     impl->x = x;
     impl->y = y;
 }
 
-
 void Graphics::setColour(const Colour3& colour)
 {
     glColor3f(colour[R], colour[G], colour[B]);
 }
 
-
 void Graphics::setColour(num r, num g, num b)
 {
     glColor3f(r, g, b);
 }
-
 
 void Graphics::setLighting(bool state)
 {
@@ -576,7 +536,6 @@ void Graphics::setLighting(bool state)
     }
 }
 
-
 void Graphics::updateLighting()
 {
     //static const float lightDir[] = {200.0f, 20.0f, 300.0f, 0.0f};
@@ -588,7 +547,6 @@ bool Graphics::getLightingState() const
 {
     return impl->lighting;
 }
-
 
 void Graphics::setWireframe(bool state)
 {
@@ -604,19 +562,16 @@ void Graphics::setWireframe(bool state)
     }
 }
 
-
 void Graphics::toggleWireframe()
 {
     if (impl->wireframe) setWireframe(false);
     else setWireframe(true);
 }
 
-
 bool Graphics::getWireframeState() const
 {
     return impl->wireframe;
 }
-
 
 void Graphics::setAntialiasing(bool state)
 {
@@ -636,12 +591,10 @@ void Graphics::setAntialiasing(bool state)
     }
 }
 
-
 bool Graphics::getAntialiasingState() const
 {
     return impl->antialiasing;
 }
-
 
 void Graphics::setDepthTest(bool state)
 {
@@ -657,12 +610,10 @@ void Graphics::setDepthTest(bool state)
     }
 }
 
-
 bool Graphics::getDepthTestState() const
 {
     return impl->depthTest;
 }
-
 
 void Graphics::setCulling(bool state)
 {
@@ -678,24 +629,20 @@ void Graphics::setCulling(bool state)
     }
 }
 
-
 bool Graphics::getCullingState() const
 {
     return impl->culling;
 }
-
 
 void Graphics::setPointSize(num size)
 {
     glPointSize((GLfloat)size);
 }
 
-
 void Graphics::setLineWidth(num size)
 {
     glPointSize((GLfloat)size);
 }
-
 
 void Graphics::setThickness(num t)
 {
@@ -703,7 +650,6 @@ void Graphics::setThickness(num t)
     glPointSize((GLfloat)t);
     glLineWidth((GLfloat)t);
 }
-
 
 void Graphics::increaseThickness()
 {
@@ -713,7 +659,6 @@ void Graphics::increaseThickness()
     glLineWidth((GLfloat)t);
 }
 
-
 void Graphics::decreaseThickness()
 {
     num& t = impl->thickness;
@@ -722,31 +667,26 @@ void Graphics::decreaseThickness()
     glLineWidth((GLfloat)t);
 }
 
-
 int Graphics::width() const
 {
     return impl->width;
 }
-
 
 int Graphics::height() const
 {
     return impl->height;
 }
 
-
 num Graphics::aspectRatio() const
 {
     return (num)impl->width / (num)impl->height;
 }
-
 
 void Graphics::getViewportOrigin(int& x, int& y) const
 {
     x = impl->x;
     y = impl->y;
 }
-
 
 void render_(const Point& p)
 {
@@ -755,7 +695,6 @@ void render_(const Point& p)
     glColor3f(c[R], c[G], c[B]);
     glVertex3f(p[X], p[Y], p[Z]);
 }
-
 
 void render_(const LineSegmentEnt& s)
 {
@@ -766,7 +705,6 @@ void render_(const LineSegmentEnt& s)
     glVertex3f(s[1][X], s[1][Y], s[1][Z]);
 }
 
-
 void render_(const TriangleEnt& t)
 {
     glColor3f(t.colour[R], t.colour[G], t.colour[B]);
@@ -774,7 +712,6 @@ void render_(const TriangleEnt& t)
     glVertex3f(t[1][X], t[1][Y], t[1][Z]);
     glVertex3f(t[2][X], t[2][Y], t[2][Z]);
 }
-
 
 void render_(const CircleEnt& c, GLUquadricObj* quadric)
 {
@@ -823,7 +760,6 @@ void render_(const CircleEnt& c, GLUquadricObj* quadric)
     gluDisk(quadric, radius, radius, 128, 8);
     glPopMatrix();
 }
-
 
 void render_(const polygon& p)
 {

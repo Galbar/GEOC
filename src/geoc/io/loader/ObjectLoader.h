@@ -42,7 +42,6 @@ public:
     void detach(ILoader* loader);
 };
 
-
 } //namespace geoc
 
 #endif //_GEOC_OBJECT_LOADER_H

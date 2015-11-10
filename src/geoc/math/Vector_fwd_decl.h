@@ -17,5 +17,4 @@ typedef Vector4 Colour4;
 typedef Vector2 ScreenPos;
 } // geoc namespace
 
-
 #endif //_GEOC_VECTOR_FWD_DECL_H

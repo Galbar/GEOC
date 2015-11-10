@@ -15,10 +15,8 @@ using namespace geoc;
 
 #define PERSPECTIVE_SENSITIVITY	cam.sensitivity() * Math::abs(cam.position()[Z]) * 0.005
 
-
 CamCtrlState::CamCtrlState(Camera& camera, const Input& inputSys, Graphics& graphics, SceneManager& sceneManager)
     : cam(camera), input(inputSys), gfx(graphics), sceneMgr(sceneManager) {}
-
 
 int CamCtrlState::keyPressed(Keyboard::key key)
 {
@@ -44,7 +42,6 @@ int CamCtrlState::keyPressed(Keyboard::key key)
     }
     return GEOC_APP_NO_REQUEST;
 }
-
 
 int CamCtrlState::mouseMoved(const ScreenPos& pos)
 {
@@ -84,14 +81,12 @@ int CamCtrlState::mouseMoved(const ScreenPos& pos)
     return request_code;
 }
 
-
 int CamCtrlState::mouseWheel(int delta)
 {
     if (cam.mode() == CAMERA_ORTHOGONAL)	cam.zoom(delta);
     else									cam.moveForwards(delta * PERSPECTIVE_SENSITIVITY);
     return GEOC_APP_REDISPLAY;
 }
-
 
 void CamCtrlState::resetCamera()
 {
@@ -102,7 +97,6 @@ void CamCtrlState::resetCamera()
     centerCamera();
 }
 
-
 void CamCtrlState::updateZoom()
 {
     if (!sceneMgr.empty())
@@ -112,7 +106,6 @@ void CamCtrlState::updateZoom()
 	cam.computeZoom(scene_width, scene_height);
     }
 }
-
 
 void CamCtrlState::centerCamera()
 {
