@@ -8,6 +8,7 @@ GEOC viewer that actually compiles on a current machine.
 * cmake
 * gcc
 * qt4 (qt5 not supported)
+* boost (including dev headers)
 
 ### Build
 
