@@ -25,13 +25,13 @@ build() {
 	done
 }
 
-echo cgal
-pushd $CGAL_DIR >/dev/null
-if [ ! -f Makefile ]; then
+if [ ! -f $CGAL_DIR/lib/libCGAL.so ]; then
+	echo cgal
+	pushd $CGAL_DIR >/dev/null
 	cmake . -Wno-dev >/dev/null
+	make -j4 -s >/dev/null
+	popd >/dev/null
 fi
-make -j4 -s >/dev/null
-popd >/dev/null
 
 echo libgeoc
 if [ ! -f Release.mk ]; then
