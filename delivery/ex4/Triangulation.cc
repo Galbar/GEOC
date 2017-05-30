@@ -10,8 +10,6 @@
 #include <cstdio>
 #include <cstdlib>
 #include <set>
-#include <queue>
-#include <cassert>
 
 using namespace geoc;
 using namespace std;
@@ -102,24 +100,16 @@ void Triangulation::triangulate(const std::vector<Vector3>& ps,
     aux_point = min + diff/2;
     aux_point_face = face;
 
-    unsigned int p_count = 0;
-    for (int i = 0; i < ps.size(); ++i)
+    for (auto& p : ps)
     {
         error_message = "";
         panic_message = "";
-        if (not insertPoint(ps[i]))
+        if (not insertPoint(p))
         {
             std::cerr << panic_message << std::endl;
             std::cerr << "Ignoring point due to error:\n\t"<< error_message << std::endl;
         }
-
-        if (ps.size() < 100 or ++p_count % (ps.size()/100) == 0)
-        {
-            std::cout << "[PROGRESS] " << ((float)p_count/(float)ps.size()) * 100 << '%' << " of points inserted" << std::endl;
-        }
     }
-
-    std::cout << "done!" << std::endl;
 
     for (Face* face : faces)
     {
@@ -135,25 +125,6 @@ void Triangulation::triangulate(const std::vector<Vector3>& ps,
         triangles[triangles.size()-1].setLabel(name);
     }
 
-    std::set<Face*> faces_to_ignore;
-    prune(ps, idxs, faces_to_ignore);
-
-    for (Face* face : faces)
-    {
-        if (faces_to_ignore.find(face) != faces_to_ignore.end())
-            continue;
-        Triangle t = getFaceAsTriangle(face);
-        if (t[0] == initial_points[0] or t[0] == initial_points[1] or t[0] == initial_points[2] or
-            t[1] == initial_points[0] or t[1] == initial_points[1] or t[1] == initial_points[2] or
-            t[2] == initial_points[0] or t[2] == initial_points[1] or t[2] == initial_points[2])
-            continue;
-        triangles_pruned.push_back(t);
-        std::stringstream ss;
-        ss << hex << face;
-        std::string name = ss.str();
-        triangles_pruned[triangles_pruned.size()-1].setLabel(name);
-    }
-
     initial_points.clear();
     for (Vertex* v : vertices)
         delete v;
@@ -166,91 +137,17 @@ void Triangulation::triangulate(const std::vector<Vector3>& ps,
     faces.clear();
 }
 
-void Triangulation::prune(const std::vector<Vector3>& ps, const std::vector<int>& idxs, std::set<Face*>& faces_to_ignore)
-{
-    if (idxs.empty()) return;
-    Vertex* s = vertices[idxs[0] + 3];
-    Vertex* b_begin = s;
-    Vertex* t = vertices[idxs[1] + 3];;
-    Edge* current_edge = findEdge(t, s);
-    for (int i = 2; i < idxs.size(); ++i)
-    {
-        int idx = idxs[i];
-        Vertex* goal;
-        if (idx < 0)
-        {
-            goal = b_begin;
-        }
-        else
-        {
-            goal = vertices[idx + 3];
-        }
-        if (current_edge == nullptr)
-        {
-            std::cout << "edge not found" << std::endl;
-        }
-        else
-        {
-            // For one edge this loop loops forever,
-            // limmiting it and looking for the edge
-            // afterwards seems to do the job (in a very VERY ugly way)
-            int count = 0;
-            do
-            {
-                faces_to_ignore.insert(current_edge->twin->face);
-                current_edge = current_edge->twin->next;
-            } while (current_edge->twin->vertex != goal and ++count < 40);
-
-            current_edge = current_edge->twin;
-
-            if (count == 40)
-            {
-                current_edge = findEdge(vertices[idxs[++i] + 3], goal);
-            }
-        }
-        if (idx < 0)
-        {
-            s = vertices[idxs[++i] + 3];
-            b_begin = s;
-            t = vertices[idxs[++i] + 3];;
-            current_edge = findEdge(t, s);
-        }
-    }
-}
-
-Triangulation::Edge* Triangulation::findEdge(const Vertex* s, const Vertex* e)
-{
-    Edge* current_edge = s->edge;
-    do
-    {
-        if (current_edge->twin->vertex == e)
-        {
-            return current_edge;
-        }
-        current_edge = current_edge->twin->next;
-    } while (current_edge != s->edge);
-
-    current_edge = e->edge;
-    do
-    {
-        if (current_edge->twin->vertex == s)
-        {
-            return current_edge->twin;
-        }
-        current_edge = current_edge->twin->next;
-    } while (current_edge != e->edge);
-
-    return nullptr;
-}
-
 bool Triangulation::insertPoint(const Vector3& p)
 {
     Face* face = findFace(p);
     if (face == nullptr)
         return false;
-    Vertex* vertex = updateFace(face, p);
-
-    delaunay(vertex);
+    updateFace(face, p);
+    if (not isPointInFace(aux_point_face, aux_point))
+    {
+        panic_message = "[PANIC] aux point not in ref face";
+        return false;
+    }
     return true;
 }
 
@@ -260,12 +157,16 @@ Triangulation::Face* Triangulation::findFace(const Vector3& p)
     Edge* previous_edge_crossed = nullptr;
     LineSegment guide_segment(aux_point, p);
 
-    int restart_count = 10;
-
     while (not isPointInFace(current_face, p))
     {
         std::vector<Edge*> face_edges;
         getEdgesOfFace(current_face, face_edges);
+
+        if (3 != face_edges.size())
+        {
+            panic_message = "[PANIC] current_face has fuck";
+            return nullptr;
+        }
 
         current_face = nullptr;
 
@@ -281,26 +182,14 @@ Triangulation::Face* Triangulation::findFace(const Vector3& p)
         }
         if (current_face == nullptr)
         {
-            std::cerr << "[WARNING] current_face is nullptr, choosing another aux_point randomly" << std::endl;
-            if (--restart_count == 0)
-            {
-                panic_message = "[PANIC] current_face is nullptr after 10 tries";
-                return nullptr;
-            }
-            else
-            {
-                std::cerr << "\t" << error_message << std::endl;
-            }
-            updateAuxPoint();
-            current_face = aux_point_face;
-            guide_segment = LineSegment(aux_point, p);
-            previous_edge_crossed = nullptr;
+            panic_message = "[PANIC] current_face is nullptr";
+            return nullptr;
         }
     }
     return current_face;
 }
 
-Triangulation::Vertex* Triangulation::updateFace(Face* face, const Vector3& p)
+void Triangulation::updateFace(Face* face, const Vector3& p)
 {
     bool is_reference_face = (aux_point_face == face);
     std::vector<Edge*> face_edges;
@@ -313,7 +202,6 @@ Triangulation::Vertex* Triangulation::updateFace(Face* face, const Vector3& p)
     edges.push_back(new Edge{face_edges[1]->vertex, face, nullptr, nullptr});
     Edge* e1 = edges[edges.size()-2];
     Edge* e2 = edges[edges.size()-1];
-    new_vertex->edge = e1;
     face_edges[0]->next = e2;
     face_edges[0]->face = face;
     e2->next = e1;
@@ -360,94 +248,6 @@ Triangulation::Vertex* Triangulation::updateFace(Face* face, const Vector3& p)
             is_reference_face = false;
         }
     }
-    return new_vertex;
-}
-
-void Triangulation::delaunay(Vertex* vertex)
-{
-    std::queue<Edge*> Q;
-    Edge* current_edge = vertex->edge;
-    do
-    {
-        Q.push(current_edge);
-        current_edge = current_edge->twin->next;
-    } while (current_edge != vertex->edge);
-
-    while (not Q.empty())
-    {
-        Edge* current_edge = Q.front();
-        Q.pop();
-        Face* face = current_edge->next->twin->face;
-        if (face != nullptr and isPointInFaceCircumcircle(face, vertex->point))
-        {
-            Face *f1, *f2;
-            f1 = current_edge->face;
-            f2 = current_edge->next->twin->face;
-
-            Edge *e1, *e2, *e3, *e4;
-            e1 = current_edge->next;
-            e2 = current_edge->next->next;
-            e4 = e1->twin->next;
-            e3 = e4->next;
-
-            Vertex* v = e1->vertex;
-
-            v->edge = e4;
-            current_edge->next = e4;
-            e4->next = e1;
-            e4->face = f1;
-            e1->next = current_edge;
-            e1->vertex = e4->twin->vertex;
-            e1->twin->vertex = vertex;
-            e1->twin->next = e3;
-            e3->next = e2;
-            e2->face = f2;
-            e2->next = e1->twin;
-            f1->edge = current_edge;
-            f2->edge = e2;
-
-            Q.push(current_edge);
-            Q.push(e1->twin);
-        }
-    }
-
-    updateAuxPoint();
-}
-
-void Triangulation::updateAuxPoint()
-{
-
-    Face* prev_face = aux_point_face;
-    // choose a random face
-    Face* face = faces[(rand() * rand()) % faces.size()];
-
-    const Vector3& p1 = face->edge->vertex->point;
-    const Vector3& p2 = face->edge->next->vertex->point;
-    const Vector3& p3 = face->edge->next->next->vertex->point;
-
-    aux_point = (p1 + p2 + p3)/3;
-    aux_point_face = face;
-
-    if( prev_face == aux_point_face)
-        std::cout << "same face :(" << std::endl;
-}
-
-bool Triangulation::isPointInFaceCircumcircle(Face* face, const Vector3& p)
-{
-    const Vector3& p1 = face->edge->vertex->point;
-    const Vector3& p2 = face->edge->next->vertex->point;
-    const Vector3& p3 = face->edge->next->next->vertex->point;
-
-    Circle circle(p3, p2, p1);
-    Colour3 c;
-    std::string desc;
-    classify(circle, p, c, desc);
-    if (desc != "Interior")
-    {
-        error_message = "[ERROR] point-face check returned '" + desc + "'";
-        return false;
-    }
-    return true;
 }
 
 LineSegment Triangulation::getEdgeAsSegment(const Edge* edge)

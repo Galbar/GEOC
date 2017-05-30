@@ -60,12 +60,7 @@ class Triangulation : public TriangulationBase {
     bool isPointInFace(const Face* face, const Vector3& point);
     bool isEdgeIntersectingSegment(const Edge* edge, const LineSegment& segment);
     Face* findFace(const Vector3& p);
-    Vertex* updateFace(Face* face, const Vector3& p);
-    void delaunay(Vertex* vertex);
-    bool isPointInFaceCircumcircle(Face* face, const Vector3& p);
-    void updateAuxPoint();
-    void prune(const std::vector<Vector3>& ps, const std::vector<int>& idxs, std::set<Face*>& faces_to_ignore);
-    Edge* findEdge(const Vertex* s, const Vertex* e);
+    void updateFace(Face* face, const Vector3& p);
     LineSegment getEdgeAsSegment(const Edge* edge);
     Triangle getFaceAsTriangle(const Face* face);
 
